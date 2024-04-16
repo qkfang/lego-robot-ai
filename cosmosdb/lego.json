@@ -1,0 +1,52 @@
+[
+    {
+        "_id": "1",
+        "name": "motor_pair.pair",
+        "description": "Creates a new motor_pair instance in a motor_pair id slot",
+        "signature": "pair(motor_pair_id, leftMotorPort, rightMotorPort)",
+        "parameter": "\\nmotor_pair_id\\tInteger (0-2)\\tPAIR_1 -- 0, PAIR_2 -- 1, PAIR_3 -- 2\\nleftMotorPort\\tInteger\\tInteger representing port on hub.\\nrightMotorPort\\tInteger\\tInteger representing port on hub.\\n",
+        "python_code": "\\nimport motor_pair\\nimport runloop\\nfrom hub import port\\n\\nasync def main():\\n    motor_pair.pair(motor_pair.PAIR1, port.A, port.B)\\n    \\nrunloop.run(main())\\n"
+    },
+    {
+        "_id": "2",
+        "name": "motor_pair.move",
+        "description": "Moves the motor pair in a specified direction",
+        "signature": "move(motor_pair_id, steering, velocity, acceleration)",
+        "parameter": "\\nmotor_pair_id\\tInteger (0-2)\\tPAIR_1 -- 0, PAIR_2 -- 1, PAIR_3 -- 2\\nsteering\\tInteger(-100 to 100)\\tSteering value/direction\\nvelocity\\tInteger\\tOptional: velocity of motors\\nacceleration\\tInteger\\tOptional: acceleration of motors\\n",
+        "python_code": "\\nimport motor_pair, time\\nimport runloop\\nimport motor_pair\\n\\nasync def main():\\n\\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\\n\\n    # Move straight\\n    motor_pair.move(motor_pair.PAIR_1, 0)\\n\\n    # run for 1 seconds\\n    time.sleep(1)\\n\\n    # stop motors\\n    motor_pair.stop(motor_pair.PAIR_1)\\n\\nrunloop.run(main())\\n"
+    },
+    {
+        "_id": "3",
+        "name": "motor_pair.move_for_degrees",
+        "description": "Moves motor_pair a specified number of degrees with a steeing factor",
+        "signature": "move_for_degrees(motor_pair_id, degrees, steering_factor, acceleration)",
+        "parameter": "\\nmotor_pair_id\\tInteger (0-2)\\tPAIR_1 -- 0, PAIR_2 -- 1, PAIR_3 -- 2\\ndegrees\\tInteger\\tNumber of degrees to turn motors\\nsteering_factor\\tInteger(-100 to 100)\\tDirection to steer motor_pair\\nacceleration\\tInteger\\tUnknown\\n",
+        "python_code": "\\nfrom hub import port\\nimport runloop\\nimport motor_pair\\n\\nasync def main():\\n    # Pair motors on port A and B \\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\\n\\n    # Move straight at default velocity for 90 degrees \\n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 90, 0)\\n\\n    # Move straight at a 280 velocity for 1000 degrees \\n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 1000, 0, velocity=280)\\n\\n    # Move straight at a 280 velocity for 555 degrees with a slow deceleration \\n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 555, 0, velocity=280, deceleration=10)\\n\\nrunloop.run(main())\\n"
+    },
+    {
+        "_id": "4",
+        "name": "motor_pair.stop",
+        "description": "Stops a motor_pair",
+        "signature": "stop(motor_pair_id)",
+        "parameter": "\\nmotor_pair_id\\tInteger (0-2)\\tPAIR_1 -- 0, PAIR_2 -- 1, PAIR_3 -- 2\\n",
+        "python_code": "\\nimport motor_pair\\nimport runloop\\n\\nasync def main():\\n    # stop motors\\n    motor_pair.stop(PAIR_1)\\n    \\nrunloop.run(main())\\n"
+    },
+    {
+        "_id": "5",
+        "name": "motor_pair.tank_move_for_degrees",
+        "description": "Turns motors a specified number of degrees. Deceleration and acceleration are optional parameters.",
+        "signature": "tank_move_for_degrees(motor_pair_id, degrees, leftMotorSpeed, rightMotorSpeed)",
+        "parameter": "\\nmotor_pair_id\\tInteger (0-2)\\tPAIR_1 -- 0, PAIR_2 -- 1, PAIR_3 -- 2\\ndegrees\\tInteger\\tDegrees to turn motors\\nleftMotorSpeed\\tInteger\\tSpeed of Motor 1\\nrightMotorSpeed\\tInteger\\tSpeed of Motor 2\\n",
+        "python_code": "\\nimport motor_pair\\nimport runloop\\nfrom hub import port\\n\\nasync def main():\\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\\n\\n    # move forward 360 degrees at 100 speed for both wheels\\n    motor_pair.tank_move_for_degrees(motor_pair.PAIR_1, 360, 100, 100)\\n    \\nrunloop.run(main())\\n"
+    },
+    {
+        "_id": "1000",
+        "description": "spin motor for 360 degrees to turn right",
+        "python_code": "\\nfrom hub import port\\nimport runloop\\nimport motor_pair\\n\\nasync def main():\\n    # Pair motors on port A and B\\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\\n\\n    # spin motor for 360 degrees to turn right\\n    motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, 100, -100)\\n\\nrunloop.run(main())\\n"
+    },
+    {
+        "_id": "1002",
+        "description": "pin motor for 360 degrees to turn left",
+        "python_code": "\\nfrom hub import port\\nimport runloop\\nimport motor_pair\\n\\nasync def main():\\n    # Pair motors on port A and B\\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\\n\\n    # spin motor for 360 degrees to turn left\\n    motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, -100, 100)\\n\\nrunloop.run(main())\\n"
+    }
+]
