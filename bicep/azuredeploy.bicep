@@ -66,11 +66,11 @@ param acrSku string = 'Basic'
 var openAiSettings = {
   name: '${name}-openai'
   sku: openAiSku
-  maxConversationTokens: '100'
-  maxCompletionTokens: '500'
+  maxConversationTokens: '1000'
+  maxCompletionTokens: '1000'
   completionsModel: {
-    name: 'gpt-35-turbo'
-    version: '0613'
+    name: 'gpt-4o'
+    version: '2024-05-13'
     deployment: {
       name: 'completions'
     }
@@ -258,7 +258,7 @@ resource appServiceWeb 'Microsoft.Web/sites@2022-03-01' = {
     httpsOnly: true
     siteConfig: {
       linuxFxVersion: 'NODE|20-lts'
-      appCommandLine: 'pm2 serve /home/site/wwwroot/dist --no-daemon --spa'
+      appCommandLine: 'pm2 serve /home/site/wwwroot --no-daemon --spa'
       alwaysOn: true
     }
   }
@@ -372,8 +372,8 @@ resource backendApiContainerApp 'Microsoft.App/containerApps@2023-05-01' = {
     template: {
       containers: [
         {
-          name: 'hello-world'
-          image: 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
+          name: 'legorobot-api'
+          image: 'legorobotregistry.azurecr.io/legoroboapi:latest'
           resources: {
             cpu: 1
             memory: '2Gi'
