@@ -16,7 +16,7 @@ class CosmicWorksAIAgent {
         // set up the MongoDB client
         this.dbClient = new MongoClient(process.env.AZURE_COSMOSDB_CONNECTION_STRING);
         // set up the Azure Cosmos DB vector store
-        const azureCosmosDBConfig = {
+        const azureCosmosDBConfigApi = {
             client: this.dbClient,
             databaseName: "legorobot",
             collectionName: "legoapi",
@@ -24,7 +24,28 @@ class CosmicWorksAIAgent {
             embeddingKey: "contentVector",
             textKey: "_id"
         }
-        this.vectorStore = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfig);
+        this.vectorStoreApi = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigApi);
+
+        const azureCosmosDBConfigSnippet = {
+            client: this.dbClient,
+            databaseName: "legorobot",
+            collectionName: "legosnippet",
+            indexName: "VectorSearchIndex",
+            embeddingKey: "contentVector",
+            textKey: "_id"
+        }
+        this.vectorStoreSnippet = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigSnippet);
+
+        
+        const azureCosmosDBConfigInfo = {
+            client: this.dbClient,
+            databaseName: "legorobot",
+            collectionName: "legoinfo",
+            indexName: "VectorSearchIndex",
+            embeddingKey: "contentVector",
+            textKey: "_id"
+        }
+        this.vectorStoreInfo = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigInfo);
 
         // set up the OpenAI chat model
         // https://js.langchain.com/docs/integrations/chat/azure
@@ -90,25 +111,33 @@ class CosmicWorksAIAgent {
             List of information:     
         `;
         // Create vector store retriever chain to retrieve documents and formats them as a string for the prompt.
-        const retrieverChain = this.vectorStore.asRetriever().pipe(this.formatDocuments);
+        const retrieverChainApi = this.vectorStoreApi.asRetriever().pipe(this.formatDocuments);
+        const retrieverChainSnippet = this.vectorStoreSnippet.asRetriever().pipe(this.formatDocuments);
+        const retrieverChainInfo = this.vectorStoreInfo.asRetriever().pipe(this.formatDocuments);
 
         // Define tools for the agent can use, the description is important this is what the AI will 
         // use to decide which tool to use.
 
         // A tool that retrieves product information from Cosmic Works based on the user's question.
-        const productsRetrieverTool = new DynamicTool({
+        const legoApiRetrieverTool = new DynamicTool({
             name: "api_retriever_tool",
-            description: `Must always use this tool for all search. Searches Lego python API information for similar python function definitions based on the question. 
+            description: `Must always use this tool for any python code request. Searches Lego python API information for similar python function definitions based on the question. 
                     Returns the python function API information in JSON format.`,
-            func: async (input) => await retrieverChain.invoke(input),
+            func: async (input) => await retrieverChainApi.invoke(input),
             verbose: true
         });
 
-        const productLookupTool = new DynamicTool({
+        const legoSnippetRetrieverTool = new DynamicTool({
             name: "snippet_lookup_tool",
-            description: `Must always use this tool for all search. Searches Lego python API information for similar python function definitions based on the question. 
-                    Returns the python function API information in JSON format.`,
-            func: async (input) => await retrieverChain.invoke(input),
+            description: `Must always use this tool for any python code. Searches Lego python code examples for similar python function definitions based on the question. Returns the python code blocks in JSON format.`,
+            func: async (input) => await retrieverChainSnippet.invoke(input),
+            verbose: true
+        });
+        
+        const legoInfoRetrieverTool = new DynamicTool({
+            name: "info_lookup_tool",
+            description: `Searches information about Lego robot based on the question. Returns general information about Lego related details in JSON format.`,
+            func: async (input) => await retrieverChainInfo.invoke(input),
             verbose: true
         });
 
@@ -131,7 +160,7 @@ class CosmicWorksAIAgent {
 
         // Generate OpenAI function metadata to provide to the LLM
         // The LLM will use this metadata to decide which tool to use based on the description.
-        const tools = [productsRetrieverTool, productLookupTool];
+        const tools = [legoApiRetrieverTool, legoSnippetRetrieverTool, legoInfoRetrieverTool];
         const modelWithFunctions = this.chatModel.bind({
             functions: tools.map((tool) => convertToOpenAIFunction(tool)),
         });

@@ -152,7 +152,23 @@ async def main():
     
 runloop.run(main())
 `
-                },
+                }
+            ]
+            const result = await legoapis.bulkWrite(
+                legoapisToInsert.map((api) => ({
+                    insertOne: {
+                        document: api
+                    }
+                }))
+            );
+            console.log("legoapis result:", result);
+        }
+
+         // legoapi
+         {
+            const legosnippets = db.collection('legosnippet');
+            await legosnippets.deleteMany({});
+            const legosnippetsToInsert = [
                 {
                     _id: "1000",
                     description: 'spin motor for 360 degrees to turn right',
@@ -192,31 +208,39 @@ runloop.run(main())
 `
                 }
             ]
-            const result = await legoapis.bulkWrite(
-                legoapisToInsert.map((api) => ({
+            const result = await legosnippets.bulkWrite(
+                legosnippetsToInsert.map((api) => ({
                     insertOne: {
                         document: api
                     }
                 }))
             );
-            console.log("Bulk write operation result:", result);
+            console.log("legosnippets result:", result);
         }
-        // // legoapi
-        // {
-        //     const legosnippets = db.collection('legosnippet');
-        //     await legosnippets.deleteMany({});
-        //     const legosnippetsToInsert = [
 
-        //     ]
-        //     const result = await legosnippets.bulkWrite(
-        //         legosnippetsToInsert.map((api) => ({
-        //             insertOne: {
-        //                 document: api
-        //             }
-        //         }))
-        //     );
-        //     console.log("Bulk write operation result:", result);
-        // }
+        // legoapi
+        {
+            const legoinfos = db.collection('legoinfo');
+            await legoinfos.deleteMany({});
+            const legoinfosToInsert = [
+                {
+                    _id: "2000",
+                    title: 'spin motor for 360 degrees to turn right',
+                    details:
+                        `
+
+`
+                }
+            ]
+            const result = await legoinfos.bulkWrite(
+                legoinfosToInsert.map((api) => ({
+                    insertOne: {
+                        document: api
+                    }
+                }))
+            );
+            console.log("legoinfos result:", result);
+        }
 
 
     } catch (err) {
@@ -227,14 +251,5 @@ runloop.run(main())
     }
 }
 
-function cleanData(obj) {
-    cleaned = Object.fromEntries(
-        Object.entries(obj).filter(([key, _]) => !key.startsWith('_'))
-    );
-    //rename id field to _id
-    cleaned["_id"] = cleaned["id"];
-    delete cleaned["id"];
-    return cleaned;
-}
 
 main().catch(console.error);
