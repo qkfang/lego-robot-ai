@@ -45,6 +45,7 @@ const Chat = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isStreaming, setIsStreaming] = useState<boolean>(false);
     const [error, setError] = useState<unknown>();
+    const [sessionId, setSessionId] = useState<string>("");
 
     const [activeCitation, setActiveCitation] = useState<string>();
 
@@ -59,10 +60,14 @@ const Chat = () => {
         setIsLoading(true);
         setActiveCitation(undefined);
 
+        if(sessionId==""){
+            setSessionId(crypto.randomUUID());
+        }
+
         try {
             const request: ChatAppRequest = {
                 prompt: question,
-                session_id: "1234" // TODO: Need to generate a session id
+                session_id: sessionId // TODO: Need to generate a session id
             };
 
             const response = await chatApi(request);
@@ -127,6 +132,7 @@ runloop.run(main())
         setAnswers([]);
         setIsLoading(false);
         setIsStreaming(false);
+        setSessionId("");
     };
 
     useEffect(() => chatMessageStreamEnd.current?.scrollIntoView({ behavior: "smooth" }), [isLoading]);

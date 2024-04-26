@@ -3,9 +3,9 @@ import { Example } from "./Example";
 import styles from "./Example.module.css";
 
 const DEFAULT_EXAMPLES: string[] = [
-    "How to move robot forward?",
-    "How to turn robot left?",
-    "Make robot move forward and then turn left?"
+    "What is Lego Spike Prime?",
+    "What sensors is available to Lego Spike Prime Robot?",
+    "Write python to move robot forward and then turn left?"
 ];
 
 const GPT4V_EXAMPLES: string[] = [

@@ -38,7 +38,6 @@ const Layout = () => {
             <Outlet />
             <div style={{padding:20}}>
             <b>Disclaimer:</b> LEGO®, SPIKE™, and Minifigure are trademarks of ©The LEGO® Group. This page isn't affiliated, authorized, or endorsed by The LEGO Group. 
-            <br/>
             Web serial port function is created by <a href="https://github.com/edanahy/WebSPIKE/">edanahy's WebSPIKE</a>
             </div>
         </div>
