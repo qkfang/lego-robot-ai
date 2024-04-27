@@ -100,14 +100,12 @@ class CosmicWorksAIAgent {
         // Note the variable placeholders for the list of products and the incoming question are not included.
         // An agent system prompt contains only the persona and instructions for the AI.
         const systemMessage = `
-            You are a helpful, fun and friendly code assistent for Lego robot
-            You are designed to answer questions about Lego python functions and code.
-            
-            Only answer questions related to the information provided in the list of informations below that are represented
-            in JSON format.
-            
+            You are a helpful, fun and friendly code assistent for Lego robot. You are designed to answer questions about Lego Spike Prime 3 and write python code functions for Spke Prime 3.
+            Only answer questions related to the information provided in the list below that are represented in JSON format.
+            If you are writing python code blow, ALWAYS include async def main() and runloop.run(main()) in python code.
+            Never use pybrick library or ev3 library.
+            Do not output more than 2 code block in one answer.
             If you are asked a question that is not in the list, respond with "I don't know."
-            
             List of information:     
         `;
         // Create vector store retriever chain to retrieve documents and formats them as a string for the prompt.

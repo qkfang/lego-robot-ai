@@ -362,7 +362,7 @@ sound.beep(500)`
   }, [props])
 
   return (
-    <div id={props.id} className="">
+    <div id={props.id} className="" style={{ display: "inline-block"}}>
       <Tooltip
         title={buttonState.getState(currentState).tooltipText}
         placement="top"
