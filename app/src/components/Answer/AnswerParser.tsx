@@ -3,6 +3,7 @@ import { getCitationFilePath } from "../../api";
 
 type HtmlParsedAnswer = {
     answerHtml: string;
+    fragments: string[];
     citations: string[];
 };
 
@@ -26,6 +27,11 @@ export function parseAnswerToHtml(answer: string, isStreaming: boolean, onCitati
         const truncatedAnswer = parsedAnswer.substring(0, lastIndex);
         parsedAnswer = truncatedAnswer;
     }
+    
+    // const parts = parsedAnswer.split(/(?=```python)/g);
+    // var re = /(?=```python)(\s\S)(?=```)/
+    // const parts = parsedAnswer.split(re);
+    const parts = parsedAnswer.split(/(?=```python)/g).map(el => el.split('```')).reduce((acc, curr) => acc.concat(curr))
 
     /* This parses out the citations, but for the dev guide we don't need this functionality currently.
     const parts = parsedAnswer.split(/\[([^\]]+)\]/g);
@@ -53,11 +59,12 @@ export function parseAnswerToHtml(answer: string, isStreaming: boolean, onCitati
     });
     */
 
-    const fragments: string[] = [parsedAnswer];
+    const fragments: string[] = parts;
 
 
     return {
         answerHtml: fragments.join(""),
+        fragments,
         citations
     };
 }

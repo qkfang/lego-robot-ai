@@ -14,9 +14,10 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 9px;
     margin-bottom: 5px;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .example:hover {
@@ -28,14 +29,14 @@
 
 .exampleText {
     margin: 0;
-    font-size: 22px;
+    font-size: 18px;
     width: 280px;
-    min-height: 100px;
+    min-height: 80px;
 }
 
 @media only screen and (max-height: 780px) {
     .exampleText {
-        font-size: 20px;
-        height: 80px;
+        font-size: 16px;
+        height: 50px;
     }
 }

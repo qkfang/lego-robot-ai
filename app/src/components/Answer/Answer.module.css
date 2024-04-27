@@ -16,9 +16,8 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 22px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    white-space: pre-line;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .answerText table {
@@ -29,6 +28,14 @@
 .answerText th {
     border: 1px solid;
     padding: 5px;
+}
+
+.pythonCodeDiv {
+    background-color: #ccc;
+     display: flex; 
+     cursor: pointer; 
+     align-items:center;
+     padding: 2px;
 }
 
 .selected {

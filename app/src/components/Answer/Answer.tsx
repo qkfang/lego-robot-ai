@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import { Stack, IconButton } from "@fluentui/react";
 import DOMPurify from "dompurify";
+import { CopyBlock, dracula } from "react-code-blocks";
+import Markdown from 'react-markdown'
 
 import styles from "./Answer.module.css";
 
@@ -33,7 +35,17 @@ export const Answer = ({
     const messageContent = answer.message; //answer.choices[0].message.content;
     const parsedAnswer = useMemo(() => parseAnswerToHtml(messageContent, isStreaming, onCitationClicked), [answer]);
 
-    const sanitizedAnswerHtml = DOMPurify.sanitize(parsedAnswer.answerHtml).replace(/    /g, "\t").replace(/```python/g, "<div class='pythonCode' style='background-color: #efefef; padding:10px;'>").replace(/```/g, "</div><div style='background-color: #ccc; display: flex; cursor: pointer; align-items:center;' onclick='javascript:try { var codes = document.getElementsByClassName(&quot;pythonCode&quot;); var currentCode = codes[codes.length-1].textContent; console.log(currentCode); window.pyrepl.write = currentCode; } catch(err) { document.getElementById(&quot;service_spike&quot;).getElementsByTagName(&quot;button&quot;)[0].click(); }' > <img style='width:30px;' src='exec.png'/> <span>Run Code Now</span> </div>");
+    const sanitizedAnswerHtml = DOMPurify.sanitize(parsedAnswer.answerHtml);
+
+    const runCode = async (code: string) => {
+        try {
+            console.log(code);
+            window.pyrepl.write = code;
+        } catch (err) {
+            document.getElementById("service_spike").getElementsByTagName("button")[0].click();
+        }
+    };
+
 
     return (
         <Stack className={`${styles.answerContainer} ${isSelected && styles.selected}`} verticalAlign="space-between">
@@ -60,10 +72,44 @@ export const Answer = ({
                     </div>
                 </Stack>
             </Stack.Item>
-
+{/* 
             <Stack.Item grow>
                 <div className={styles.answerText} dangerouslySetInnerHTML={{ __html: sanitizedAnswerHtml }}></div>
-            </Stack.Item>
+            </Stack.Item> */}
+
+            {!!parsedAnswer.fragments.length && (
+                <Stack.Item grow>
+                    <Stack>
+                        {parsedAnswer.fragments.map((x, i) => {
+                            if (x.startsWith('python')) {
+                                return (
+                                    <div>
+                                        <CopyBlock
+                                            language="python"
+                                            text={x.replace("python", "").trimStart().trimEnd()}
+                                            codeBlock
+                                            theme={dracula}
+                                            showLineNumbers={true} />
+                                        <div className='pythonCode'></div>
+                                        <div className={styles.pythonCodeDiv} onClick={() => runCode(x.replace("python", ""))} >
+                                            <img width={30} src='exec.png' />
+                                            <span>Run Code Now</span>
+                                        </div>
+                                    </div>
+                                );
+                            }
+                            else {
+                                return (
+                                    <div className={styles.answerText} >
+                                    <Markdown>{DOMPurify.sanitize(x) }</Markdown>
+                                    </div>
+                                )
+                            }
+                        })}
+
+                    </Stack>
+                </Stack.Item>
+            )}
 
             {!!parsedAnswer.citations.length && (
                 <Stack.Item>
