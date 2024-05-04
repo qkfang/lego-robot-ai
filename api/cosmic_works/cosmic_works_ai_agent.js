@@ -10,6 +10,8 @@ const { MessagesPlaceholder, ChatPromptTemplate } = require("@langchain/core/pro
 const { convertToOpenAIFunction } = require("@langchain/core/utils/function_calling");
 const { ChatOpenAI, OpenAIEmbeddings } = require("@langchain/openai");
 const { AzureCosmosDBVectorStore } = require("@langchain/community/vectorstores/azure_cosmosdb");
+const { OpenAIClient, AzureKeyCredential } = require("@azure/openai");
+const fs = require('node:fs');
 
 class CosmicWorksAIAgent {
     constructor() {
@@ -36,7 +38,7 @@ class CosmicWorksAIAgent {
         }
         this.vectorStoreSnippet = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigSnippet);
 
-        
+
         const azureCosmosDBConfigInfo = {
             client: this.dbClient,
             databaseName: "legorobot",
@@ -46,6 +48,19 @@ class CosmicWorksAIAgent {
             textKey: "_id"
         }
         this.vectorStoreInfo = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigInfo);
+
+        
+        const azureCosmosDBConfigImage = {
+            client: this.dbClient,
+            databaseName: "legorobot",
+            collectionName: "legoimage",
+            indexName: "VectorSearchIndex",
+            embeddingKey: "contentVector",
+            textKey: "_id"
+        }
+        this.vectorStoreImage = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigImage);
+
+
 
         // set up the OpenAI chat model
         // https://js.langchain.com/docs/integrations/chat/azure
@@ -131,7 +146,7 @@ class CosmicWorksAIAgent {
             func: async (input) => await retrieverChainSnippet.invoke(input),
             verbose: true
         });
-        
+
         const legoInfoRetrieverTool = new DynamicTool({
             name: "info_lookup_tool",
             description: `Searches information about Lego robot based on the question. Returns general information about Lego related details in JSON format.`,
@@ -223,6 +238,59 @@ class CosmicWorksAIAgent {
         }
         return returnValue;
     }
+
+
+    async getVector() {
+        let vectorDocs = [];
+
+        // const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
+        // const embeddings = await client.getEmbeddings(deploymentName, prompt);
+
+        const content = fs.readFileSync('/usr/src/app/cosmic_works/85-6541.png');
+        var vector = '';
+        await fetch("https://eastus.api.cognitive.microsoft.com/computervision/retrieval:vectorizeImage?api-version=2023-02-01-preview&modelVersion=latest", {
+            method: 'POST',
+            body: content,
+            headers: {'Content-Type': 'application/octet-stream', "Ocp-Apim-Subscription-Key": "8cef4d9630194f16a6d95ca27ce23a9a"} })
+            .then((result) => result.text())
+            .then((data) => {
+                vector = JSON.parse(data)
+                // string `{"text":"hello world"}`
+            })
+   
+        //  // search for similar products
+        //  const vectorDocsWithScore = await this.vectorStoreImage.similaritySearchWithScore(
+        //     vector.vector,
+        //     2
+        // );
+
+        // // filter by scoreLimit
+        // for (let [doc, score] of vectorDocsWithScore) {
+        //     if (score <= 1) {
+        //         doc['similarityScore'] = score;
+        //         vectorDocs.push(doc);
+        //     }
+        // }
+
+            
+        this.client = new MongoClient(process.env.AZURE_COSMOSDB_CONNECTION_STRING);
+        await this.client.connect();
+        
+        const db = this.client.db("legorobot"); 
+        const collection = db.collection("legoimage"); 
+        console.log(vector.vector); 
+        // Query for similar documents.
+        const documents = collection.aggregate([{"$search": {"cosmosSearch": {"vector": vector.vector,"path": "vector","k": 2},
+        "returnStoredSource": "true" }}
+        ,{"$project": {"image_file":1,"author":1,"title":1,"vector":1,"description":1}
+         }]);      
+        
+         
+        await documents.forEach(doc => console.log(doc)); 
+        return '';
+    };
+
 };
+
 
 module.exports = CosmicWorksAIAgent;

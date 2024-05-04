@@ -10,6 +10,7 @@ To execute the script, use the following command from the root folder:
 
 import os
 import csv
+import time
 from dotenv import load_dotenv
 import pandas as pd
 import requests
@@ -101,6 +102,7 @@ def get_image_embedding(image: str) -> list[float] | None:
 
     try:
         r = requests.post(vectorize_img_url, data=data, headers=headers)
+        time.sleep(15)
         if r.status_code == 200:
             image_vector = r.json()["vector"]
             return image_vector

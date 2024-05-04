@@ -66,6 +66,16 @@ app.post('/ai', async (req, res) => {
     res.send({ message: result });
 });
 
+app.get('/vector', async (req, res) => {
+    let agent = {};
+
+    agent = new CosmicWorksAIAgent();
+    agentInstancesMap.set('1111', agent);
+
+    let result = await agent.getVector();
+    res.send({ message: result });
+});
+
 swagger(app)
 
 

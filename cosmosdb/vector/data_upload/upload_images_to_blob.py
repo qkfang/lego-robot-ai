@@ -23,7 +23,7 @@ from tqdm import tqdm
 
 # Constants
 MAX_WORKERS = 4
-IMAGE_FILE_CSV_COLUMN_NAME = "image"
+IMAGE_FILE_CSV_COLUMN_NAME = "image_file"
 
 # Directories
 current_dir = os.path.dirname(os.path.realpath(__file__))
