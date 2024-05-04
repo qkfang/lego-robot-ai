@@ -127,7 +127,7 @@ resource mongoCluster 'Microsoft.DocumentDB/mongoClusters@2023-03-01-preview' = 
     nodeGroupSpecs: [
       {
         kind: 'Shard'
-        sku: 'M30'
+        sku: 'M25'
         diskSizeGB: 128
         enableHa: false
         nodeCount: 1

@@ -240,13 +240,15 @@ class CosmicWorksAIAgent {
     }
 
 
-    async getVector() {
+    async getVector(file) {
         let vectorDocs = [];
 
         // const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
         // const embeddings = await client.getEmbeddings(deploymentName, prompt);
 
-        const content = fs.readFileSync('/usr/src/app/cosmic_works/85-6541.png');
+        // const content = fs.readFileSync('/usr/src/app/cosmic_works/85-6541.png');
+        const content = fs.readFileSync(file);
+        
         var vector = '';
         await fetch("https://eastus.api.cognitive.microsoft.com/computervision/retrieval:vectorizeImage?api-version=2023-02-01-preview&modelVersion=latest", {
             method: 'POST',
@@ -280,14 +282,25 @@ class CosmicWorksAIAgent {
         const collection = db.collection("legoimage"); 
         console.log(vector.vector); 
         // Query for similar documents.
-        const documents = collection.aggregate([{"$search": {"cosmosSearch": {"vector": vector.vector,"path": "vector","k": 2},
-        "returnStoredSource": "true" }}
-        ,{"$project": {"image_file":1,"author":1,"title":1,"vector":1,"description":1}
-         }]);      
+        // const documents = collection.aggregate([{"$search": {"cosmosSearch": {"vector": vector.vector,"path": "vector","k": 5},
+        // "returnStoredSource": "true" }}
+        // ,{"$project": {"image_file":1,"author":1,"title":1,"vector":1,"description":1}
+        //  }]);      
         
+        // const documents = collection.aggregate([
+        //     { "$group": { "_id": "$image_file", "count": { "$sum": "1" } } }
+        // ]);     
          
-        await documents.forEach(doc => console.log(doc)); 
-        return '';
+        const documents = collection.aggregate([
+            {"$search": {"cosmosSearch": {"vector": vector.vector,"path": "vectorContent","k": 20},
+                "returnStoredSource": "true" }}
+            ,{"$project": {'similarityScore': { '$meta': 'searchScore' }, "image_file":3,"author":3,"title":3}
+         }])
+
+        var result = []
+        await documents.forEach(doc => result.push(doc)); 
+        console.log(result)
+        return result;
     };
 
 };

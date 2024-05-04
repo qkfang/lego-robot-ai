@@ -39,16 +39,17 @@ def main():
     db = client[mongo_database_name]
     collection = db[collection_name]
 
-   # Drop collection if exists
+    # Drop collection if exists
     collection.drop()
 
     print("Saving data to MongoDB...")
     from ast import literal_eval
     data = pd.read_csv(dataset_filepath,index_col=False,sep='\t')
     #data = data.drop('Unnamed: 0', axis=1)
-    data.vector = data.vector.apply(literal_eval)
+    data.vectorContent = data.vectorContent.apply(literal_eval)
 
-    for i in range(len(data)):
+    # for i in range(len(data)):
+    for i in range(30):
         doc_to_upload = data.loc[i].to_dict()
         collection.insert_one(doc_to_upload)
         
@@ -58,13 +59,19 @@ def main():
     num_records = collection.count_documents({})
     print(f"Number of records in the collection: {num_records}")
 
+
+    # collection.drop('legoimage_image')
+    # collection.drop('legoimage_text')
+    # collection.drop_index('vsearch_image')
+    # collection.drop_index('vsearch_text')
+
     db.command({
     'createIndexes': 'legoimage',
     'indexes': [
         {
-        'name': 'VectorSearchIndex',
+            'name': 'vsearch_image',
         'key': {
-            "vector": "cosmosSearch"
+            "vectorContent": "cosmosSearch"
         },
         'cosmosSearchOptions': {
             'kind': 'vector-ivf',
@@ -75,7 +82,6 @@ def main():
         }
     ]
     })
-
 
     print("Done!")
 

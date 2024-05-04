@@ -70,13 +70,13 @@ async function addCollectionContentVectorField(db, collectionName) {
 
     //check to see if the vector index already exists on the collection
     console.log(`Checking if vector index exists in the ${collectionName} collection`)
-    const vectorIndexExists = await collection.indexExists('VectorSearchIndex');
+    const vectorIndexExists = await collection.indexExists('vs_json');
     if (!vectorIndexExists) {
         await db.command({
             "createIndexes": collectionName,
             "indexes": [
             {
-                "name": "VectorSearchIndex",
+                "name": "vs_json",
                 "key": {
                 "contentVector": "cosmosSearch"
                 },
