@@ -91,7 +91,7 @@ app.post('/ai', async (req, res) => {
  *         description: Returns the OpenAI response.
  */
 app.post('/image', async (req, res) => {
-    console.log(req.files)
+    // console.log(req)
     let agent = {};
 
     agent = new legoAgent();

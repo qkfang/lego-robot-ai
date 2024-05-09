@@ -18,6 +18,17 @@ export async function chatApi(request: ChatAppRequest): Promise<Response> {
     });
 }
 
+
+export async function imageApi(file: File): Promise<Response> {
+    const formData = new FormData();
+    formData.append("file", file);
+    return await fetch(`${BACKEND_URI}/image`, {
+        method: "POST",
+        mode: "cors",
+        body: formData,
+    });
+}
+
 export function getCitationFilePath(citation: string): string {
     return `${BACKEND_URI}/content/${citation}`;
 }

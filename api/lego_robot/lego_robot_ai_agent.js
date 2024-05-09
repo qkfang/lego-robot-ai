@@ -276,7 +276,10 @@ class CosmicWorksAIAgent {
                 }
             }
             , {
-                "$project": { 'similarityScore': { '$meta': 'searchScore' }, "_id": 3, "image_file": 3, "author": 3, "title": 3, "description": 3 }
+                "$project": {
+                    'similarityScore':
+                        { '$meta': 'searchScore' }, "_id": 3, "image_file": 3, "author": 3, "title": 3, "type": 3, "description": 3
+                }
             }])
 
         var result = []

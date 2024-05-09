@@ -1,5 +1,6 @@
 import React from 'react';
 import ServiceButton from './ServiceButton';
+import UploadAndDisplayImage from './UploadAndDisplayImage';
 import Modal from 'react-modal';
 
 
@@ -9,6 +10,7 @@ const customStyles = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
+    width:'80%',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
   },
@@ -42,13 +44,13 @@ export function App() {
           onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
           style={customStyles}
-          contentLabel="Help"
+          contentLabel="Find Similar Lego Blocks"
         >
-          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Help</h2>
-          <div>Information</div>
-          <p>adsfasdf</p>
-          
-          <button onClick={closeModal}>close</button>
+          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Find Similar Lego Blocks</h2>
+          <UploadAndDisplayImage/>
+          <br/>
+          <br/>
+          <button onClick={closeModal}>Close</button>
         </Modal>
     </div>
   );
