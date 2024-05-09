@@ -2,6 +2,7 @@ import React from 'react';
 import ServiceButton from './ServiceButton';
 import UploadAndDisplayImage from './UploadAndDisplayImage';
 import Modal from 'react-modal';
+import TaskList from './TaskList';
 
 
 const customStyles = {
@@ -49,6 +50,7 @@ export function App() {
           <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Find Similar Lego Blocks</h2>
           <UploadAndDisplayImage/>
           <br/>
+          <TaskList />
           <br/>
           <button onClick={closeModal}>Close</button>
         </Modal>
