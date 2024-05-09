@@ -49,7 +49,7 @@ class CosmicWorksAIAgent {
         }
         this.vectorStoreInfo = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigInfo);
 
-        
+
         const azureCosmosDBConfigImage = {
             client: this.dbClient,
             databaseName: "legorobot",
@@ -241,64 +241,46 @@ class CosmicWorksAIAgent {
 
 
     async getVector(file) {
-        let vectorDocs = [];
-
-        // const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-        // const embeddings = await client.getEmbeddings(deploymentName, prompt);
-
         // const content = fs.readFileSync('/usr/src/app/cosmic_works/85-6541.png');
         const content = fs.readFileSync(file);
-        
+
         var vector = '';
         await fetch("https://eastus.api.cognitive.microsoft.com/computervision/retrieval:vectorizeImage?api-version=2023-02-01-preview&modelVersion=latest", {
             method: 'POST',
             body: content,
-            headers: {'Content-Type': 'application/octet-stream', "Ocp-Apim-Subscription-Key": "8cef4d9630194f16a6d95ca27ce23a9a"} })
+            headers: { 'Content-Type': 'application/octet-stream', "Ocp-Apim-Subscription-Key": "8cef4d9630194f16a6d95ca27ce23a9a" }
+        })
             .then((result) => result.text())
             .then((data) => {
                 vector = JSON.parse(data)
                 // string `{"text":"hello world"}`
             })
-   
-        //  // search for similar products
-        //  const vectorDocsWithScore = await this.vectorStoreImage.similaritySearchWithScore(
-        //     vector.vector,
-        //     2
-        // );
 
-        // // filter by scoreLimit
-        // for (let [doc, score] of vectorDocsWithScore) {
-        //     if (score <= 1) {
-        //         doc['similarityScore'] = score;
-        //         vectorDocs.push(doc);
-        //     }
-        // }
-
-            
         this.client = new MongoClient(process.env.AZURE_COSMOSDB_CONNECTION_STRING);
         await this.client.connect();
-        
-        const db = this.client.db("legorobot"); 
-        const collection = db.collection("legoimage"); 
-        console.log(vector.vector); 
+
+        const db = this.client.db("legorobot");
+        const collection = db.collection("legoimage");
+        console.log(vector.vector);
+
         // Query for similar documents.
-        // const documents = collection.aggregate([{"$search": {"cosmosSearch": {"vector": vector.vector,"path": "vector","k": 5},
-        // "returnStoredSource": "true" }}
-        // ,{"$project": {"image_file":1,"author":1,"title":1,"vector":1,"description":1}
-        //  }]);      
-        
         // const documents = collection.aggregate([
         //     { "$group": { "_id": "$image_file", "count": { "$sum": "1" } } }
         // ]);     
-         
+
         const documents = collection.aggregate([
-            {"$search": {"cosmosSearch": {"vector": vector.vector,"path": "vectorContent","k": 20},
-                "returnStoredSource": "true" }}
-            ,{"$project": {'similarityScore': { '$meta': 'searchScore' }, "image_file":3,"author":3,"title":3}
-         }])
+            {
+                "$search": {
+                    "cosmosSearch": { "vector": vector.vector, "path": "vectorContent", "k": 3 },
+                    "returnStoredSource": "true"
+                }
+            }
+            , {
+                "$project": { 'similarityScore': { '$meta': 'searchScore' }, "_id": 3, "image_file": 3, "author": 3, "title": 3, "description": 3 }
+            }])
 
         var result = []
-        await documents.forEach(doc => result.push(doc)); 
+        await documents.forEach(doc => result.push(doc));
         console.log(result)
         return result;
     };

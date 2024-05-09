@@ -48,8 +48,8 @@ def main():
     #data = data.drop('Unnamed: 0', axis=1)
     data.vectorContent = data.vectorContent.apply(literal_eval)
 
-    # for i in range(len(data)):
-    for i in range(30):
+    for i in range(len(data)):
+    # for i in range(30):
         doc_to_upload = data.loc[i].to_dict()
         collection.insert_one(doc_to_upload)
         

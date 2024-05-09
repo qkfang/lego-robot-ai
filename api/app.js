@@ -3,12 +3,12 @@ const cors = require('cors')
 var multer  = require('multer'); 
 const upload = multer({ dest: 'uploads/' })
 const swagger = require('./swagger');
-const CosmicWorksAIAgent = require('./cosmic_works/cosmic_works_ai_agent');
+const legoAgent = require('./lego_robot/lego_robot_ai_agent');
 
 const app = express();
 app.use(express.json());
 app.use(cors()); // enable all CORS requests
-app.use(multer({dest:__dirname+'\\file\\uploads\\'}).any());
+app.use(multer({dest:__dirname+'\\uploads\\'}).any());
 
 // This map is to store agents and their chat history for each session.
 // This is for demonstration only and should be hydrated by storing these
@@ -60,7 +60,7 @@ app.post('/ai', async (req, res) => {
     if (agentInstancesMap.has(session_id)) {
         agent = agentInstancesMap.get(session_id);
     } else {
-        agent = new CosmicWorksAIAgent();
+        agent = new legoAgent();
         agentInstancesMap.set(session_id, agent);
     }
 
@@ -68,13 +68,33 @@ app.post('/ai', async (req, res) => {
     res.send({ message: result });
 });
 
-app.post('/vector', async (req, res) => {
+/**
+ * @openapi
+ * /vector:
+ *   post:
+ *     description: Run the Cosmic Works AI agent
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               prompt:
+ *                 type: string
+ *                 default: ""
+ *               session_id:
+ *                 type: string
+ *                 default: "1234"
+ *     responses:
+ *       200:
+ *         description: Returns the OpenAI response.
+ */
+app.post('/image', async (req, res) => {
     console.log(req.files)
     let agent = {};
 
-    agent = new CosmicWorksAIAgent();
-    agentInstancesMap.set('1111', agent);
-
+    agent = new legoAgent();
     let result = await agent.getVector(req.files[0].path);
     res.send({ message: result });
 });
