@@ -21,7 +21,7 @@ const Layout = () => {
                             </li>
                         </ul>
                     </nav> */}
-                    <h4 className={styles.headerRightText}>Build a <a href="https://spike.legoeducation.com/" target="_blank">Spike Prime</a> Lego Robot and control it by python!</h4>
+                    <h4 className={styles.headerRightText}>Build a <a href="https://spike.legoeducation.com/" target="_blank">Spike Prime 3</a> Lego Robot and control it by python!</h4>
                     <Toolbar />
                 </div>
             </header>

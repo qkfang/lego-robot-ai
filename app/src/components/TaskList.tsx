@@ -34,12 +34,12 @@ const TaskList = (props: taskListProps) => {
     const pusher = new Pusher(PUSHER_APP_KEY, {
       cluster: PUSHER_APP_CLUSTER
     })
-    console.log('useEffect')
+    // console.log('useEffect')
     const channel = pusher.subscribe('tasks');
     // You can bind more channels here like this
     // const channel2 = pusher.subscribe('channel_name2')
     channel.bind('inserted', addTask);
-    console.log(props);
+    // console.log(props);
     setUserId(props.userId);
 
     return (() => {
