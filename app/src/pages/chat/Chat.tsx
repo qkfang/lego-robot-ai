@@ -63,6 +63,7 @@ const Chat = () => {
         if(sessionId==""){
             setSessionId(crypto.randomUUID());
         }
+        // console.log('sessionId='+ sessionId);
 
         try {
             const request: ChatAppRequest = {
@@ -132,7 +133,7 @@ runloop.run(main())
         setAnswers([]);
         setIsLoading(false);
         setIsStreaming(false);
-        setSessionId("");
+        setSessionId(crypto.randomUUID());
     };
 
     useEffect(() => chatMessageStreamEnd.current?.scrollIntoView({ behavior: "smooth" }), [isLoading]);
@@ -195,7 +196,7 @@ runloop.run(main())
     return (
         <div className={styles.container}>
             <div className={styles.commandsContainer}>
-                <ClearChatButton className={styles.commandButton} onClick={clearChat} disabled={isLoading} />
+                <ClearChatButton className={styles.commandButton} onClick={clearChat} disabled={isLoading} sessionId={sessionId} />
             </div>
             <div className={styles.chatRoot}>
                 <div className={styles.chatContainer}>

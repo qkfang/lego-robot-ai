@@ -8,10 +8,16 @@ const API_URL = 'http://localhost:4242/api/task/';
 const PUSHER_APP_KEY = 'f1586bf9908b2073cda6';
 const PUSHER_APP_CLUSTER = 'us2';
 
-const TaskList = () => {
+
+interface taskListProps {
+  userId: string,
+}
+
+const TaskList = (props: taskListProps) => {
 
   const [task, setTask] = useState<string>();
   const [tasks, setTasks] = useState<TaskModelProps[]>([]);
+  const [userId, setUserId] = useState<string>();
 
   // updateText(e) {
   //   this.setState({ task: e.target.value });
@@ -23,7 +29,7 @@ const TaskList = () => {
   //     return;
   //   }
   // }
-  
+
   useEffect(() => {
     const pusher = new Pusher(PUSHER_APP_KEY, {
       cluster: PUSHER_APP_CLUSTER
@@ -32,15 +38,17 @@ const TaskList = () => {
     const channel = pusher.subscribe('tasks');
     // You can bind more channels here like this
     // const channel2 = pusher.subscribe('channel_name2')
-    channel.bind('inserted',addTask);
-    
-    // return (() => {
-    //   pusher.unsubscribe('tasks')
-    // })
+    channel.bind('inserted', addTask);
+    console.log(props);
+    setUserId(props.userId);
+
+    return (() => {
+      pusher.unsubscribe('tasks')
+    })
   }, []);
 
-  
-  const addTask = (newTask : TaskModel) => {
+
+  const addTask = (newTask: TaskModel) => {
     console.log('addTask')
     console.log(newTask)
     // setTasks([...tasks, newTask]);
@@ -48,36 +56,44 @@ const TaskList = () => {
   }
 
   const postTask = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    const newTask = {
-      task: task
-    };
-    fetch(API_URL + 'new', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newTask)
-    }).then(console.log);
+    if (task != '') {
+      const newTask = {
+        task: "User-" + userId + " said : " + task
+      };
+      fetch(API_URL + 'new', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newTask)
+      }).then(console.log);
+      setTask('');
+    }
   };
 
   const updateText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTask(e.target.value);
-    console.log('edit->'+task)
+    // console.log('edit->' + task)
   };
 
 
 
   return (
     <div className={styles.todowrapper}>
+      <b>Your name is [User-{userId}]</b>
+      <p>Note: Open 2 windows to simulate a chat using mongodb change stream.</p>
       <form>
-        <input type="text" className={styles['input-todo']} placeholder="New task" onChange={updateText} value={task} />
-        <div className={styles['btn-add']} onClick={postTask}>+</div>
+        <input type="text" className={styles['input-todo']} placeholder="Say something." onChange={updateText} value={task} />
+        <div className={styles['btn-add']} onClick={postTask}>Send</div>
       </form>
 
-      <ul>
+      <ul className="ultask">
         {tasks.map((x, i) => {
           return (
-            <TaskItem id={x.id} task={x.task} />
+            <li className="litask" key={x.id}>
+              <div className="text">{x.task}</div>
+              {/* <div className="delete" onClick={this._onClick}>-</div> */}
+            </li>
           )
         })
         }

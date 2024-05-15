@@ -93,7 +93,7 @@ export const Answer = ({
                                         <div className='pythonCode'></div>
                                         <div className={styles.pythonCodeDiv} onClick={() => runCode(x.replace("python", ""))} >
                                             <img width={30} src='exec.png' />
-                                            <span>Run Code Now</span>
+                                            <span>Run Code Now via Web Serial Port</span>
                                         </div>
                                     </div>
                                 );

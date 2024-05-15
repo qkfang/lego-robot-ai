@@ -3,9 +3,11 @@ import { Example } from "./Example";
 import styles from "./Example.module.css";
 
 const DEFAULT_EXAMPLES: string[] = [
-    "What is Lego Spike Prime?",
-    "What sensors is available to Lego Spike Prime Robot?",
-    "Write python to move robot forward and then turn left?"
+    "Tell me about Lego Spike Prime 3 ?",
+    "List all sensors available to Lego Spike Prime Robot ?",
+    "What's the function signature of motor_pair.move ?",
+    "Write python to move robot forward and then turn left ?",
+    "Fix the error in this line for me? motor_pair.pair(port.A, port.B, motor_pair.PAIR_1) ?"
 ];
 
 const GPT4V_EXAMPLES: string[] = [

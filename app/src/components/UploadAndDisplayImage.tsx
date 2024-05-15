@@ -30,18 +30,25 @@ const UploadAndDisplayImage = () => {
 
             {selectedImage && (
                 <div>
-                    <h4>Your Lego</h4>
-                    <img
-                        height={"150px"}
-                        src={URL.createObjectURL(selectedImage)}
-                    />
-                    <br />
-                    <h4>Matching Lego</h4>
+                    <table>
+                        <tr>
+                            <td>
+                                <h4>Your Lego</h4>
+                                <img
+                                    height={"150px"}
+                                    src={URL.createObjectURL(selectedImage)}
+                                />
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td valign="top">
+                                <h4>Matching Lego</h4>
+                                <img height={"150px"} src={imageUrl} />
+                            </td>
+                        </tr>
+                    </table>
                     <button onClick={() => execImageApi()}>Find Matching Block</button>
-                    <br />
-                    <img
-                        height={"150px"} src={imageUrl} />
-                    <br />
                 </div>
             )}
 
