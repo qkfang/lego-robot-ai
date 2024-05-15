@@ -4,54 +4,36 @@ var multer  = require('multer');
 const upload = multer({ dest: 'uploads/' })
 const swagger = require('./swagger');
 const legoAgent = require('./lego_robot/lego_robot_ai_agent');
+const taskApi = require('./lego_robot/lego_robot_task_api');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const Pusher = require('pusher');
+
+const pusher = new Pusher({
+  appId: "1821462",
+  key: "f1586bf9908b2073cda6",
+  secret: "a3d4276606cc1d157ce8",
+  cluster: "us2",
+  encrypted  : true,
+});
+const channel = 'tasks';
+
+
 
 const app = express();
 app.use(express.json());
 app.use(cors()); // enable all CORS requests
 app.use(multer({dest:__dirname+'\\uploads\\'}).any());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/api/task', taskApi);
 
-// This map is to store agents and their chat history for each session.
-// This is for demonstration only and should be hydrated by storing these
-// values in a database rather than in-memory.
 let agentInstancesMap = new Map();
 
-/* Health probe endpoint. */
-/**
- * @openapi
- * /:
- *   get:
- *     description: Health probe endpoint
- *     responses:
- *       200:
- *         description: Returns status=ready json
- */
 app.get('/', (req, res) => {
     res.send({ "status": "ready" });
 });
 
-
-/**
- * @openapi
- * /ai:
- *   post:
- *     description: Run the Cosmic Works AI agent
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               prompt:
- *                 type: string
- *                 default: ""
- *               session_id:
- *                 type: string
- *                 default: "1234"
- *     responses:
- *       200:
- *         description: Returns the OpenAI response.
- */
 app.post('/ai', async (req, res) => {
     let agent = {};
     let prompt = req.body.prompt;
@@ -68,28 +50,6 @@ app.post('/ai', async (req, res) => {
     res.send({ message: result });
 });
 
-/**
- * @openapi
- * /vector:
- *   post:
- *     description: Run the Cosmic Works AI agent
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               prompt:
- *                 type: string
- *                 default: ""
- *               session_id:
- *                 type: string
- *                 default: "1234"
- *     responses:
- *       200:
- *         description: Returns the OpenAI response.
- */
 app.post('/image', async (req, res) => {
     // console.log(req)
     let agent = {};
@@ -121,3 +81,48 @@ var port = (() => {
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
+
+mongoose.connect(process.env.AZURE_COSMOSDB_RU_CONNECTION_STRING);
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Connection Error:'));
+db.once('open', () => {
+    
+    const taskCollection = db.collection('tasks');
+    const changeStream = taskCollection.watch(
+      [
+          { 
+              $match: { 
+                  $and: [
+                      { "operationType": { $in: ["insert", "update", "replace"] } }
+                  ]
+              }
+          },
+          { $project: { "_id": 1, "fullDocument": 1, "ns": 1, "documentKey": 1} }
+      ],
+      { fullDocument: "updateLookup" });
+  
+      
+    changeStream.on('change', (change) => {
+      console.log(change);
+        
+      // if(change.operationType === 'insert') {
+        console.log('push insert');
+        const task = change.fullDocument;
+        pusher.trigger(
+          channel,
+          'inserted', 
+          {
+            id: task._id,
+            task: task.task,
+          }
+        ); 
+      // } else if(change.operationType === 'delete') {
+      //   console.log('push change');
+      //   pusher.trigger(
+      //     channel,
+      //     'deleted', 
+      //     change.documentKey._id
+      //   );
+      // }
+    });
+})  
