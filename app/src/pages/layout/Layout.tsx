@@ -1,5 +1,5 @@
 import { Outlet, NavLink, Link } from "react-router-dom";
-import App from '../../components/App';
+import Toolbar from '../../components/Toolbar';
 import styles from "./Layout.module.css";
 import { CenterFocusStrong, Padding } from "@mui/icons-material";
 import { MidiFilled } from "@fluentui/react-icons";
@@ -22,7 +22,7 @@ const Layout = () => {
                         </ul>
                     </nav> */}
                     <h4 className={styles.headerRightText}>Build a <a href="https://spike.legoeducation.com/" target="_blank">Spike Prime</a> Lego Robot and control it by python!</h4>
-                    <App />
+                    <Toolbar />
                 </div>
             </header>
             <Outlet />

@@ -17,7 +17,7 @@ const customStyles = {
   },
 };
 
-export function App() {
+export function Toolbar() {
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -39,7 +39,9 @@ export function App() {
           id={"service_spike"}
           className={""}
         />
-        <div style={{display: "inline-block", cursor: "pointer", padding: "5px"}} onClick={openModal}><img style={{width: "60px"}} src='../../../iconquestion.png' /></div>
+        <div style={{display: "inline-block", cursor: "pointer", padding: "5px"}} onClick={openModal}><img style={{width: "56px"}} src='../../../iconsearch.png' /></div>
+        <div style={{display: "inline-block", cursor: "pointer", padding: "5px"}} onClick={openModal}><img style={{width: "56px"}} src='../../../iconchat.png' /></div>
+        <div style={{display: "inline-block", cursor: "pointer", padding: "5px"}} onClick={openModal}><img style={{width: "56px"}} src='../../../iconquestion.png' /></div>
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
@@ -58,4 +60,4 @@ export function App() {
   );
 }
 
-export default App;
+export default Toolbar;
