@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./TaskList.module.css";
 import TaskModel, { TaskModelProps } from './TaskModel';
 import Pusher from 'pusher-js';
-import TaskItem from "./TaskItem";
-
-const API_URL = 'http://localhost:4242/api/task/';
+import { BACKEND_URI } from "../api/BACKEND_URI";
 const PUSHER_APP_KEY = 'f1586bf9908b2073cda6';
 const PUSHER_APP_CLUSTER = 'us2';
 
@@ -60,7 +58,7 @@ const TaskList = (props: taskListProps) => {
       const newTask = {
         task: "User-" + userId + " said : " + task
       };
-      fetch(API_URL + 'new', {
+      fetch(BACKEND_URI + 'new', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
