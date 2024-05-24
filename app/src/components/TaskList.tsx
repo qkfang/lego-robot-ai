@@ -58,7 +58,7 @@ const TaskList = (props: taskListProps) => {
       const newTask = {
         task: "User-" + userId + " said : " + task
       };
-      fetch(BACKEND_URI + '/new', {
+      fetch(BACKEND_URI + '/api/task/new', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
