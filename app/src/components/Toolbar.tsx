@@ -57,9 +57,9 @@ export function Toolbar() {
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      <div style={{ display: "inline-block", cursor: "pointer", padding: "5px" }} onClick={modalSearchOpen}><img style={{ width: "56px" }} src='../../../iconsearch.png' /></div>
-      <div style={{ display: "inline-block", cursor: "pointer", padding: "5px" }} onClick={modalChatOpen}><img style={{ width: "56px" }} src='../../../iconchat.png' /></div>
-      <div style={{ display: "inline-block", cursor: "pointer", padding: "5px" }} onClick={modalHelpOpen}><img style={{ width: "56px" }} src='../../../iconquestion.png' /></div>
+      <div style={{ display: "inline-block", cursor: "pointer", padding: "5px" }} onClick={modalSearchOpen}><img style={{ width: "56px" }} src='iconsearch.png' /></div>
+      <div style={{ display: "inline-block", cursor: "pointer", padding: "5px" }} onClick={modalChatOpen}><img style={{ width: "56px" }} src='iconchat.png' /></div>
+      <div style={{ display: "inline-block", cursor: "pointer", padding: "5px 15px 5px 5px" }} onClick={modalHelpOpen}><img style={{ width: "56px" }} src='iconquestion.png' /></div>
       <ServiceButton
         id={"service_spike"}
         className={""}
