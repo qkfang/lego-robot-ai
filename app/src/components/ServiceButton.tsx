@@ -19,6 +19,7 @@ import { AlertColor } from "@mui/material";
 
 import WebSerial from "./WebSerial";
 import SnackbarAlert from "./SnackbarAlert";
+import styles from "./ServiceButton.module.css";
 
 type Color = 'inherit' | 'primary' | 'secondary' | 'warning' | 'info' | 'success' | 'default' | 'error';
 
@@ -367,7 +368,7 @@ sound.beep(500)`
         title={buttonState.getState(currentState).tooltipText}
         placement="top"
       >
-        <Fab
+        {/* <Fab
           aria-label="connect"
           color={buttonState.getState(currentState).color}
           onClick={() => {
@@ -377,7 +378,12 @@ sound.beep(500)`
           {
             getIcon(currentState)
           }
-        </Fab>
+        </Fab> */}
+        <div className={styles.toolbarimage}
+         onClick={() => {
+            buttonClick(currentState, setCurrentState, serial.current)
+          }}><img src='iconrobot.png' /></div>
+      
       </Tooltip>
       <div style={{ textAlign: "left" }}>
         <SnackbarAlert

@@ -1,0 +1,29 @@
+
+
+
+
+@media screen and (min-width: 800px) {
+  .toolbarimage{
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .toolbarimage img{
+    width: 56px;
+  }
+  
+}
+
+@media screen and (max-width: 800px) {
+  .toolbarimage{
+    display: inline-block;
+    cursor: pointer;
+    padding: 2px;
+  }
+  
+  .toolbarimage img{
+    width: 42px;
+  }
+  
+}

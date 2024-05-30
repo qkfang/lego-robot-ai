@@ -16,12 +16,13 @@
     margin-right: 12px;
     margin-left: 12px;
     height: 120px;
+    padding-top: 30px;
 }
 
 .headerTitleContainer {
     display: flex;
     align-items: center;
-    margin-right: 40px;
+    margin-right: 10px;
     color: #000;
     text-decoration: none;
     vertical-align:bottom;
@@ -32,7 +33,7 @@
 }
 
 .headerTitle {
-    margin-left: 28px;
+    margin-left: 20px;
     font-size: 28px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -64,10 +65,18 @@
     margin-left: 20px;
 }
 
-.headerRightText {
-    font-weight: normal;
-    margin-left: 40px;
-}
+@media screen and (min-width: 800px) {
+    .headerRightText {
+        font-weight: normal;
+        margin-left: 10px;
+    }
+  }
+
+@media screen and (max-width: 800px) {
+    .headerRightText {
+      display: none;
+    }
+  }
 
 .microsoftLogo {
     height: 23px;
@@ -76,4 +85,9 @@
 
 .githubLogo {
     height: 20px;
+}
+
+
+.disclaimer {
+    font-size: 9pt;
 }

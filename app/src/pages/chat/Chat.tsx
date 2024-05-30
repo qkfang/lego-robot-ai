@@ -204,8 +204,8 @@ runloop.run(main())
                         <div className={styles.chatEmptyState}>
                             {/* <SparkleFilled fontSize={"120px"} primaryFill={"rgba(115, 118, 225, 1)"}  aria-hidden="true" aria-label="Chat logo" /> */}
                             <img src="../../robot.png"/>
-                            <h1 className={styles.chatEmptyStateTitle}>Python coding for Lego Robot</h1>
-                            <h2 className={styles.chatEmptyStateSubtitle}>Ask anything or try an example</h2>
+                            <h1 className={styles.chatEmptyStateTitle}>Lego + Robot + AI = Fun</h1>
+                            <h2 className={styles.chatEmptyStateSubtitle}>Build a Spike Prime 3 Robot and control it by Python</h2>
                             <ExampleList onExampleClicked={onExampleClicked} useGPT4V={useGPT4V} />
                         </div>
                     ) : (

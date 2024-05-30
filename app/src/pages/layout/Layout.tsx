@@ -3,6 +3,7 @@ import Toolbar from '../../components/Toolbar';
 import styles from "./Layout.module.css";
 import { CenterFocusStrong, Padding } from "@mui/icons-material";
 import { MidiFilled } from "@fluentui/react-icons";
+import { FontSizes } from "@fluentui/react";
 
 const Layout = () => {
     return (
@@ -10,7 +11,7 @@ const Layout = () => {
             <header className={styles.header} role={"banner"}>
                 <div className={styles.headerContainer}>
                     <Link to="/" className={styles.headerTitleContainer}>
-                        <h3 className={styles.headerTitle}>Lego Robot Chatbot</h3>
+                        <h3 className={styles.headerTitle}>Lego Robot AI</h3>
                     </Link>
                     {/* <nav>
                         <ul className={styles.headerNavList}>
@@ -21,15 +22,11 @@ const Layout = () => {
                             </li>
                         </ul>
                     </nav> */}
-                    <h4 className={styles.headerRightText}>Build a <a href="https://spike.legoeducation.com/" target="_blank">Spike Prime 3</a> Lego Robot and control it by python!</h4>
+                    {/* <div className={styles.headerRightText}>Build a <a href="https://spike.legoeducation.com/" target="_blank">Spike Prime 3</a> Lego Robot and control it by python!</div> */}
                     <Toolbar />
                 </div>
             </header>
             <Outlet />
-            <div style={{ padding: 20 }}>
-                <b>Disclaimer:</b> LEGO®, SPIKE™, and Minifigure are trademarks of ©The LEGO® Group. This page isn't affiliated, authorized, or endorsed by The LEGO Group.
-                Web serial port function is created by <a href="https://github.com/edanahy/WebSPIKE/">edanahy's WebSPIKE</a>
-            </div>
         </div>
     );
 };

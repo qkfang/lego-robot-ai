@@ -3,6 +3,7 @@ import ServiceButton from './ServiceButton';
 import UploadAndDisplayImage from './UploadAndDisplayImage';
 import Modal from 'react-modal';
 import TaskList from './TaskList';
+import styles from "./Toolbar.module.css";
 import { Height } from '@mui/icons-material';
 import { height } from '@mui/system';
 
@@ -57,13 +58,17 @@ export function Toolbar() {
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      <div style={{ display: "inline-block", cursor: "pointer", padding: "5px" }} onClick={modalSearchOpen}><img style={{ width: "56px" }} src='iconsearch.png' /></div>
-      <div style={{ display: "inline-block", cursor: "pointer", padding: "5px" }} onClick={modalChatOpen}><img style={{ width: "56px" }} src='iconchat.png' /></div>
-      <div style={{ display: "inline-block", cursor: "pointer", padding: "5px 15px 5px 5px" }} onClick={modalHelpOpen}><img style={{ width: "56px" }} src='iconquestion.png' /></div>
-      <ServiceButton
-        id={"service_spike"}
-        className={""}
-      />
+      <div>
+      <div className={styles.toolbarimage} onClick={modalSearchOpen}><img src='iconsearch.png' /></div>
+      <div className={styles.toolbarimage} onClick={modalChatOpen}><img src='iconchat.png' /></div>
+      <div className={styles.toolbarimage} onClick={modalHelpOpen}><img src='iconquestion.png' /></div>
+      <div className={styles.toolbarimage}>
+        <ServiceButton
+          id={"service_spike"}
+          className={""}
+        />
+      </div>
+      </div>
       <Modal
         isOpen={modalSearch}
         onRequestClose={modalSearchClose}
@@ -99,6 +104,11 @@ export function Toolbar() {
           <br />
         </div>
         {/* <button onClick={modalHelpClose}>Close</button> */}
+        
+        <div className={styles.disclaimer}>
+                <b>Disclaimer:</b> LEGO®, SPIKE™, and Minifigure are trademarks of ©The LEGO® Group. 
+                Web serial port function is created by <a href="https://github.com/edanahy/WebSPIKE/">edanahy's WebSPIKE</a>
+            </div>
       </Modal>
     </div>
   );
