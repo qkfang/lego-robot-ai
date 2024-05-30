@@ -64,7 +64,6 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, init
     const speechConfig = React.useRef(null);
     const audioConfig = React.useRef(null);
     const recognizer = React.useRef(null);
-    const synthesizer = React.useRef(null);
 
     const [myTranscript, setMyTranscript] = useState("");
     const [recognizingTranscript, setRecTranscript] = useState("");
@@ -81,10 +80,6 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, init
         recognizer.current = new sdk.SpeechRecognizer(
             speechConfig.current,
             audioConfig.current
-        );
-
-        synthesizer.current = new sdk.SpeechSynthesizer(
-            speechConfig.current
         );
 
         const processRecognizedTranscript = (event) => {
@@ -207,16 +202,6 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, init
             <div className={styles.questionInputButtonsContainer}>
                 <Tooltip content="Ask question" relationship="label">
                     <Button size="large" icon={<Send28Filled primaryFill="rgba(115, 118, 225, 1)" />} disabled={sendQuestionDisabled} onClick={sendQuestion} />
-                </Tooltip>
-            </div>
-            <div className={styles.questionInputButtonsContainer}>
-                <Tooltip content="Speed to text" relationship="label">
-                    <Button size="large" icon={<PersonVoiceFilled primaryFill="rgba(115, 118, 225, 1)" />} onClick={startListening} />
-                </Tooltip>
-            </div>
-            <div className={styles.questionInputButtonsContainer}>
-                <Tooltip content="Read the text" relationship="label">
-                    <Button size="large" icon={<ReadAloudFilled primaryFill="rgba(115, 118, 225, 1)" />} onClick={startReading} />
                 </Tooltip>
             </div>
         </Stack>

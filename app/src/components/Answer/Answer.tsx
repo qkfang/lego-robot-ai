@@ -1,14 +1,20 @@
-import { useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Stack, IconButton } from "@fluentui/react";
 import DOMPurify from "dompurify";
 import { CopyBlock, dracula } from "react-code-blocks";
 import Markdown from 'react-markdown'
-
+import * as sdk from 'microsoft-cognitiveservices-speech-sdk';
+import { Send28Filled, PersonVoiceFilled, ReadAloudFilled } from "@fluentui/react-icons";
+import { Button, Tooltip, Field, Textarea } from "@fluentui/react-components";
 import styles from "./Answer.module.css";
 
 import { ChatAppResponse, getCitationFilePath } from "../../api";
 import { parseAnswerToHtml } from "./AnswerParser";
 import { AnswerIcon } from "./AnswerIcon";
+
+const SPEECH_KEY = '44044fcc5f2d44b19c9b97be6161883c';
+const SPEECH_REGION = 'eastus';
+
 
 interface Props {
     answer: ChatAppResponse;
@@ -46,6 +52,53 @@ export const Answer = ({
         }
     };
 
+    
+    const synthesizer = React.useRef(null);
+    const speechConfig = React.useRef(null);
+
+    useEffect(() => {
+        speechConfig.current = sdk.SpeechConfig.fromSubscription(
+            SPEECH_KEY,
+            SPEECH_REGION
+        );
+        speechConfig.current.speechRecognitionLanguage = 'en-US';
+        // speechConfig.current.speechSynthesisOutputFormat = 5;
+
+        synthesizer.current = new sdk.SpeechSynthesizer(
+            speechConfig.current
+        );
+
+    }, []);
+
+    const startReading = () => {
+        console.log("asdfasdf");
+        synthesizer.current.speakTextAsync(
+            messageContent,
+            result => {
+
+                const { audioData } = result;
+
+                synthesizer.close();
+
+                if (filename) {
+
+                    // return stream from file
+                    const audioFile = fs.createReadStream(filename);
+                    resolve(audioFile);
+
+                } else {
+
+                    // return stream from memory
+                    const bufferStream = new PassThrough();
+                    bufferStream.end(Buffer.from(audioData));
+                    resolve(bufferStream);
+                }
+            },
+            error => {
+                synthesizer.close();
+                reject(error);
+            });
+    }
 
     return (
         <Stack className={`${styles.answerContainer} ${isSelected && styles.selected}`} verticalAlign="space-between">
@@ -53,22 +106,9 @@ export const Answer = ({
                 <Stack horizontal horizontalAlign="space-between">
                     <AnswerIcon />
                     <div>
-                        {/* <IconButton
-                            style={{ color: "black" }}
-                            iconProps={{ iconName: "Lightbulb" }}
-                            title="Show thought process"
-                            ariaLabel="Show thought process"
-                            onClick={() => onThoughtProcessClicked()}
-                            // disabled={!answer.choices[0].context.thoughts?.length}
-                        />
-                        <IconButton
-                            style={{ color: "black" }}
-                            iconProps={{ iconName: "ClipboardList" }}
-                            title="Show supporting content"
-                            ariaLabel="Show supporting content"
-                            onClick={() => onSupportingContentClicked()}
-                            // disabled={!answer.choices[0].context.data_points}
-                        /> */}
+                        <Tooltip content="Read the answer" relationship="label">
+                            <Button size="large" icon={<ReadAloudFilled primaryFill="rgba(115, 118, 225, 1)" />} onClick={startReading} />
+                        </Tooltip>
                     </div>
                 </Stack>
             </Stack.Item>
@@ -106,7 +146,6 @@ export const Answer = ({
                                 )
                             }
                         })}
-
                     </Stack>
                 </Stack.Item>
             )}

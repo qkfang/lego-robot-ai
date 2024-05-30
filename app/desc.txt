@@ -1,0 +1,49 @@
+[Features used]
+Container App
+Container Apps Environment
+Computer vision
+Azure Cosmos DB for MongoDB (vCore)
+Azure Cosmos DB for MongoDB account (RU)
+Azure OpenAI
+Speech service
+App Service
+App Service plan
+Application Insights
+Log Analytics workspace
+Container registry
+Storage account
+
+
+Key Functionalities:
+ChatBot with Knowledge of Lego Spike Prime
+ChatBot with Knowledge of Spike Prime 3 Python API / Function / Execution
+Search similar Lego Brick via Image
+Receive Chat prompt via Voice
+Read Chat response by Voice
+Live chat with other users via browse
+
+Under the hood:
+Spike Prime API Specification formating/extraction to Json & Vector
+Spike Prime User Guide formating/extraction to Json & Vector
+Spike Prime Sample code snippets formating/extraction to Json & Vector
+Lego Block Image formating/extract to Json & Vector
+Prompt engineering for Spike Prim specify Python syntax (exclude legacy, 3rd libs)
+
+Lego Spike Prime - Web Serial Port integration to React App
+Python code chat resposne syntax highlighting
+Execute python code directly from Browser via Web Serial Port
+
+
+Text to Speech
+Speech to text
+Azure API GPT-4o Model
+Azure API Embedding Model
+Langchain RAG 
+
+Text Embedding Generation
+Text Vector Storage  (MongoDb)
+Image Embedding Generation
+Text Embedding Search
+Text Vector Storage  (MongoDb)
+Image Embedding Generation
+MongoDb Change Stream
