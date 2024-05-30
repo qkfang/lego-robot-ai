@@ -269,7 +269,7 @@ sound.beep(500)`
     }
     catch (er) {
       console.error(er);
-      displayError(er)
+      displayError("Please connect Spike Prime Hub with USB cable, then it will show up as Web Serial Port in browser." + er)
       setState("Disconnected");
     }
 

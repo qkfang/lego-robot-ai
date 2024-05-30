@@ -74,6 +74,7 @@ export function Toolbar() {
         onRequestClose={modalSearchClose}
         style={customStyles}
         contentLabel="Find Similar Lego Blocks"
+        ariaHideApp={false}
       >
         <div style={{ height: "400px" }}>
           <h2>Find similar Lego blocks</h2>
@@ -88,6 +89,7 @@ export function Toolbar() {
         onRequestClose={modalChatClose}
         style={customStyles}
         contentLabel="Chat"
+        ariaHideApp={false}
       >
         <h2>Chat with other users</h2>
         <TaskList userId={userId} />
@@ -98,6 +100,7 @@ export function Toolbar() {
         onRequestClose={modalHelpClose}
         style={customStyles}
         contentLabel="Help"
+        ariaHideApp={false}
       >
         <div style={{ height: "400px" }}>
           <h2>Help</h2>
