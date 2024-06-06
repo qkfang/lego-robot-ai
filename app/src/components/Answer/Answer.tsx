@@ -6,6 +6,7 @@ import Markdown from 'react-markdown'
 import * as sdk from 'microsoft-cognitiveservices-speech-sdk';
 import { Button, Tooltip } from "@fluentui/react-components";
 import styles from "./Answer.module.css";
+import { ReadAloudFilled } from "@fluentui/react-icons";
 
 import { ChatAppResponse, getCitationFilePath } from "../../api";
 import { parseAnswerToHtml } from "./AnswerParser";
@@ -47,7 +48,7 @@ export const Answer = ({
             console.log(code);
             window.pyrepl.write = code;
         } catch (err) {
-            document.getElementById("service_spike").getElementsByTagName("button")[0].click();
+            document.getElementById("service_spike").getElementsByTagName("div")[0].click();
         }
     };
 

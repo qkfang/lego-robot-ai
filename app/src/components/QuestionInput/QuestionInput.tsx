@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useMsal } from "@azure/msal-react";
 import { Stack, TextField } from "@fluentui/react";
 import { Button, Tooltip, Field, Textarea } from "@fluentui/react-components";
-import { Send28Filled, PersonVoiceFilled, ReadAloudFilled } from "@fluentui/react-icons";
+import { Send28Filled, PersonVoiceFilled } from "@fluentui/react-icons";
 import * as sdk from 'microsoft-cognitiveservices-speech-sdk';
 
 const SPEECH_KEY = '44044fcc5f2d44b19c9b97be6161883c';
