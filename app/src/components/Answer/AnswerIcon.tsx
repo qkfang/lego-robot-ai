@@ -1,4 +1,3 @@
-import { Sparkle28Filled } from "@fluentui/react-icons";
 
 export const AnswerIcon = () => {
     return <img style={{width:60}} src="../../engineer.png"/>

@@ -318,7 +318,7 @@ resource containerAppEnvironment 'Microsoft.App/managedEnvironments@2023-05-01' 
         name: 'Warm'
         minimumCount: 1
         maximumCount: 10
-        workloadProfileType: 'E4'
+        workloadProfileType: 'D4'
       }
     ]
     infrastructureResourceGroup: 'ME_${resourceGroup().name}'

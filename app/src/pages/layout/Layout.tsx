@@ -1,9 +1,6 @@
 import { Outlet, NavLink, Link } from "react-router-dom";
 import Toolbar from '../../components/Toolbar';
 import styles from "./Layout.module.css";
-import { CenterFocusStrong, Padding } from "@mui/icons-material";
-import { MidiFilled } from "@fluentui/react-icons";
-import { FontSizes } from "@fluentui/react";
 
 const Layout = () => {
     return (

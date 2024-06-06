@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Stack, IconButton } from "@fluentui/react";
+import { Stack } from "@fluentui/react";
 import DOMPurify from "dompurify";
 import { CopyBlock, dracula } from "react-code-blocks";
 import Markdown from 'react-markdown'
 import * as sdk from 'microsoft-cognitiveservices-speech-sdk';
-import { Send28Filled, PersonVoiceFilled, ReadAloudFilled } from "@fluentui/react-icons";
-import { Button, Tooltip, Field, Textarea } from "@fluentui/react-components";
+import { Button, Tooltip } from "@fluentui/react-components";
 import styles from "./Answer.module.css";
 
 import { ChatAppResponse, getCitationFilePath } from "../../api";

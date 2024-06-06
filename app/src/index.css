@@ -10,7 +10,7 @@ body {
 }
 
 html {
-    background-image: url(../../bg.png);
+    background-image: url(/bg.png);
     font-family:
         "Segoe UI",
         -apple-system,
