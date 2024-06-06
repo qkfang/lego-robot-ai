@@ -204,6 +204,11 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, init
                     <Button size="large" icon={<Send28Filled primaryFill="rgba(115, 118, 225, 1)" />} disabled={sendQuestionDisabled} onClick={sendQuestion} />
                 </Tooltip>
             </div>
+            <div className={styles.questionInputButtonsContainer}>
+                <Tooltip content="Speed to text" relationship="label">
+                    <Button size="large" icon={<PersonVoiceFilled primaryFill="rgba(115, 118, 225, 1)" />} onClick={startListening} />
+                </Tooltip>
+            </div>
         </Stack>
     );
 };

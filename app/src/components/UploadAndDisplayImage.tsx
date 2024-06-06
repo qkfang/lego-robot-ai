@@ -33,7 +33,7 @@ const UploadAndDisplayImage = () => {
                     <table>
                         <tr>
                             <td>
-                                <h4>Your Lego</h4>
+                                <h4>Your Lego Brick</h4>
                                 <img
                                     height={"150px"}
                                     src={URL.createObjectURL(selectedImage)}
@@ -43,7 +43,7 @@ const UploadAndDisplayImage = () => {
                                 &nbsp;
                             </td>
                             <td valign="top">
-                                <h4>Matching Lego</h4>
+                                <h4>Similar Lego Brick</h4>
                                 <img height={"150px"} src={imageUrl} />
                             </td>
                         </tr>

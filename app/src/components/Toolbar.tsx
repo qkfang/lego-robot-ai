@@ -105,9 +105,9 @@ export function Toolbar() {
         <div style={{ height: "400px" }}>
           <h2>Help</h2>
           <br />
+
+
         </div>
-        {/* <button onClick={modalHelpClose}>Close</button> */}
-        
         <div className={styles.disclaimer}>
                 <b>Disclaimer:</b> LEGO®, SPIKE™, and Minifigure are trademarks of ©The LEGO® Group. 
                 Web serial port function is created by <a href="https://github.com/edanahy/WebSPIKE/">edanahy's WebSPIKE</a>
