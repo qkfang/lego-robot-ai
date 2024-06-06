@@ -14,7 +14,7 @@ const customStyles = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    width: '50%',
+    width: '80%',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
   },
@@ -28,7 +28,7 @@ export function Toolbar() {
   const [userId, setUserId] = React.useState("");
 
   React.useEffect(() => {
-    setUserId(crypto.randomUUID().substring(0,3));
+    setUserId(crypto.randomUUID().substring(0, 3));
   }, []);
 
 
@@ -59,15 +59,15 @@ export function Toolbar() {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <div>
-      <div className={styles.toolbarimage} onClick={modalSearchOpen}><img src='iconsearch.png' /></div>
-      <div className={styles.toolbarimage} onClick={modalChatOpen}><img src='iconchat.png' /></div>
-      <div className={styles.toolbarimage} onClick={modalHelpOpen}><img src='iconquestion.png' /></div>
-      <div className={styles.toolbarimage}>
-        <ServiceButton
-          id={"service_spike"}
-          className={""}
-        />
-      </div>
+        <div className={styles.toolbarimage} onClick={modalSearchOpen}><img src='iconsearch.png' /></div>
+        <div className={styles.toolbarimage} onClick={modalChatOpen}><img src='iconchat.png' /></div>
+        <div className={styles.toolbarimage} onClick={modalHelpOpen}><img src='iconquestion.png' /></div>
+        <div className={styles.toolbarimage}>
+          <ServiceButton
+            id={"service_spike"}
+            className={""}
+          />
+        </div>
       </div>
       <Modal
         isOpen={modalSearch}
@@ -76,9 +76,10 @@ export function Toolbar() {
         contentLabel="Find Similar Lego Blocks"
         ariaHideApp={false}
       >
-        <div style={{ height: "400px" }}>
+        <div style={{ height: "500px" }}>
           <h2>Find similar Lego blocks</h2>
-          <p>Note: Upload a lego block image, we will find a similar one in our library using image vector search. <a href="/block-blue.jpg" target='blank'>Img 1</a> / <a href="/block-red.jpg" target='blank'>Img 2</a> / <a href="/block-white.jpg" target='blank'>Img 3</a> / <a href="/block-yellow.jpg" target='blank'>Img 4</a> </p>
+          <p>Upload a Lego block image, we will find a similar one in our library using image vector search.</p>
+          <p>You can use one of the sample image. <a href="/block-blue.jpg" target='blank'>Blue</a> / <a href="/block-red.jpg" target='blank'>Red</a> / <a href="/block-white.jpg" target='blank'>White</a> / <a href="/block-yellow.jpg" target='blank'>Yellow</a> </p>
           <UploadAndDisplayImage />
           <br />
         </div>
@@ -102,16 +103,47 @@ export function Toolbar() {
         contentLabel="Help"
         ariaHideApp={false}
       >
-        <div style={{ height: "400px" }}>
+        <div style={{ height: "500px" }}>
           <h2>Help</h2>
+          <p>
+            Our girls' First Lego League team (Year 6 girls) started to write Python code for <a target='_blank' href='https://spike.legoeducation.com'>Spike Prime 3</a> Lego Robot last year in preparation of <a target='_blank' href='https://www.firstlegoleague.org/'>First Lego League</a> competition but struggled to get the program running. One of them turned to ChatGPT for help. These young learners need an innovative approach to support their coding education.
+          </p>
+          <p>
+            The Lego Robot AI can write Python code using the Spike Prime 3 API, with the generated code executed directly in the browser via a web serial port. This seamless experience helps young kids learn coding while watching their robots in action.
+          </p>
+          <p>
+            Check out this <a target='_blank' href='https://youtu.be/ycu2UeqTolI'>video tutorial</a> for the app.
+          </p>
+          <p>
+            <b>Note:</b>
+            <ul>
+              <li>Spike Prime robot required to see Python code running. Above video demo (second half) includes robot in action.</li>
+              <li>Chat response might take time as all SKU has been reduced to reduce spend.</li>
+            </ul>
+          </p>
+          <p>
+            <b>Features:</b>
+            <ul>
+              <li>ChatBot with Knowledge of Lego Spike Prime</li>
+              <li>ChatBot with Knowledge of Spike Prime 3 Python API / Function / Execution</li>
+              <li>Search similar Lego Brick via Image Vector Search</li>
+              <li>Receive Chat prompt via voice</li>
+              <li>Read Chat responses by voice</li>
+              <li>Python code chat response syntax highlighting</li>
+              <li>Live chat with other users via browse</li>
+              <li>Lego Spike Prime Web Serial Port integration in browser</li>
+              <li>Execute python code directly from Browser</li>
+            </ul>
+          </p>
+          <p>
+            <b>Disclaimer:</b>
+            <ul>
+              <li>LEGO®, SPIKE™, and Minifigure are trademarks of ©The LEGO® Group.</li>
+              <li>Web serial port function is created by <a href="https://github.com/edanahy/WebSPIKE/">edanahy's WebSPIKE</a></li>
+            </ul>
+          </p>
           <br />
-
-
         </div>
-        <div className={styles.disclaimer}>
-                <b>Disclaimer:</b> LEGO®, SPIKE™, and Minifigure are trademarks of ©The LEGO® Group. 
-                Web serial port function is created by <a href="https://github.com/edanahy/WebSPIKE/">edanahy's WebSPIKE</a>
-            </div>
       </Modal>
     </div>
   );

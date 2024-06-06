@@ -79,7 +79,7 @@ const TaskList = (props: taskListProps) => {
   return (
     <div className={styles.todowrapper}>
       <b>Your name is [User-{userId}]</b>
-      <p>Note: Open 2 windows to simulate a chat using mongodb change stream.</p>
+      <p>Open 2 windows to simulate a chat using mongodb change stream.</p>
       <form>
         <input type="text" className={styles['input-todo']} placeholder="Say something." onChange={updateText} value={task} />
         <div className={styles['btn-add']} onClick={postTask}>Send</div>
