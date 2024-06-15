@@ -109,6 +109,19 @@ export const Answer = ({
         setTranslate(textJson[0].translations[0].text);
     }
 
+    const translateHtml = () => {
+        if(translate=='')
+        {
+            return '';
+        }
+
+        return (
+            <div style={{backgroundColor: '#efefef', padding: '5px'}}>
+                <Markdown>{DOMPurify.sanitize(translate)}</Markdown>
+            </div>
+        )
+     }
+
     return (
         <Stack className={`${styles.answerContainer} ${isSelected && styles.selected}`} verticalAlign="space-between">
             <Stack.Item>
@@ -158,11 +171,7 @@ export const Answer = ({
                                 )
                             }
                         })}
-                        {
-                            <div style={{backgroundColor: '#efefef', padding: '5px'}}>
-                                <Markdown>{DOMPurify.sanitize(translate)}</Markdown>
-                            </div>
-                        }
+                        {translateHtml()}
                     </Stack>
                 </Stack.Item>
             )}
