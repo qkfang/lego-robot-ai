@@ -6,9 +6,9 @@ import Markdown from 'react-markdown'
 import * as sdk from 'microsoft-cognitiveservices-speech-sdk';
 import { Button, Tooltip } from "@fluentui/react-components";
 import styles from "./Answer.module.css";
-import { ReadAloudFilled } from "@fluentui/react-icons";
+import { ReadAloudFilled, TranslateAutoFilled } from "@fluentui/react-icons";
 
-import { ChatAppResponse, getCitationFilePath } from "../../api";
+import { ChatAppResponse, getCitationFilePath, translateApi } from "../../api";
 import { parseAnswerToHtml } from "./AnswerParser";
 import { AnswerIcon } from "./AnswerIcon";
 
@@ -40,6 +40,7 @@ export const Answer = ({
     //const followupQuestions = answer.choices[0].context.followup_questions;
     const messageContent = answer.message; //answer.choices[0].message.content;
     const parsedAnswer = useMemo(() => parseAnswerToHtml(messageContent, isStreaming, onCitationClicked), [answer]);
+    const [translate, setTranslate] = useState<string>("");
 
     const sanitizedAnswerHtml = DOMPurify.sanitize(parsedAnswer.answerHtml);
 
@@ -52,7 +53,7 @@ export const Answer = ({
         }
     };
 
-    
+
     const synthesizer = React.useRef(null);
     const speechConfig = React.useRef(null);
 
@@ -71,7 +72,6 @@ export const Answer = ({
     }, []);
 
     const startReading = () => {
-        console.log("asdfasdf");
         synthesizer.current.speakTextAsync(
             messageContent,
             result => {
@@ -100,19 +100,31 @@ export const Answer = ({
             });
     }
 
+
+    const startTranslating = async () => {
+        var texts = parsedAnswer.fragments.filter((word) => !word.startsWith('python'));
+        const response = await translateApi(texts.join('\n'), "en", "fr");
+        var textJson = await response.json();
+        // console.log(textJson)
+        setTranslate(textJson[0].translations[0].text);
+    }
+
     return (
         <Stack className={`${styles.answerContainer} ${isSelected && styles.selected}`} verticalAlign="space-between">
             <Stack.Item>
                 <Stack horizontal horizontalAlign="space-between">
                     <AnswerIcon />
                     <div>
-                        <Tooltip content="Read the answer" relationship="label">
+                        <Tooltip content="Read the answer" relationship="label" >
                             <Button size="large" icon={<ReadAloudFilled primaryFill="rgba(115, 118, 225, 1)" />} onClick={startReading} />
+                        </Tooltip>
+                        <Tooltip content="Translate to French" relationship="label">
+                            <Button size="large" icon={<TranslateAutoFilled primaryFill="rgba(115, 118, 225, 1)" />} onClick={startTranslating} />
                         </Tooltip>
                     </div>
                 </Stack>
             </Stack.Item>
-{/* 
+            {/* 
             <Stack.Item grow>
                 <div className={styles.answerText} dangerouslySetInnerHTML={{ __html: sanitizedAnswerHtml }}></div>
             </Stack.Item> */}
@@ -141,11 +153,16 @@ export const Answer = ({
                             else {
                                 return (
                                     <div className={styles.answerText} >
-                                    <Markdown>{DOMPurify.sanitize(x) }</Markdown>
+                                        <Markdown>{DOMPurify.sanitize(x)}</Markdown>
                                     </div>
                                 )
                             }
                         })}
+                        {
+                            <div style={{backgroundColor: '#efefef', padding: '5px'}}>
+                                <Markdown>{DOMPurify.sanitize(translate)}</Markdown>
+                            </div>
+                        }
                     </Stack>
                 </Stack.Item>
             )}
