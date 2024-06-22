@@ -26,7 +26,7 @@ app.use(cors()); // enable all CORS requests
 app.use(multer({dest:__dirname+'\\uploads\\'}).any());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api/task', taskApi);
+app.use('/', taskApi);
 
 let agentInstancesMap = new Map();
 
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
     res.send({ "status": "ready" });
 });
 
-app.post('/ai', async (req, res) => {
+app.post('/chat', async (req, res) => {
     let agent = {};
     let prompt = req.body.prompt;
     let session_id = req.body.session_id;

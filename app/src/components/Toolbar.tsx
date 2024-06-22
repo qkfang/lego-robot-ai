@@ -2,7 +2,7 @@ import React from 'react';
 import ServiceButton from './ServiceButton';
 import UploadAndDisplayImage from './UploadAndDisplayImage';
 import Modal from 'react-modal';
-import TaskList from './TaskList';
+import LiveChatList from './LiveChatList';
 import styles from "./Toolbar.module.css";
 import { Height } from '@mui/icons-material';
 import { height } from '@mui/system';
@@ -93,7 +93,7 @@ export function Toolbar() {
         ariaHideApp={false}
       >
         <h2>Chat with other users</h2>
-        <TaskList userId={userId} />
+        <LiveChatList userId={userId} />
         {/* <button onClick={modalChatClose}>Close</button> */}
       </Modal>
       <Modal

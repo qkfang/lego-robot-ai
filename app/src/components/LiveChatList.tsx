@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import styles from "./TaskList.module.css";
-import TaskModel, { TaskModelProps } from './TaskModel';
+import styles from "./LiveChatList.module.css";
+import LiveChatModel, { TaskModelProps } from './LiveChatModel';
+import { livechatApi } from "../api";
 import Pusher from 'pusher-js';
 import { BACKEND_URI } from "../api/BACKEND_URI";
 const PUSHER_APP_KEY = 'f1586bf9908b2073cda6';
 const PUSHER_APP_CLUSTER = 'us2';
 
 
-interface taskListProps {
+interface liveChatProps {
   userId: string,
 }
 
-const TaskList = (props: taskListProps) => {
+const LiveChatList = (props: liveChatProps) => {
 
   const [task, setTask] = useState<string>();
   const [tasks, setTasks] = useState<TaskModelProps[]>([]);
@@ -55,16 +56,7 @@ const TaskList = (props: taskListProps) => {
 
   const postTask = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (task != '') {
-      const newTask = {
-        task: "User-" + userId + " said : " + task
-      };
-      fetch(BACKEND_URI + '/api/task/new', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newTask)
-      }).then(console.log);
+      livechatApi("User-" + userId + " said : " + task)
       setTask('');
     }
   };
@@ -100,4 +92,4 @@ const TaskList = (props: taskListProps) => {
   );
 }
 
-export default TaskList;
+export default LiveChatList;

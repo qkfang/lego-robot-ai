@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-    gpt4oApi,
+    visionApi,
 } from "../api";
 
 const DescribeImage = () => {
@@ -44,7 +44,7 @@ const DescribeImage = () => {
        
         // console.log(messages);
         if (selectedImage != null) {
-            const response = await gpt4oApi(messages);
+            const response = await visionApi(messages);
             // console.log(response);
             setImageDesc(response);
         }

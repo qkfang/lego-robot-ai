@@ -2,29 +2,14 @@ import { ChatAppResponse, ChatAppResponseOrError, ChatAppRequest, Config } from 
 import { BACKEND_URI } from "./BACKEND_URI";
 import { OpenAIClient, OpenAIClientOptions, AzureKeyCredential, Completions} from '@azure/openai';
 
-function getHeaders(): Record<string, string> {
-    var headers: Record<string, string> = {
-        "Content-Type": "application/json"
-    };
-    return headers;
-}
-
-
-function getHeadersTranslate(): Record<string, string> {
-    var headers: Record<string, string> = {
-        "Content-Type": "application/json",
-        'Ocp-Apim-Subscription-Region': 'eastus',
-        'Ocp-Apim-Subscription-Key': 'eb3318b45d9d45e5815d51eaa8eb1c52',
-    };
-    return headers;
-}
-
 export async function chatApi(request: ChatAppRequest): Promise<Response> {
     const body = JSON.stringify(request);
-    return await fetch(`${BACKEND_URI}/ai`, {
+    return await fetch(`${BACKEND_URI}/chat`, {
         method: "POST",
         mode: "cors",
-        headers: getHeaders(),
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: body
     });
 }
@@ -40,14 +25,14 @@ export async function imageApi(file: File): Promise<Response> {
     });
 }
 
-export async function gpt4oApi(prompt: string[]): Promise<Completions> {
+export async function visionApi(prompt: string[]): Promise<Completions> {
     const options = {
         api_version: "2023-12-01-preview"
       };
 
     const client = new OpenAIClient(
-        "https://legorobot-openai.openai.azure.com/",
-        new AzureKeyCredential("53f4ec2340964083a427811bd8417f8e"),
+        `${BACKEND_URI}/vision`,
+        new AzureKeyCredential("-"),
         options
       );
       // ?api-version=2023-12-01-preview
@@ -67,8 +52,8 @@ export async function dalleApi(prompt: string): Promise<Completions> {
     const size = '1024x1024';
     const n = 1;
     const client = new OpenAIClient(
-        "https://legorobot-openai.openai.azure.com/",
-        new AzureKeyCredential("53f4ec2340964083a427811bd8417f8e"),
+        `${BACKEND_URI}/dalle`,
+        new AzureKeyCredential("-"),
         options
       );
       // ?api-version=2023-12-01-preview
@@ -79,7 +64,7 @@ export async function dalleApi(prompt: string): Promise<Completions> {
 }
 
 export async function translateApi(text: string, from: string, to: string): Promise<Response> {
-    const url = `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=${to}&from=${from}`;
+    const url = `${BACKEND_URI}/translate`;
     const body = 
     [{
         "text": `${text}`
@@ -87,9 +72,24 @@ export async function translateApi(text: string, from: string, to: string): Prom
     
     return await fetch(url, {
         method: "POST",
-        headers: getHeadersTranslate(),
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify(body),
     });
+}
+
+export async function livechatApi(text: string): Promise<Response> {
+    const newTask = {
+        task: text
+      };
+      return await fetch(`${BACKEND_URI}/livechat`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newTask)
+      });
 }
 
 export function getCitationFilePath(citation: string): string {

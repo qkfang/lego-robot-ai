@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 
 /* CREATE */
-router.post('/new', (req, res) => {
+router.post('/livechat', (req, res) => {
   Task.create({ task: req.body.task })
     .then((result) => {
       console.log('CREATED.');

@@ -5,6 +5,6 @@ export interface TaskModelProps {
     task: string;
 }
 
-declare const TaskModel: React.SFC<TaskModelProps>
+declare const LiveChatModel: React.SFC<TaskModelProps>
 
-export default TaskModel
+export default LiveChatModel

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
     imageApi,
-    gpt4oApi,
+    visionApi,
     dalleApi
 } from "../api";
 
@@ -61,7 +61,7 @@ const UploadAndDisplayImage = () => {
 
         // console.log(messages);
         if (selectedImage != null) {
-            const response = await gpt4oApi(messages);
+            const response = await visionApi(messages);
             // console.log(response);
             setImageDesc(response);
         }
