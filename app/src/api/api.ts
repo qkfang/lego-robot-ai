@@ -1,5 +1,6 @@
 import { ChatAppResponse, ChatAppResponseOrError, ChatAppRequest, Config } from "./models";
 import { BACKEND_URI } from "./BACKEND_URI";
+import { OpenAIClient, OpenAIClientOptions, AzureKeyCredential, Completions} from '@azure/openai';
 
 function getHeaders(): Record<string, string> {
     var headers: Record<string, string> = {
@@ -37,6 +38,25 @@ export async function imageApi(file: File): Promise<Response> {
         mode: "cors",
         body: formData,
     });
+}
+
+export async function gpt4oApi(prompt: string[]): Promise<Completions> {
+    const options = {
+        api_version: "2023-12-01-preview"
+      };
+
+    const client = new OpenAIClient(
+        "https://legorobot-openai.openai.azure.com/",
+        new AzureKeyCredential("53f4ec2340964083a427811bd8417f8e"),
+        options
+      );
+      // ?api-version=2023-12-01-preview
+      const deploymentName = 'completions';
+      const result = await client.getChatCompletions(deploymentName, prompt, {
+        maxTokens: 200,
+        temperature: 0.25
+      });
+      return result.choices[0].message.content;
 }
 
 

@@ -18,7 +18,7 @@ def local_image_to_data_url(image_path):
     return f"data:{mime_type};base64,{base64_encoded_data}"
 
 # Example usage
-image_path = 'E:\\hackathon\\Azure-OpenAI-Node.js-Developer-Guide-main\\legorobot\\api\\brick.jpg'
+image_path = 'E:\\hackathon\\Azure-OpenAI-Node.js-Developer-Guide-main\\legorobot\\api\\image\\blue.jpg'
 data_url = local_image_to_data_url(image_path)
 # print("Data URL:", data_url)
 
