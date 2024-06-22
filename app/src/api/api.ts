@@ -60,6 +60,24 @@ export async function gpt4oApi(prompt: string[]): Promise<Completions> {
 }
 
 
+export async function dalleApi(prompt: string): Promise<Completions> {
+    const options = {
+        api_version: "2023-12-01-preview"
+      };
+    const size = '1024x1024';
+    const n = 1;
+    const client = new OpenAIClient(
+        "https://legorobot-openai.openai.azure.com/",
+        new AzureKeyCredential("53f4ec2340964083a427811bd8417f8e"),
+        options
+      );
+      // ?api-version=2023-12-01-preview
+      const deploymentName = 'dalle3';
+      const result = await client.getImages(deploymentName, prompt, { n, size });
+      console.log(result);
+      return result.data[0].url;
+}
+
 export async function translateApi(text: string, from: string, to: string): Promise<Response> {
     const url = `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=${to}&from=${from}`;
     const body = 

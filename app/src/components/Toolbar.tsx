@@ -73,11 +73,11 @@ export function Toolbar() {
         isOpen={modalSearch}
         onRequestClose={modalSearchClose}
         style={customStyles}
-        contentLabel="Find Similar Lego Blocks"
+        contentLabel="Lego Blocks Images"
         ariaHideApp={false}
       >
         <div style={{ height: "500px" }}>
-          <h2>Find similar Lego blocks</h2>
+          <h2>Lego Blocks Images</h2>
           <p>Upload a Lego block image, we will find a similar one in our library using image vector search.</p>
           <p>You can use one of the sample image. <a href="/block-blue.jpg" target='blank'>Blue</a> / <a href="/block-red.jpg" target='blank'>Red</a> / <a href="/block-white.jpg" target='blank'>White</a> / <a href="/block-yellow.jpg" target='blank'>Yellow</a> </p>
           <UploadAndDisplayImage />
