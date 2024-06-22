@@ -112,7 +112,7 @@ export function Toolbar() {
             The Lego Robot AI can write Python code using the Spike Prime 3 API, with the generated code executed directly in the browser via a web serial port. This seamless experience helps young kids learn coding while watching their robots in action.
           </p>
           <p>
-            Check out this <a target='_blank' href='https://youtu.be/yEwOrrvadJ0'>video tutorial</a> for the app.
+            Check out this <a target='_blank' href='https://youtu.be/1URVErLXnMk'>video tutorial</a> for the app.
           </p>
           <p>
             <b>Note:</b>
