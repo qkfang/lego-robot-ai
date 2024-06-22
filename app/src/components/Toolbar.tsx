@@ -127,7 +127,9 @@ export function Toolbar() {
               <li>ChatBot with Knowledge of Lego Spike Prime</li>
               <li>ChatBot with Knowledge of Spike Prime 3 Python API / Function / Execution</li>
               <li>Translate chat response to French</li>
-              <li>Search similar Lego Brick via Image Vector Search</li>
+              <li>Search similar Lego brick via Image Vector Search</li>
+              <li>Describe Lego brick image in text</li>
+              <li>Generate Lego brick image by description</li>
               <li>Receive Chat prompt via voice</li>
               <li>Read Chat responses by voice</li>
               <li>Python code chat response syntax highlighting</li>
