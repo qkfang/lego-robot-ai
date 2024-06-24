@@ -1,0 +1,63 @@
+openapi: 3.0.1
+info:
+  title: lego-robot
+  description: ''
+  version: '1.0'
+servers:
+  - url: https://legorobot-apim.azure-api.net/legoapi
+paths:
+  /chat:
+    post:
+      summary: chat
+      operationId: chat
+      responses:
+        '200':
+          description: 
+  /image:
+    post:
+      summary: image
+      operationId: 667bd26116d86ad3425d6f8b
+      responses:
+        '200':
+          description: 
+  /vision/openai/deployments/completions/chat/completions:
+    post:
+      summary: vision
+      operationId: 667bd306b624010834cd55d0
+      responses:
+        '200':
+          description: 
+  /dalle/openai/deployments/dalle3/images/generations:
+    post:
+      summary: dalle
+      operationId: 667bd32c619e54f3512c2aac
+      responses:
+        '200':
+          description: 
+  /translate:
+    post:
+      summary: translate
+      operationId: 667bdfea4ba23e89dcc71f14
+      responses:
+        '200':
+          description: 
+  /livechat:
+    post:
+      summary: livechat
+      operationId: 667be830d053ba9af0da35db
+      responses:
+        '200':
+          description: 
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
