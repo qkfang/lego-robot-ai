@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { trackPromise } from "react-promise-tracker";
+import { usePromiseTracker } from "react-promise-tracker";
 import {
     imageApi,
     visionApi,
@@ -15,6 +17,7 @@ const UploadAndDisplayImage = () => {
 
     const [imageDalleText, setImageDalleText] = useState<string>();
     const [imageDalleUrl, setImageDalleUrl] = useState<string>("");
+    const { promiseInProgress } = usePromiseTracker();
 
     async function execImageMatchApi() {
         if (selectedImage != null) {
@@ -70,10 +73,16 @@ const UploadAndDisplayImage = () => {
 
     async function execImageCreateApi() {
         if (imageDalleText != null) {
-            const response = await dalleApi(imageDalleText);
-            // console.log(response);
-            setImageDalleUrl(response);
-            // setImageDesc(response);
+            trackPromise(
+                dalleApi(imageDalleText)
+            ).then((response) => {
+
+                // console.log(response);
+                setImageDalleUrl(response);
+                // setImageDesc(response);   
+            }
+
+            )
         }
     }
 
@@ -99,58 +108,70 @@ const UploadAndDisplayImage = () => {
                 <div>
                     <h4>Your Lego Brick</h4>
                     <table>
-                        <tr>
-                            <td style={{ verticalAlign: 'top' }}>
-                                <img
-                                    height={"150px"}
-                                    src={URL.createObjectURL(selectedImage)}
-                                />
-                            </td>
-                            <td style={{ verticalAlign: 'top', width: '300px' }}>
-                                {imageDesc}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style={{ verticalAlign: 'top', width: '250px' }}>
-                                <button onClick={() => execImageDescApi()}>Describe The Block (GPT-4o Vision)</button><br />
-                            </td>
-                            <td></td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td style={{ verticalAlign: 'top' }}>
+                                    <img
+                                        height={"150px"}
+                                        src={URL.createObjectURL(selectedImage)}
+                                    />
+                                </td>
+                                <td style={{ verticalAlign: 'top', width: '300px' }}>
+                                    {imageDesc}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style={{ verticalAlign: 'top', width: '250px' }}>
+                                    <button onClick={() => execImageDescApi()}>Describe The Block (GPT-4o Vision)</button><br />
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <h4>Find Similar Lego Brick</h4>
                     <table>
-                        <tr>
-                            <td valign="top">
-                                <img height={"150px"} src={imageUrl} />
-                            </td>
-                            <td style={{ verticalAlign: 'top', width: '300px' }}>
-                                {imageText}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style={{ verticalAlign: 'top' }}>
-                                <button onClick={() => execImageMatchApi()}>Find Similar Block (Image Vector)</button><br />
-                            </td>
-                            <td></td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td valign="top">
+                                    <img height={"150px"} src={imageUrl} />
+                                </td>
+                                <td style={{ verticalAlign: 'top', width: '300px' }}>
+                                    {imageText}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style={{ verticalAlign: 'top' }}>
+                                    <button onClick={() => execImageMatchApi()}>Find Similar Block (Image Vector)</button><br />
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
                     </table>
                     <p>Note: Due to time constraints, the Lego library only has 300 block images for now.</p>
                 </div>
             )}
             <h4>Create Lego Brick By Description</h4>
             <table>
-                <tr>
-                    <td style={{ verticalAlign: 'top' }}>
-                        <input type="text" placeholder="describe an image (e.g. lego block in rainbow color)" onChange={updateText} />
-                        <button onClick={() => execImageCreateApi()}>Create Lego Brick Image (Dall-e)</button><br />
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top">
-                        <img height={"150px"} src={imageDalleUrl} />
-                    </td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td style={{ verticalAlign: 'top' }}>
+                            <input type="text" placeholder="describe an image (e.g. lego block in rainbow color)" onChange={updateText} />
+                            <button onClick={() => execImageCreateApi()}>Create Lego Brick Image (Dall-e)</button><br />
+                            {
+                                (promiseInProgress === true) ?
+                                    <span>Loading...</span>
+                                    :
+                                    null
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <img height={"150px"} src={imageDalleUrl} />
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     );
