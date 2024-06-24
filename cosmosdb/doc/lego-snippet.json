@@ -46,7 +46,12 @@
     },
     {
         "_id": "1002",
-        "description": "pin motor for 360 degrees to turn left",
+        "description": "spin motor for 360 degrees to turn left",
         "python_code": "\\nfrom hub import port\\nimport runloop\\nimport motor_pair\\n\\nasync def main():\\n    # Pair motors on port A and B\\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\\n\\n    # spin motor for 360 degrees to turn left\\n    motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, -100, 100)\\n\\nrunloop.run(main())\\n"
+    },
+    {
+        "_id": "1003",
+        "description": "read gyro sensor's yaw degree",
+        "python_code": "\\nfrom hub import port\\nimport runloop\\nimport motor_pair\\n\\nasync def main():\\n    yaw_degree = round(motion_sensor.tilt_angles()[0] / 10, 3) * -1\\n    print('Yaw Degree:', yaw_degree)\\n\\nrunloop.run(main())\\n"
     }
 ]

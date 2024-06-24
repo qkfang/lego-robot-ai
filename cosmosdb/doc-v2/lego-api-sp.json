@@ -1,0 +1,1831 @@
+[
+  {
+    "Module_Name": "App",
+    "Module_Description": "The app module is used communicate between hub and app",
+    "SubModules": [
+      {
+        "SubModel_Name": "Bargraph",
+        "SubModel_Description": "The bargraph module is used make bar graphs in the SPIKE App",
+        "Functions": [
+          {
+            "Function_Name": "change",
+            "Function_Signature": "change(color: int, value: float) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "color: int",
+                "Parameter_Description": "A color from the color module"
+              },
+              {
+                "Parameter_Name": "value: float",
+                "Parameter_Description": "The value"
+              }
+            ]
+          },
+          {
+            "Function_Name": "clear_all",
+            "Function_Signature": "clear_all() -> None",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "get_value",
+            "Function_Signature": "get_value(color: int) -> Awaitable",
+            "Parameters": [
+              {
+                "Parameter_Name": "color: int",
+                "Parameter_Description": "A color from the color module"
+              }
+            ]
+          },
+          {
+            "Function_Name": "hide",
+            "Function_Signature": "hide() -> None",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "set_value",
+            "Function_Signature": "set_value(color: int, value: float) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "color: int",
+                "Parameter_Description": "A color from the color module"
+              },
+              {
+                "Parameter_Name": "value: float",
+                "Parameter_Description": "The value"
+              }
+            ]
+          },
+          {
+            "Function_Name": "show",
+            "Function_Signature": "show(fullscreen: bool) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "fullscreen: bool",
+                "Parameter_Description": "Show in full screen"
+              }
+            ]
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from app import bargraph"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "Display",
+        "SubModel_Description": "The display module is used show images in the SPIKE App",
+        "Functions": [
+          {
+            "Function_Name": "hide",
+            "Function_Signature": "hide() -> None",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "image",
+            "Function_Signature": "image(image: int) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "image: int",
+                "Parameter_Description": "The id of the image to show. The range of available images is 1 to 21. There are consts on\n                            the display module for these"
+              }
+            ]
+          },
+          {
+            "Function_Name": "show",
+            "Function_Signature": "show(fullscreen: bool) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "fullscreen: bool",
+                "Parameter_Description": "Show in full screen"
+              }
+            ]
+          },
+          {
+            "Function_Name": "text",
+            "Function_Signature": "text(text: str) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "text: str",
+                "Parameter_Description": "The text to display"
+              }
+            ]
+          },
+          {
+            "Function_Name": "Constants",
+            "Function_Signature": "",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "app.display Constants",
+            "Function_Signature": "IMAGE_ROBOT_1 = 1\nIMAGE_ROBOT_2 = 2\nIMAGE_ROBOT_3 = 3\nIMAGE_ROBOT_4 = 4\nIMAGE_ROBOT_5 = 5\nIMAGE_HUB_1 = 6\nIMAGE_HUB_2 = 7\nIMAGE_HUB_3 = 8\nIMAGE_HUB_4 = 9\nIMAGE_AMUSEMENT_PARK = 10\nIMAGE_BEACH = 11\nIMAGE_HAUNTED_HOUSE = 12\nIMAGE_CARNIVAL = 13\nIMAGE_BOOKSHELF = 14\nIMAGE_PLAYGROUND = 15\nIMAGE_MOON = 16\nIMAGE_CAVE = 17\nIMAGE_OCEAN = 18\nIMAGE_POLAR_BEAR = 19\nIMAGE_PARK = 20\nIMAGE_RANDOM = 21",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from app import display"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "Music",
+        "SubModel_Description": "The music module is used make music in the SPIKE App",
+        "Functions": [
+          {
+            "Function_Name": "play_drum",
+            "Function_Signature": "play_drum(drum: int) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "drum: int",
+                "Parameter_Description": "The drum name. See all available values in the app.sound module."
+              }
+            ]
+          },
+          {
+            "Function_Name": "play_instrument",
+            "Function_Signature": "play_instrument(instrument: int, note: int, duration: int) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "instrument: int",
+                "Parameter_Description": "The instrument name. See all available values in the app.music module."
+              },
+              {
+                "Parameter_Name": "note: int",
+                "Parameter_Description": "The midi note to play (0-130)"
+              },
+              {
+                "Parameter_Name": "duration: int",
+                "Parameter_Description": "The duration in milliseconds"
+              }
+            ]
+          },
+          {
+            "Function_Name": "Constants",
+            "Function_Signature": "",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "app.music Constants",
+            "Function_Signature": "DRUM_BASS = 2\nDRUM_BONGO = 13\nDRUM_CABASA = 15\nDRUM_CLAVES = 9\nDRUM_CLOSED_HI_HAT = 6\nDRUM_CONGA = 14\nDRUM_COWBELL = 11\nDRUM_CRASH_CYMBAL = 4\nDRUM_CUICA = 18\nDRUM_GUIRO = 16\nDRUM_HAND_CLAP = 8\nDRUM_OPEN_HI_HAT = 5\nDRUM_SIDE_STICK = 3\nDRUM_SNARE = 1\nDRUM_TAMBOURINE = 7\nDRUM_TRIANGLE = 12\nDRUM_VIBRASLAP = 17\nDRUM_WOOD_BLOCK = 10\nINSTRUMENT_BASS = 6\nINSTRUMENT_BASSOON = 14\nINSTRUMENT_CELLO = 8\nINSTRUMENT_CHOIR = 15\nINSTRUMENT_CLARINET = 10\nINSTRUMENT_ELECTRIC_GUITAR = 5\nINSTRUMENT_ELECTRIC_PIANO = 2\nINSTRUMENT_FLUTE = 12\nINSTRUMENT_GUITAR = 4\nINSTRUMENT_MARIMBA = 19\nINSTRUMENT_MUSIC_BOX = 17\nINSTRUMENT_ORGAN = 3\nINSTRUMENT_PIANO = 1\nINSTRUMENT_PIZZICATO = 7\nINSTRUMENT_SAXOPHONE = 11\nINSTRUMENT_STEEL_DRUM = 18\nINSTRUMENT_SYNTH_LEAD = 20\nINSTRUMENT_SYNTH_PAD = 21\nINSTRUMENT_TROMBONE = 9\nINSTRUMENT_VIBRAPHONE = 16\nINSTRUMENT_WOODEN_FLUTE = 13",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from app import music"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "Sound",
+        "SubModel_Description": "The sound module is used play sounds in the SPIKE App",
+        "Functions": [
+          {
+            "Function_Name": "play",
+            "Function_Signature": "play(sound_name: str, volume: int = 100, pitch: int = 0, pan: int = 0) -> Awaitable",
+            "Parameters": [
+              {
+                "Parameter_Name": "sound_name: str",
+                "Parameter_Description": "The sound name as seen in the Word Blocks sound extension"
+              },
+              {
+                "Parameter_Name": "volume: int",
+                "Parameter_Description": "The volume (0-100)"
+              },
+              {
+                "Parameter_Name": "pitch: int",
+                "Parameter_Description": "The pitch of the sound"
+              },
+              {
+                "Parameter_Name": "pan: int",
+                "Parameter_Description": "The pan effect determines which speaker is emitting the sound, with \"-100\" being only the\n                            left speaker, \"0\" being normal, and \"100\" being only the right speaker."
+              }
+            ]
+          },
+          {
+            "Function_Name": "set_attributes",
+            "Function_Signature": "set_attributes(volume: int, pitch: int, pan: int) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "volume: int",
+                "Parameter_Description": "The volume (0-100)"
+              },
+              {
+                "Parameter_Name": "pitch: int",
+                "Parameter_Description": "The pitch of the sound"
+              },
+              {
+                "Parameter_Name": "pan: int",
+                "Parameter_Description": "The pan effect determines which speaker is emitting the sound, with \"-100\" being only the\n                            left speaker, \"0\" being normal, and \"100\" being only the right speaker."
+              }
+            ]
+          },
+          {
+            "Function_Name": "stop",
+            "Function_Signature": "stop() -> None",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from app import sound"
+          }
+        ]
+      }
+    ],
+    "Code_Import": []
+  },
+  {
+    "Module_Name": "Color",
+    "Module_Description": "The color module contains all the color constants to use with the color_matrix,\n                color_sensor and light modules.",
+    "SubModules": [
+      {
+        "SubModel_Name": "color Constants",
+        "SubModel_Description": "BLACK = 0\nMAGENTA = 1\nPURPLE = 2\nBLUE = 3\nAZURE = 4\nTURQUOISE = 5\nGREEN = 6\nYELLOW = 7\nORANGE = 8\nRED = 9\nWHITE = 10\nUNKNOWN = -1",
+        "Functions": [],
+        "Code_Snippet": []
+      }
+    ],
+    "Code_Import": [
+      {
+        "Python": "import color"
+      }
+    ]
+  },
+  {
+    "Module_Name": "Color Matrix",
+    "Module_Description": "To use the Color Matrix module add the following import statement to your project:",
+    "SubModules": [
+      {
+        "SubModel_Name": "clear",
+        "SubModel_Description": "clear(port: int) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport color_matrix\n\ncolor_matrix.clear(port.A)"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "get_pixel",
+        "SubModel_Description": "get_pixel(port: int, x: int, y: int) -> tuple[int, int]",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "x: int",
+            "Function_Signature": "The X value (0 - 2)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "y: int",
+            "Function_Signature": "The Y value, range (0 - 2)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport color_matrix\n\n# Print the color and intensity of the 0,0 pixel on the Color Matrix connected to port A \nprint(color_matrix.get_pixel(port.A, 0, 0))"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "set_pixel",
+        "SubModel_Description": "set_pixel(port: int, x: int, y: int, pixel: tuple[color: int, intensity: int]) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "x: int",
+            "Function_Signature": "The X value (0 - 2)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "y: int",
+            "Function_Signature": "The Y value, range (0 - 2)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "pixel: tuple[color: int, intensity: int]",
+            "Function_Signature": "Tuple containing color and intensity, meaning how bright to light up the pixel",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport color\nimport color_matrix\n\n# Change the color of the 0,0 pixel on the Color Matrix connected to port A \ncolor_matrix.set_pixel(port.A, 0, 0, (color.RED, 10))\n\n# Print the color of the 0,0 pixel on the Color Matrix connected to port A \nprint(color_matrix.get_pixel(port.A, 0, 0)[0])"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "show",
+        "SubModel_Description": "show(port: int, pixels: list[tuple[int, int]]) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "pixels: list[tuple[int, int]]",
+            "Function_Signature": "A list containing color and intensity value tuples for all 9 pixels.",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport color\nimport color_matrix\n\n# Update all pixels on Color Matrix using the show function \n\n# Create a list with 18 items (color and intensity pairs) \npixels = [(color.BLUE, 10)] * 9 \n\n# Update all pixels to show same color and intensity \ncolor_matrix.show(port.A, pixels)"
+          }
+        ]
+      }
+    ],
+    "Code_Import": [
+      {
+        "Python": "import color_matrix"
+      },
+      {
+        "Python": "color_matrix.set_pixel(port.A, 1, 1, (color.BLUE, 10))"
+      }
+    ]
+  },
+  {
+    "Module_Name": "Color Sensor",
+    "Module_Description": "The color_sensor module enables you to write code that reacts to specific colors or the\n                intensity of the reflected light.",
+    "SubModules": [
+      {
+        "SubModel_Name": "color",
+        "SubModel_Description": "color(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "import color_sensor\nfrom hub import port\nimport color\n\nif color_sensor.color(port.A) is color.RED:\n    print(\"Red detected\")"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "reflection",
+        "SubModel_Description": "reflection(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "rgbi",
+        "SubModel_Description": "rgbi(port: int) -> tuple[int, int, int, int]",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      }
+    ],
+    "Code_Import": [
+      {
+        "Python": "import color_sensor"
+      },
+      {
+        "Python": "color_sensor.reflection(port.A)"
+      }
+    ]
+  },
+  {
+    "Module_Name": "Device",
+    "Module_Description": "The device module enables you to write code to get information about devices plugged into\n                the hub.",
+    "SubModules": [
+      {
+        "SubModel_Name": "data",
+        "SubModel_Description": "data(port: int) -> tuple[int]",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "id",
+        "SubModel_Description": "id(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "get_duty_cycle",
+        "SubModel_Description": "get_duty_cycle(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "ready",
+        "SubModel_Description": "ready(port: int) -> bool",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "set_duty_cycle",
+        "SubModel_Description": "set_duty_cycle(port: int, duty_cycle: int) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "duty_cycle: int",
+            "Function_Signature": "The PWM value (0-10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      }
+    ],
+    "Code_Import": [
+      {
+        "Python": "import device"
+      },
+      {
+        "Python": "device.device_id(port.A)"
+      }
+    ]
+  },
+  {
+    "Module_Name": "Distance Sensor",
+    "Module_Description": "The distance_sensor module enables you to write code that reacts to specific distances or\n                light up the Distance Sensor in different ways.",
+    "SubModules": [
+      {
+        "SubModel_Name": "clear",
+        "SubModel_Description": "clear(port: int) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "distance",
+        "SubModel_Description": "distance(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "get_pixel",
+        "SubModel_Description": "get_pixel(port: int, x: int, y: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "x: int",
+            "Function_Signature": "The X value (0 - 3)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "y: int",
+            "Function_Signature": "The Y value, range (0 - 3)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "set_pixel",
+        "SubModel_Description": "set_pixel(port: int, x: int, y: int, intensity: int) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "x: int",
+            "Function_Signature": "The X value (0 - 3)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "y: int",
+            "Function_Signature": "The Y value, range (0 - 3)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "intensity: int",
+            "Function_Signature": "How bright to light up the pixel",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "show",
+        "SubModel_Description": "show(port: int, pixels: list[int]) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "pixels: bytes",
+            "Function_Signature": "A list containing intensity values for all 4 pixels.",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport distance_sensor\n\n# Update all pixels on Distance Sensor using the show function \n\n# Create a list with 4 identical intensity values \npixels = [100] * 4 \n\n# Update all pixels to show same intensity \ndistance_sensor.show(port.A, pixels)"
+          }
+        ]
+      }
+    ],
+    "Code_Import": [
+      {
+        "Python": "import distance_sensor"
+      },
+      {
+        "Python": "distance_sensor.distance(port.A)"
+      }
+    ]
+  },
+  {
+    "Module_Name": "Force Sensor",
+    "Module_Description": "The force_sensor module contains all functions and constants to use the Force Sensor.",
+    "SubModules": [
+      {
+        "SubModel_Name": "force",
+        "SubModel_Description": "force(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport force_sensor\n\n\nprint(force_sensor.force(port.A))"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "pressed",
+        "SubModel_Description": "pressed(port: int) -> bool",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport force_sensor\n\n\nprint(force_sensor.pressed(port.A))"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "raw",
+        "SubModel_Description": "raw(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport force_sensor\n\n\nprint(force_sensor.raw(port.A))"
+          }
+        ]
+      }
+    ],
+    "Code_Import": [
+      {
+        "Python": "import force_sensor"
+      },
+      {
+        "Python": "force_sensor.force(port.A)"
+      }
+    ]
+  },
+  {
+    "Module_Name": "Hub",
+    "Module_Description": "Sub Modules",
+    "SubModules": [
+      {
+        "SubModel_Name": "Button",
+        "SubModel_Description": "To use the Button module add the following import statement to your project:",
+        "Functions": [
+          {
+            "Function_Name": "pressed",
+            "Function_Signature": "int pressed(button: int) -> int",
+            "Parameters": [
+              {
+                "Parameter_Name": "button: int",
+                "Parameter_Description": "A button from the button submodule in the hub module"
+              }
+            ]
+          },
+          {
+            "Function_Name": "Constants",
+            "Function_Signature": "",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "hub.button Constants",
+            "Function_Signature": "LEFT\u00a0= 1\nLeft button next to the power button on the SPIKE Prime\n                        hub\nRIGHT\u00a0= 2\nRight button next to the power button on the SPIKE\n                        Prime hub",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import button"
+          },
+          {
+            "Python": "button.pressed(button.LEFT)"
+          },
+          {
+            "Python": "from hub import button\n\nleft_button_press_duration = 0\n\n# Wait for the left button to be pressed \nwhile not button.pressed(button.LEFT):\n    pass\n\n# As long as the left button is being pressed, update the `left_button_press_duration` variable \nwhile button.pressed(button.LEFT):\n    left_button_press_duration = button.pressed(button.LEFT)\n\nprint(\"Left button was pressed for \" + str(left_button_press_duration) + \" milliseconds\")\n"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "Light",
+        "SubModel_Description": "The light module includes functions to change the color of the light on the SPIKE Prime\n                    hub.",
+        "Functions": [
+          {
+            "Function_Name": "color",
+            "Function_Signature": "color(light: int, color: int) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "light: int",
+                "Parameter_Description": "The light on the hub"
+              },
+              {
+                "Parameter_Name": "color: int",
+                "Parameter_Description": "A color from the color module"
+              }
+            ]
+          },
+          {
+            "Function_Name": "Constants",
+            "Function_Signature": "",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "hub.light Constants",
+            "Function_Signature": "POWER = 0\nThe power button. On SPIKE Prime it's the button between the left\n                        and right buttons.\nCONNECT = 1\nThe light around the Bluetooth connect\n                        button on SPIKE Prime.",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import light"
+          },
+          {
+            "Python": "light.color(color.RED)"
+          },
+          {
+            "Python": "from hub import light\nimport color\n\n# Change the light to red \nlight.color(light.POWER, color.RED)"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "Light Matrix",
+        "SubModel_Description": "To use the Light Matrix module add the following import statement to your project:",
+        "Functions": [
+          {
+            "Function_Name": "clear",
+            "Function_Signature": "clear() -> None",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "get_orientation",
+            "Function_Signature": "get_orientation() -> int",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "get_pixel",
+            "Function_Signature": "get_pixel(x: int, y: int) -> int",
+            "Parameters": [
+              {
+                "Parameter_Name": "x: int",
+                "Parameter_Description": "The X value, range (0 - 4)"
+              },
+              {
+                "Parameter_Name": "y: int",
+                "Parameter_Description": "The Y value, range (0 - 4)"
+              }
+            ]
+          },
+          {
+            "Function_Name": "set_orientation",
+            "Function_Signature": "set_orientation(top: int) -> int",
+            "Parameters": [
+              {
+                "Parameter_Name": "top: int",
+                "Parameter_Description": "The side of the hub to be the top"
+              }
+            ]
+          },
+          {
+            "Function_Name": "set_pixel",
+            "Function_Signature": "set_pixel(x: int, y: int, intensity: int) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "x: int",
+                "Parameter_Description": "The X value, range (0 - 4)"
+              },
+              {
+                "Parameter_Name": "y: int",
+                "Parameter_Description": "The Y value, range (0 - 4)"
+              },
+              {
+                "Parameter_Name": "intensity: int",
+                "Parameter_Description": "How bright to light up the pixel"
+              }
+            ]
+          },
+          {
+            "Function_Name": "show",
+            "Function_Signature": "show(pixels: list[int]) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "pixels: Iterable",
+                "Parameter_Description": "A list containing light intensity values for all 25 pixels."
+              }
+            ]
+          },
+          {
+            "Function_Name": "show_image",
+            "Function_Signature": "show_image(image: int) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "image: int",
+                "Parameter_Description": "The id of the image to show. The range of available images is 1 to 67. There are consts on\n                            the light_matrix module for these."
+              }
+            ]
+          },
+          {
+            "Function_Name": "write",
+            "Function_Signature": "write(text: str, intensity: int = 100, time_per_character: int = 500) -> Awaitable",
+            "Parameters": [
+              {
+                "Parameter_Name": "text: str",
+                "Parameter_Description": "The text to display"
+              },
+              {
+                "Parameter_Name": "intensity: int",
+                "Parameter_Description": "How bright to light up the pixel"
+              },
+              {
+                "Parameter_Name": "time_per_character: int",
+                "Parameter_Description": "How long to show each character on the display"
+              }
+            ]
+          },
+          {
+            "Function_Name": "Constants",
+            "Function_Signature": "",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "hub.light_matrix Constants",
+            "Function_Signature": "IMAGE_HEART = 1\nIMAGE_HEART_SMALL = 2\nIMAGE_HAPPY = 3\nIMAGE_SMILE = 4\nIMAGE_SAD = 5\nIMAGE_CONFUSED = 6\nIMAGE_ANGRY = 7\nIMAGE_ASLEEP = 8\nIMAGE_SURPRISED = 9\nIMAGE_SILLY = 10\nIMAGE_FABULOUS = 11\nIMAGE_MEH = 12\nIMAGE_YES = 13\nIMAGE_NO = 14\nIMAGE_CLOCK12 = 15\nIMAGE_CLOCK1 = 16\nIMAGE_CLOCK2 = 17\nIMAGE_CLOCK3 = 18\nIMAGE_CLOCK4 = 19\nIMAGE_CLOCK5 = 20\nIMAGE_CLOCK6 = 21\nIMAGE_CLOCK7 = 22\nIMAGE_CLOCK8 = 23\nIMAGE_CLOCK9 = 24\nIMAGE_CLOCK10 = 25\nIMAGE_CLOCK11 = 26\nIMAGE_ARROW_N = 27\nIMAGE_ARROW_NE = 28\nIMAGE_ARROW_E = 29\nIMAGE_ARROW_SE = 30\nIMAGE_ARROW_S = 31\nIMAGE_ARROW_SW = 32\nIMAGE_ARROW_W = 33\nIMAGE_ARROW_NW = 34\nIMAGE_GO_RIGHT = 35\nIMAGE_GO_LEFT = 36\nIMAGE_GO_UP = 37\nIMAGE_GO_DOWN = 38\nIMAGE_TRIANGLE = 39\nIMAGE_TRIANGLE_LEFT = 40\nIMAGE_CHESSBOARD = 41\nIMAGE_DIAMOND = 42\nIMAGE_DIAMOND_SMALL = 43\nIMAGE_SQUARE = 44\nIMAGE_SQUARE_SMALL = 45\nIMAGE_RABBIT = 46\nIMAGE_COW = 47\nIMAGE_MUSIC_CROTCHET = 48\nIMAGE_MUSIC_QUAVER = 49\nIMAGE_MUSIC_QUAVERS = 50\nIMAGE_PITCHFORK = 51\nIMAGE_XMAS = 52\nIMAGE_PACMAN = 53\nIMAGE_TARGET = 54\nIMAGE_TSHIRT = 55\nIMAGE_ROLLERSKATE = 56\nIMAGE_DUCK = 57\nIMAGE_HOUSE = 58\nIMAGE_TORTOISE = 59\nIMAGE_BUTTERFLY = 60\nIMAGE_STICKFIGURE = 61\nIMAGE_GHOST = 62\nIMAGE_SWORD = 63\nIMAGE_GIRAFFE = 64\nIMAGE_SKULL = 65\nIMAGE_UMBRELLA = 66\nIMAGE_SNAKE = 67",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import light_matrix"
+          },
+          {
+            "Python": "light_matrix.write(\"Hello World\")"
+          },
+          {
+            "Python": "from hub import light_matrix\nimport time\n# Update pixels to show an image on Light Matrix, and then turn them off using the clear function \n\n# Show a small heart \nlight_matrix.show_image(2)\n\n# Wait for two seconds \ntime.sleep_ms(2000)\n\n# Switch off the heart \nlight_matrix.clear()"
+          },
+          {
+            "Python": "from hub import light_matrix\n\n# Show a heart \nlight_matrix.show_image(1)\n\n# Print the value of the center pixel's intensity \nprint(light_matrix.get_pixel(2, 2))\n"
+          },
+          {
+            "Python": "from hub import light_matrix\n# Turn on the pixel in the center of the hub \nlight_matrix.set_pixel(2, 2, 100)"
+          },
+          {
+            "Python": "from hub import light_matrix\n# Update all pixels on Light Matrix using the show function \n\n# Create a list with 25 identical intensity values \npixels = [100] * 25 \n\n# Update all pixels to show same intensity \nlight_matrix.show(pixels)"
+          },
+          {
+            "Python": "from hub import light_matrix\n# Update pixels to show an image on Light Matrix using the show_image function \n\n# Show a smiling face \nlight_matrix.show_image(light_matrix.IMAGE_HAPPY)"
+          },
+          {
+            "Python": "from hub import light_matrix\n# White a message to the hub \nlight_matrix.write(\"Hello, world!\")"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "Motion Sensor",
+        "SubModel_Description": "To use the Motion Sensor module add the following import statement to your project:",
+        "Functions": [
+          {
+            "Function_Name": "acceleration",
+            "Function_Signature": "acceleration(raw_unfiltered: bool) -> tuple[int, int, int]",
+            "Parameters": [
+              {
+                "Parameter_Name": "raw_unfiltered: bool",
+                "Parameter_Description": "If we want the data back raw and unfiltered"
+              }
+            ]
+          },
+          {
+            "Function_Name": "angular_velocity",
+            "Function_Signature": "angular_velocity(raw_unfiltered: bool) -> tuple[int, int, int]",
+            "Parameters": [
+              {
+                "Parameter_Name": "raw_unfiltered: bool",
+                "Parameter_Description": "If we want the data back raw and unfiltered"
+              }
+            ]
+          },
+          {
+            "Function_Name": "gesture",
+            "Function_Signature": "gesture() -> int",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "get_yaw_face",
+            "Function_Signature": "get_yaw_face() -> int",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "quaternion",
+            "Function_Signature": "quaternion() -> tuple[float, float, float, float]",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "reset_tap_count",
+            "Function_Signature": "reset_tap_count() -> None",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "reset_yaw",
+            "Function_Signature": "reset_yaw(angle: int) -> None",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "set_yaw_face",
+            "Function_Signature": "set_yaw_face(up: int) -> bool",
+            "Parameters": [
+              {
+                "Parameter_Name": "up: int",
+                "Parameter_Description": "The hub face that should be set as the upwards facing hub face.\nAvailable values are:\nmotion_sensor.TOP The SPIKE Prime hub face with the USB charging\n                            port.\nmotion_sensor.FRONT The SPIKE Prime hub face with the Light\n                            Matrix.\nmotion_sensor.RIGHT The right side of the SPIKE Prime hub when\n                            facing the front hub face.\nmotion_sensor.BOTTOM The side of the SPIKE Prime\n                            hub where the battery is.\nmotion_sensor.BACK The SPIKE Prime hub face where\n                            the speaker is.\nmotion_sensor.LEFT The left side of the SPIKE Prime hub when\n                            facing the front hub face."
+              }
+            ]
+          },
+          {
+            "Function_Name": "stable",
+            "Function_Signature": "stable() -> bool",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "tap_count",
+            "Function_Signature": "tap_count() -> int",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "tilt_angles",
+            "Function_Signature": "tilt_angles() -> tuple[int, int, int]",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "up_face",
+            "Function_Signature": "up_face() -> int",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "Constants",
+            "Function_Signature": "",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "hub.motion_sensor Constants",
+            "Function_Signature": "TAPPED = 0\nDOUBLE_TAPPED = 1\nSHAKEN = 2\nFALLING = 3\nUNKNOWN = -1\nTOP = 0\nThe SPIKE Prime hub face with the Light\n                        Matrix.\nFRONT = 1\nThe SPIKE Prime hub face where the speaker\n                        is.\nRIGHT = 2\nThe right side of the SPIKE Prime hub when facing the front\n                        hub face.\nBOTTOM = 3\nThe side of the SPIKE Prime hub where the battery\n                        is.\nBACK = 4\nThe SPIKE Prime hub face with the USB charging\n                        port.\nLEFT = 5\nThe left side of the SPIKE Prime hub when facing the front\n                        hub face.",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import motion_sensor"
+          },
+          {
+            "Python": "motion_sensor.up_face()"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "Port",
+        "SubModel_Description": "This module contains constants that enables easy access to the ports on the SPIKE Prime hub. Use the\n                    constants in all functions that takes a port parameter.",
+        "Functions": [
+          {
+            "Function_Name": "Constants",
+            "Function_Signature": "",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "hub.port Constants",
+            "Function_Signature": "A = 0\nThe Port that is labelled \u2018A\u2019 on the Hub.\nB =\n                        1\nThe Port that is labelled \u2018B\u2019 on the Hub.\nC = 2\nThe Port that is\n                        labelled \u2018C\u2019 on the Hub.\nD = 3\nThe Port that is labelled \u2018D\u2019 on the\n                        Hub.\nE = 4\nThe Port that is labelled \u2018E\u2019 on the\n                        Hub.\nF = 5\nThe Port that is labelled \u2018F\u2019 on the Hub.",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port"
+          },
+          {
+            "Python": "port.A"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "Sound",
+        "SubModel_Description": "To use the Sound module add the following import statement to your project:",
+        "Functions": [
+          {
+            "Function_Name": "beep",
+            "Function_Signature": "beep(freq: int = 440, duration: int = 500, volume: int = 100, *, attack: int = 0, decay: int = 0,\n                        sustain: int = 100, release: int = 0, transition: int = 10, waveform: int = WAVEFORM_SINE,\n                        channel: int = DEFAULT) -> Awaitable",
+            "Parameters": [
+              {
+                "Parameter_Name": "freq: int",
+                "Parameter_Description": "The frequency to play"
+              },
+              {
+                "Parameter_Name": "duration: int",
+                "Parameter_Description": "The duration in milliseconds"
+              },
+              {
+                "Parameter_Name": "volume: int",
+                "Parameter_Description": "The volume (0-100)"
+              },
+              {
+                "Parameter_Name": "attack: int",
+                "Parameter_Description": "The time taken for initial run-up of level from nil to peak, beginning when the key is\n                            pressed."
+              },
+              {
+                "Parameter_Name": "decay: int",
+                "Parameter_Description": "The time taken for the subsequent run down from the attack level to the designated sustain\n                            level."
+              },
+              {
+                "Parameter_Name": "sustain: int",
+                "Parameter_Description": "The level during the main sequence of the sound's duration, until the key is released."
+              },
+              {
+                "Parameter_Name": "release: int",
+                "Parameter_Description": "The time taken for the level to decay from the sustain level to zero after the key is\n                            released"
+              },
+              {
+                "Parameter_Name": "transition: int",
+                "Parameter_Description": "time in milliseconds to transition into the sound if something is already playing in the\n                            channel"
+              },
+              {
+                "Parameter_Name": "waveform: int",
+                "Parameter_Description": "The synthesized waveform. Use one of the constants in the hub.sound module."
+              },
+              {
+                "Parameter_Name": "channel: int",
+                "Parameter_Description": "The desired channel to play on, options are sound.DEFAULT and\n                            sound.ANY"
+              }
+            ]
+          },
+          {
+            "Function_Name": "stop",
+            "Function_Signature": "stop() -> None",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "volume",
+            "Function_Signature": "volume(volume: int) -> None",
+            "Parameters": [
+              {
+                "Parameter_Name": "volume: int",
+                "Parameter_Description": "The volume (0-100)"
+              }
+            ]
+          },
+          {
+            "Function_Name": "Constants",
+            "Function_Signature": "",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "hub.sound Constants",
+            "Function_Signature": "ANY = -2\nDEFAULT = -1\nWAVEFORM_SINE = 1\nWAVEFORM_SAWTOOTH = 3\nWAVEFORM_SQUARE = 2\nWAVEFORM_TRIANGLE = 1",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import sound"
+          },
+          {
+            "Python": "sound.stop()"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "device_uuid",
+        "SubModel_Description": "device_uuid() -> str",
+        "Functions": [],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "hardware_id",
+        "SubModel_Description": "hardware_id() -> str",
+        "Functions": [],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "power_off",
+        "SubModel_Description": "power_off() -> int",
+        "Functions": [],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "temperature",
+        "SubModel_Description": "temperature() -> int",
+        "Functions": [],
+        "Code_Snippet": []
+      }
+    ],
+    "Code_Import": []
+  },
+  {
+    "Module_Name": "Motor",
+    "Module_Description": "To use a Motor add the following import statement to your project:",
+    "SubModules": [
+      {
+        "SubModel_Name": "absolute_position",
+        "SubModel_Description": "absolute_position(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "get_duty_cycle",
+        "SubModel_Description": "get_duty_cycle(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "relative_position",
+        "SubModel_Description": "relative_position(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "reset_relative_position",
+        "SubModel_Description": "reset_relative_position(port: int, position: int) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "position: int",
+            "Function_Signature": "The degree of the motor",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "run",
+        "SubModel_Description": "run(port: int, velocity: int, *, acceleration: int = 1000) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "velocity: int",
+            "Function_Signature": "The velocity in degrees/sec\nValue ranges depends on motor type.\nSmall motor (essential): -660 to 660\nMedium motor: -1110 to 1110\nLarge motor: -1050 to 1050",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport motor, time\n\n# Start motor \nmotor.run(port.A, 1000)\n"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "run_for_degrees",
+        "SubModel_Description": "run_for_degrees(port: int, degrees: int, velocity: int, *, stop: int = BRAKE, acceleration: int =\n                    1000, deceleration: int = 1000) -> Awaitable",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "degrees: int",
+            "Function_Signature": "The number of degrees",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "velocity: int",
+            "Function_Signature": "The velocity in degrees/sec\nValue ranges depends on motor type.\nSmall motor (essential): -660 to 660\nMedium motor: -1110 to 1110\nLarge motor: -1050 to 1050",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "stop: int",
+            "Function_Signature": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "deceleration: int",
+            "Function_Signature": "The deceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "run_for_time",
+        "SubModel_Description": "run_for_time(port: int, duration: int, velocity: int, *, stop: int = BRAKE, acceleration: int = 1000,\n                    deceleration: int = 1000) -> Awaitable",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "duration: int",
+            "Function_Signature": "The duration in milliseconds",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "velocity: int",
+            "Function_Signature": "The velocity in degrees/sec\nValue ranges depends on motor type.\nSmall motor (essential): -660 to 660\nMedium motor: -1110 to 1110\nLarge motor: -1050 to 1050",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "stop: int",
+            "Function_Signature": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "deceleration: int",
+            "Function_Signature": "The deceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport runloop\nimport motor\n\nasync def main():\n    # Run at 1000 velocity for 1 second \n    await motor.run_for_time(port.A, 1000, 1000)\n\n    # Run at 280 velocity for 1 second \n    await motor_pair.run_for_time(port.A, 1000, 280)\n\n    # Run at 280 velocity for 10 seconds with a slow deceleration \n    await motor_pair.run_for_time(port.A, 10000, 280, deceleration=10)\n\nrunloop.run(main())"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "run_to_absolute_position",
+        "SubModel_Description": "run_to_absolute_position(port: int, position: int, velocity: int, *, direction: int =\n                    motor.SHORTEST_PATH, stop: int = BRAKE, acceleration: int = 1000, deceleration: int = 1000) ->\n                    Awaitable",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "position: int",
+            "Function_Signature": "The degree of the motor",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "velocity: int",
+            "Function_Signature": "The velocity in degrees/sec\nValue ranges depends on motor type.\nSmall motor (essential): -660 to 660\nMedium motor: -1110 to 1110\nLarge motor: -1050 to 1050",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "direction: int",
+            "Function_Signature": "The direction to turn.\nOptions are:\n motor.CLOCKWISE\nmotor.COUNTERCLOCKWISE\nmotor.SHORTEST_PATH\nmotor.LONGEST_PATH",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "stop: int",
+            "Function_Signature": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "deceleration: int",
+            "Function_Signature": "The deceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "run_to_relative_position",
+        "SubModel_Description": "run_to_relative_position(port: int, position: int, velocity: int, *, stop: int = BRAKE, acceleration:\n                    int = 1000, deceleration: int = 1000) -> Awaitable",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "position: int",
+            "Function_Signature": "The degree of the motor",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "velocity: int",
+            "Function_Signature": "The velocity in degrees/sec\nValue ranges depends on motor type.\nSmall motor (essential): -660 to 660\nMedium motor: -1110 to 1110\nLarge motor: -1050 to 1050",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "stop: int",
+            "Function_Signature": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "deceleration: int",
+            "Function_Signature": "The deceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "set_duty_cycle",
+        "SubModel_Description": "set_duty_cycle(port: int, pwm: int) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "pwm: int",
+            "Function_Signature": "The PWM value (-10000-10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "stop",
+        "SubModel_Description": "stop(port: int, *, stop: int = BRAKE) -> None",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "stop: int",
+            "Function_Signature": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport motor, time\n\n# Start motor \nmotor.run(port.A, 1000)\n\n# Wait for 2 seconds \ntime.sleep_ms(2000)\n\n# Stop motor \nmotor.stop(port.A)"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "velocity",
+        "SubModel_Description": "velocity(port: int) -> int",
+        "Functions": [
+          {
+            "Function_Name": "port: int",
+            "Function_Signature": "A port from the port submodule in the hub module",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "motor Constants",
+        "SubModel_Description": "READY = 0\nRUNNING = 1\nSTALLED = 2\nCANCELLED = 3\nERROR = 4\nDISCONNECTED = 5\nCOAST = 0\nBRAKE = 1\nHOLD = 2\nCONTINUE = 3\nSMART_COAST = 4\nSMART_BRAKE = 5\nCLOCKWISE = 0\nCOUNTERCLOCKWISE = 1\nSHORTEST_PATH = 2\nLONGEST_PATH = 3",
+        "Functions": [],
+        "Code_Snippet": []
+      }
+    ],
+    "Code_Import": [
+      {
+        "Python": "import motor"
+      },
+      {
+        "Python": "motor.run(port.A, 1000)"
+      }
+    ]
+  },
+  {
+    "Module_Name": "Motor Pair",
+    "Module_Description": "The motor_pair module is used to run motors in a synchronized fashion. This mode is optimal\n                for creating drivebases where you'd want a pair of motors to start and stop at the same time.",
+    "SubModules": [
+      {
+        "SubModel_Name": "move",
+        "SubModel_Description": "move(pair: int, steering: int, *, velocity: int = 360, acceleration: int = 1000) -> None",
+        "Functions": [
+          {
+            "Function_Name": "pair: int",
+            "Function_Signature": "The pair slot of the Motor Pair.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "steering: int",
+            "Function_Signature": "The steering (-100 to 100)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "velocity: int",
+            "Function_Signature": "The velocity in degrees/sec\nValue ranges depends on motor type.\nSmall motor (essential): -660 to 660\nMedium motor: -1110 to 1110\nLarge motor: -1050 to 1050",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at default velocity \n    motor_pair.move(motor_pair.PAIR_1, 0)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at a specific velocity \n    motor_pair.move(motor_pair.PAIR_1, 0, velocity=280)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at a specific velocity and acceleration \n    motor_pair.move(motor_pair.PAIR_1, 0, velocity=280, acceleration=100)\n\nrunloop.run(main())"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "move_for_degrees",
+        "SubModel_Description": "move_for_degrees(pair: int, degrees: int, steering: int, *, velocity: int = 360, stop: int =\n                    motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000) -> Awaitable",
+        "Functions": [
+          {
+            "Function_Name": "pair: int",
+            "Function_Signature": "The pair slot of the Motor Pair.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "degrees: int",
+            "Function_Signature": "The number of degrees",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "steering: int",
+            "Function_Signature": "The steering (-100 to 100)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "velocity: int",
+            "Function_Signature": "The velocity in degrees/sec\nValue ranges depends on motor type.\nSmall motor (essential): -660 to 660\nMedium motor: -1110 to 1110\nLarge motor: -1050 to 1050",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "stop: int",
+            "Function_Signature": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "deceleration: int",
+            "Function_Signature": "The deceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 90 degrees \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 90, 0)\n\n    # Move straight at a specific velocity \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 360, 0, velocity=280)\n\n    # Move straight at a specific velocity with a slow deceleration \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 360, 0, velocity=280, deceleration=10)\n\nrunloop.run(main())"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "move_for_time",
+        "SubModel_Description": "move_for_time(pair: int, duration: int, steering: int, *, velocity: int = 360, stop: int =\n                    motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000) -> Awaitable",
+        "Functions": [
+          {
+            "Function_Name": "pair: int",
+            "Function_Signature": "The pair slot of the Motor Pair.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "duration: int",
+            "Function_Signature": "The duration in milliseconds",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "steering: int",
+            "Function_Signature": "The steering (-100 to 100)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "velocity: int",
+            "Function_Signature": "The velocity in degrees/sec\nValue ranges depends on motor type.\nSmall motor (essential): -660 to 660\nMedium motor: -1110 to 1110\nLarge motor: -1050 to 1050",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "stop: int",
+            "Function_Signature": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "deceleration: int",
+            "Function_Signature": "The deceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 1 second \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 1000, 0)\n\n    # Move straight at a specific velocity for 1 second \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 1000, 0, velocity=280)\n\n    # Move straight at a specific velocity for 10 seconds with a slow deceleration \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 10000, 0, velocity=280, deceleration=10)\n\nrunloop.run(main())"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "move_tank",
+        "SubModel_Description": "move_tank(pair: int, left_velocity: int, right_velocity: int, *, acceleration: int = 1000) -> None",
+        "Functions": [
+          {
+            "Function_Name": "pair: int",
+            "Function_Signature": "The pair slot of the Motor Pair.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "left_velocity: int",
+            "Function_Signature": "The velocity (deg/sec) of the left motor.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "right_velocity: int",
+            "Function_Signature": "The velocity (deg/sec) of the right motor.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity \n    motor_pair.move_tank(motor_pair.PAIR_1, 1000, 1000)\n\n    await runloop.sleep_ms(2000)\n\n    # Turn right \n    motor_pair.move_tank(motor_pair.PAIR_1, 0, 1000)\n\n    await runloop.sleep_ms(2000)\n\n    # Perform tank turn \n    motor_pair.move_tank(motor_pair.PAIR_1, 1000, -1000)\n\nrunloop.run(main())"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "move_tank_for_degrees",
+        "SubModel_Description": "move_tank_for_degrees(pair: int, degrees: int, left_velocity: int, right_velocity: int, *, stop: int\n                    = motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000) -> Awaitable",
+        "Functions": [
+          {
+            "Function_Name": "pair: int",
+            "Function_Signature": "The pair slot of the Motor Pair.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "degrees: int",
+            "Function_Signature": "The number of degrees",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "left_velocity: int",
+            "Function_Signature": "The velocity (deg/sec) of the left motor.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "right_velocity: int",
+            "Function_Signature": "The velocity (deg/sec) of the right motor.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "stop: int",
+            "Function_Signature": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "deceleration: int",
+            "Function_Signature": "The deceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 360 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, 1000, 1000)\n\n    # Turn right for 180 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 180, 0, 1000)\n\n    # Perform tank turn for 720 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 720, 1000, -1000)\n\nrunloop.run(main())"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "move_tank_for_time",
+        "SubModel_Description": "move_tank_for_time(pair: int, left_velocity: int, right_velocity: int, duration: int, *, stop: int =\n                    motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000) -> Awaitable",
+        "Functions": [
+          {
+            "Function_Name": "pair: int",
+            "Function_Signature": "The pair slot of the Motor Pair.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "duration: int",
+            "Function_Signature": "The duration in milliseconds",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "left_velocity: int",
+            "Function_Signature": "The velocity (deg/sec) of the left motor.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "right_velocity: int",
+            "Function_Signature": "The velocity (deg/sec) of the right motor.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "stop: int",
+            "Function_Signature": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "acceleration: int",
+            "Function_Signature": "The acceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "deceleration: int",
+            "Function_Signature": "The deceleration (deg/sec\u00b2) (1 - 10000)",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 1 second \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 1000, 1000, 1000)\n\n    # Turn right for 3 seconds \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 0, 1000, 3000)\n\n    # Perform tank turn for 2 seconds \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 1000, -1000, 2000)\n\nrunloop.run(main())"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "pair",
+        "SubModel_Description": "pair(pair: int, left_motor: int, right_motor: int) -> None",
+        "Functions": [
+          {
+            "Function_Name": "pair: int",
+            "Function_Signature": "The pair slot of the Motor Pair.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "left_motor: int",
+            "Function_Signature": "The port of the left motor. Use the port submodule in the hub module.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "right_motor: int",
+            "Function_Signature": "The port of the right motor. Use the port submodule in the hub module.",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "import motor_pair\nfrom hub import port\n\nmotor_pair.pair(motor_pair.PAIR_1, port.A, port.B)"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "stop",
+        "SubModel_Description": "stop(pair: int, *, stop: int = motor.BRAKE) -> None",
+        "Functions": [
+          {
+            "Function_Name": "pair: int",
+            "Function_Signature": "The pair slot of the Motor Pair.",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "stop: int",
+            "Function_Signature": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "import motor_pair\n\nmotor_pair.stop(motor_pair.PAIR_1)"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "unpair",
+        "SubModel_Description": "unpair(pair: int) -> None",
+        "Functions": [
+          {
+            "Function_Name": "pair: int",
+            "Function_Signature": "The pair slot of the Motor Pair.",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "import motor_pair\n\nmotor_pair.unpair(motor_pair.PAIR_1)"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "motor_pair Constants",
+        "SubModel_Description": "PAIR_1 = 0\nFirst Motor Pair\nPAIR_2 = 1\nSecond Motor\n                    Pair\nPAIR_3 = 2\nThird Motor Pair",
+        "Functions": [],
+        "Code_Snippet": []
+      }
+    ],
+    "Code_Import": [
+      {
+        "Python": "import motor_pair"
+      },
+      {
+        "Python": "motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)"
+      }
+    ]
+  },
+  {
+    "Module_Name": "Orientation",
+    "Module_Description": "The orientation module contains all the orientation constants to use with the\n                light_matrix module.",
+    "SubModules": [
+      {
+        "SubModel_Name": "orientation Constants",
+        "SubModel_Description": "UP = 0\nRIGHT = 1\nDOWN = 2\nLEFT = 3",
+        "Functions": [],
+        "Code_Snippet": []
+      }
+    ],
+    "Code_Import": [
+      {
+        "Python": "import orientation"
+      }
+    ]
+  },
+  {
+    "Module_Name": "Runloop",
+    "Module_Description": "The runloop module contains all functions and constants to use the Runloop.",
+    "SubModules": [
+      {
+        "SubModel_Name": "run",
+        "SubModel_Description": "run(*functions: Awaitable) -> None",
+        "Functions": [
+          {
+            "Function_Name": "*functions: awaitable",
+            "Function_Signature": "The functions to run",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": []
+      },
+      {
+        "SubModel_Name": "sleep_ms",
+        "SubModel_Description": "sleep_ms(duration: int) -> Awaitable",
+        "Functions": [
+          {
+            "Function_Name": "duration: int",
+            "Function_Signature": "The duration in milliseconds",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "from hub import light_matrix\nimport runloop\n\nasync def main():\n    light_matrix.write(\"Hi!\")\n    # Wait for ten seconds \n    await runloop.sleep_ms(10000)\n    light_matrix.write(\"Are you still here?\")\n\nrunloop.run(main())\n"
+          }
+        ]
+      },
+      {
+        "SubModel_Name": "until",
+        "SubModel_Description": "until(function: Callable[[], bool], timeout: int = 0) -> Awaitable",
+        "Functions": [
+          {
+            "Function_Name": "function: Callable[[], bool]",
+            "Function_Signature": "A callable with no parameters that returns either True or\n                        False.\nCallable is anything that can be called, so a def or a\n                        lambda",
+            "Parameters": []
+          },
+          {
+            "Function_Name": "timeout: int",
+            "Function_Signature": "A timeout for the function in milliseconds.\nIf the callable does not return True\n                        within the timeout, the until still resolves after the timeout.\n0 means no\n                        timeout, in that case it will not resolve until the callable returns True",
+            "Parameters": []
+          }
+        ],
+        "Code_Snippet": [
+          {
+            "Python": "import color_sensor\nimport color\nfrom hub import port\nimport runloop\n\ndef is_color_red():\n    return color_sensor.color(port.A) is color.RED\n\nasync def main():\n    # Wait until Color Sensor sees red \n    await runloop.until(is_color_red)\n    print(\"Red!\")\n\nrunloop.run(main())\n"
+          }
+        ]
+      }
+    ],
+    "Code_Import": [
+      {
+        "Python": "import runloop"
+      },
+      {
+        "Python": "runloop.run(some_async_function())"
+      }
+    ]
+  }
+]
