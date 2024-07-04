@@ -4,8 +4,8 @@
     "Module_Description": "The app module is used communicate between hub and app",
     "SubModules": [
       {
-        "SubModel_Name": "Bargraph",
-        "SubModel_Description": "The bargraph module is used make bar graphs in the SPIKE App",
+        "SubModule_Name": "Bargraph",
+        "SubModule_Description": "The bargraph module is used make bar graphs in the SPIKE App",
         "Functions": [
           {
             "Function_Name": "change",
@@ -66,15 +66,16 @@
             ]
           }
         ],
-        "Code_Snippet": [
+        "SubModule_Snippet": [
           {
-            "Python": "from app import bargraph"
+            "Python_Code": "from app import bargraph",
+            "Python_Description": "To use the bargraph module simply import the module like so:"
           }
         ]
       },
       {
-        "SubModel_Name": "Display",
-        "SubModel_Description": "The display module is used show images in the SPIKE App",
+        "SubModule_Name": "Display",
+        "SubModule_Description": "The display module is used show images in the SPIKE App",
         "Functions": [
           {
             "Function_Name": "hide",
@@ -117,15 +118,16 @@
             "Parameters": []
           }
         ],
-        "Code_Snippet": [
+        "SubModule_Snippet": [
           {
-            "Python": "from app import display"
+            "Python_Code": "from app import display",
+            "Python_Description": "To use the display module simply import the module like so:"
           }
         ]
       },
       {
-        "SubModel_Name": "Music",
-        "SubModel_Description": "The music module is used make music in the SPIKE App",
+        "SubModule_Name": "Music",
+        "SubModule_Description": "The music module is used make music in the SPIKE App",
         "Functions": [
           {
             "Function_Name": "play_drum",
@@ -161,15 +163,16 @@
             "Parameters": []
           }
         ],
-        "Code_Snippet": [
+        "SubModule_Snippet": [
           {
-            "Python": "from app import music"
+            "Python_Code": "from app import music",
+            "Python_Description": "To use the music module simply import the module like so:"
           }
         ]
       },
       {
-        "SubModel_Name": "Sound",
-        "SubModel_Description": "The sound module is used play sounds in the SPIKE App",
+        "SubModule_Name": "Sound",
+        "SubModule_Description": "The sound module is used play sounds in the SPIKE App",
         "Functions": [
           {
             "Function_Name": "play",
@@ -217,15 +220,16 @@
             "Parameters": []
           }
         ],
-        "Code_Snippet": [
+        "SubModule_Snippet": [
           {
-            "Python": "from app import sound"
+            "Python_Code": "from app import sound",
+            "Python_Description": "To use the sound module simply import the module like so:"
           }
         ]
       }
     ],
     "Functions": [],
-    "Code_Import": []
+    "Module_Import": []
   },
   {
     "Module_Name": "Color",
@@ -235,12 +239,14 @@
       {
         "Function_Name": "color Constants",
         "Function_Signature": "BLACK = 0\nMAGENTA = 1\nPURPLE = 2\nBLUE = 3\nAZURE = 4\nTURQUOISE = 5\nGREEN = 6\nYELLOW = 7\nORANGE = 8\nRED = 9\nWHITE = 10\nUNKNOWN = -1",
-        "Parameters": []
+        "Function_Parameters": [],
+        "Function_Snippet": []
       }
     ],
-    "Code_Import": [
+    "Module_Import": [
       {
-        "Python": "import color"
+        "Python_Code": "import color",
+        "Python_Description": "To use the Color module add the following import statement to your project:"
       }
     ]
   },
@@ -253,10 +259,15 @@
         "Function_Name": "clear",
         "Function_Signature": "clear(port: int) -> None",
         "Function_Description": "Turn off all pixels on a Color Matrix",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
+          }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport color_matrix\n\ncolor_matrix.clear(port.A)"
           }
         ]
       },
@@ -264,7 +275,7 @@
         "Function_Name": "get_pixel",
         "Function_Signature": "get_pixel(port: int, x: int, y: int) -> tuple[int, int]",
         "Function_Description": "Retrieve a specific pixel represented as a tuple containing the color and intensity",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -277,13 +288,18 @@
             "Parameter_Name": "y: int",
             "Parameter_Description": "The Y value, range (0 - 2)"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport color_matrix\n\n# Print the color and intensity of the 0,0 pixel on the Color Matrix connected to port A \nprint(color_matrix.get_pixel(port.A, 0, 0))"
+          }
         ]
       },
       {
         "Function_Name": "set_pixel",
         "Function_Signature": "set_pixel(port: int, x: int, y: int, pixel: tuple[color: int, intensity: int]) -> None",
         "Function_Description": "Change a single pixel on a Color Matrix",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -300,13 +316,18 @@
             "Parameter_Name": "pixel: tuple[color: int, intensity: int]",
             "Parameter_Description": "Tuple containing color and intensity, meaning how bright to light up the pixel"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport color\nimport color_matrix\n\n# Change the color of the 0,0 pixel on the Color Matrix connected to port A \ncolor_matrix.set_pixel(port.A, 0, 0, (color.RED, 10))\n\n# Print the color of the 0,0 pixel on the Color Matrix connected to port A \nprint(color_matrix.get_pixel(port.A, 0, 0)[0])"
+          }
         ]
       },
       {
         "Function_Name": "show",
         "Function_Signature": "show(port: int, pixels: list[tuple[int, int]]) -> None",
         "Function_Description": "Change all pixels at once on a Color Matrix",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -315,15 +336,22 @@
             "Parameter_Name": "pixels: list[tuple[int, int]]",
             "Parameter_Description": "A list containing color and intensity value tuples for all 9 pixels."
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport color\nimport color_matrix\n\n# Update all pixels on Color Matrix using the show function \n\n# Create a list with 18 items (color and intensity pairs) \npixels = [(color.BLUE, 10)] * 9 \n\n# Update all pixels to show same color and intensity \ncolor_matrix.show(port.A, pixels)"
+          }
         ]
       }
     ],
-    "Code_Import": [
+    "Module_Import": [
       {
-        "Python": "import color_matrix"
+        "Python_Code": "import color_matrix",
+        "Python_Description": "To use the Color Matrix module add the following import statement to your project:"
       },
       {
-        "Python": "color_matrix.set_pixel(port.A, 1, 1, (color.BLUE, 10))"
+        "Python_Code": "color_matrix.set_pixel(port.A, 1, 1, (color.BLUE, 10))",
+        "Python_Description": "All functions in the module should be called inside the color_matrix module as a prefix like\n                so:"
       }
     ]
   },
@@ -336,10 +364,15 @@
         "Function_Name": "color",
         "Function_Signature": "color(port: int) -> int",
         "Function_Description": "Returns the color value of the detected color. Use the color module to map the color\n                    value to a specific color.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
+          }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "import color_sensor\nfrom hub import port\nimport color\n\nif color_sensor.color(port.A) is color.RED:\n    print(\"Red detected\")"
           }
         ]
       },
@@ -347,31 +380,35 @@
         "Function_Name": "reflection",
         "Function_Signature": "reflection(port: int) -> int",
         "Function_Description": "Retrieves the intensity of the reflected light (0-100%).",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "rgbi",
         "Function_Signature": "rgbi(port: int) -> tuple[int, int, int, int]",
         "Function_Description": "Retrieves the overall color intensity and intensity of red, green and blue.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       }
     ],
-    "Code_Import": [
+    "Module_Import": [
       {
-        "Python": "import color_sensor"
+        "Python_Code": "import color_sensor",
+        "Python_Description": "To use the Color Sensor module add the following import statement to your project:"
       },
       {
-        "Python": "color_sensor.reflection(port.A)"
+        "Python_Code": "color_sensor.reflection(port.A)",
+        "Python_Description": "All functions in the module should be called inside the color_sensor module as a prefix like\n                so:"
       }
     ]
   },
@@ -384,51 +421,55 @@
         "Function_Name": "data",
         "Function_Signature": "data(port: int) -> tuple[int]",
         "Function_Description": "Retrieve the raw LPF-2 data from a device.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "id",
         "Function_Signature": "id(port: int) -> int",
         "Function_Description": "Retrieve the device id of a device. Each device has an id based on its type.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "get_duty_cycle",
         "Function_Signature": "get_duty_cycle(port: int) -> int",
         "Function_Description": "Retrieve the duty cycle for a device. Returned values is in range 0 to 10000",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "ready",
         "Function_Signature": "ready(port: int) -> bool",
         "Function_Description": "When a device is attached to the hub it might take a short amount of time before it's ready to accept\n                    requests.\nUse ready to test for the readiness of the attached devices.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "set_duty_cycle",
         "Function_Signature": "set_duty_cycle(port: int, duty_cycle: int) -> None",
         "Function_Description": "Set the duty cycle on a device. Range 0 to 10000",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -437,15 +478,18 @@
             "Parameter_Name": "duty_cycle: int",
             "Parameter_Description": "The PWM value (0-10000)"
           }
-        ]
+        ],
+        "Function_Snippet": []
       }
     ],
-    "Code_Import": [
+    "Module_Import": [
       {
-        "Python": "import device"
+        "Python_Code": "import device",
+        "Python_Description": "To use the Device module add the following import statement to your project:"
       },
       {
-        "Python": "device.device_id(port.A)"
+        "Python_Code": "device.device_id(port.A)",
+        "Python_Description": "All functions in the module should be called inside the device module as a prefix like so:"
       }
     ]
   },
@@ -458,29 +502,31 @@
         "Function_Name": "clear",
         "Function_Signature": "clear(port: int) -> None",
         "Function_Description": "Turns off all the lights in the Distance Sensor connected to port.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "distance",
         "Function_Signature": "distance(port: int) -> int",
         "Function_Description": "Retrieve the distance in millimeters captured by the Distance Sensor connected to port.\n                    If the Distance Sensor cannot read a valid distance it will return -1.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "get_pixel",
         "Function_Signature": "get_pixel(port: int, x: int, y: int) -> int",
         "Function_Description": "Retrieve the intensity of a specific light on the Distance Sensor connected to port.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -493,13 +539,14 @@
             "Parameter_Name": "y: int",
             "Parameter_Description": "The Y value, range (0 - 3)"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "set_pixel",
         "Function_Signature": "set_pixel(port: int, x: int, y: int, intensity: int) -> None",
         "Function_Description": "Changes the intensity of a specific light on the Distance Sensor connected to port.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -516,13 +563,14 @@
             "Parameter_Name": "intensity: int",
             "Parameter_Description": "How bright to light up the pixel"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "show",
         "Function_Signature": "show(port: int, pixels: list[int]) -> None",
         "Function_Description": "Change all the lights at the same time.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -531,15 +579,22 @@
             "Parameter_Name": "pixels: bytes",
             "Parameter_Description": "A list containing intensity values for all 4 pixels."
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport distance_sensor\n\n# Update all pixels on Distance Sensor using the show function \n\n# Create a list with 4 identical intensity values \npixels = [100] * 4 \n\n# Update all pixels to show same intensity \ndistance_sensor.show(port.A, pixels)"
+          }
         ]
       }
     ],
-    "Code_Import": [
+    "Module_Import": [
       {
-        "Python": "import distance_sensor"
+        "Python_Code": "import distance_sensor",
+        "Python_Description": "To use the Distance Sensor module add the following import statement to your project:"
       },
       {
-        "Python": "distance_sensor.distance(port.A)"
+        "Python_Code": "distance_sensor.distance(port.A)",
+        "Python_Description": "All functions in the module should be called inside the distance_sensor module as a prefix\n                like so:"
       }
     ]
   },
@@ -552,10 +607,15 @@
         "Function_Name": "force",
         "Function_Signature": "force(port: int) -> int",
         "Function_Description": "Retrieves the measured force as decinewton. Values range from 0 to 100",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
+          }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport force_sensor\n\n\nprint(force_sensor.force(port.A))"
           }
         ]
       },
@@ -563,10 +623,15 @@
         "Function_Name": "pressed",
         "Function_Signature": "pressed(port: int) -> bool",
         "Function_Description": "Tests whether the button on the sensor is pressed. Returns true if the force sensor connected to port\n                    is pressed.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
+          }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport force_sensor\n\n\nprint(force_sensor.pressed(port.A))"
           }
         ]
       },
@@ -574,20 +639,27 @@
         "Function_Name": "raw",
         "Function_Signature": "raw(port: int) -> int",
         "Function_Description": "Returns the raw, uncalibrated force value of the force sensor connected on port port",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport force_sensor\n\n\nprint(force_sensor.raw(port.A))"
+          }
         ]
       }
     ],
-    "Code_Import": [
+    "Module_Import": [
       {
-        "Python": "import force_sensor"
+        "Python_Code": "import force_sensor",
+        "Python_Description": "To use the Force Sensor module add the following import statement to your project:"
       },
       {
-        "Python": "force_sensor.force(port.A)"
+        "Python_Code": "force_sensor.force(port.A)",
+        "Python_Description": "All functions in the module should be called inside the force_sensor module as a prefix like\n                so:"
       }
     ]
   },
@@ -596,8 +668,8 @@
     "Module_Description": "Sub Modules",
     "SubModules": [
       {
-        "SubModel_Name": "Button",
-        "SubModel_Description": "To use the Button module add the following import statement to your project:",
+        "SubModule_Name": "Button",
+        "SubModule_Description": "To use the Button module add the following import statement to your project:",
         "Functions": [
           {
             "Function_Name": "pressed",
@@ -615,21 +687,20 @@
             "Parameters": []
           }
         ],
-        "Code_Snippet": [
+        "SubModule_Snippet": [
           {
-            "Python": "from hub import button"
+            "Python_Code": "from hub import button",
+            "Python_Description": "To use the Button module add the following import statement to your project:"
           },
           {
-            "Python": "button.pressed(button.LEFT)"
-          },
-          {
-            "Python": "from hub import button\n\nleft_button_press_duration = 0\n\n# Wait for the left button to be pressed \nwhile not button.pressed(button.LEFT):\n    pass\n\n# As long as the left button is being pressed, update the `left_button_press_duration` variable \nwhile button.pressed(button.LEFT):\n    left_button_press_duration = button.pressed(button.LEFT)\n\nprint(\"Left button was pressed for \" + str(left_button_press_duration) + \" milliseconds\")\n"
+            "Python_Code": "button.pressed(button.LEFT)",
+            "Python_Description": "All functions in the module should be called inside the button module as a prefix like\n                    so:"
           }
         ]
       },
       {
-        "SubModel_Name": "Light",
-        "SubModel_Description": "The light module includes functions to change the color of the light on the SPIKE Prime\n                    hub.",
+        "SubModule_Name": "Light",
+        "SubModule_Description": "The light module includes functions to change the color of the light on the SPIKE Prime\n                    hub.",
         "Functions": [
           {
             "Function_Name": "color",
@@ -651,21 +722,20 @@
             "Parameters": []
           }
         ],
-        "Code_Snippet": [
+        "SubModule_Snippet": [
           {
-            "Python": "from hub import light"
+            "Python_Code": "from hub import light",
+            "Python_Description": "To use the Light module add the following import statement to your project:"
           },
           {
-            "Python": "light.color(color.RED)"
-          },
-          {
-            "Python": "from hub import light\nimport color\n\n# Change the light to red \nlight.color(light.POWER, color.RED)"
+            "Python_Code": "light.color(color.RED)",
+            "Python_Description": "All functions in the module should be called inside the light module as a prefix like\n                    so:"
           }
         ]
       },
       {
-        "SubModel_Name": "Light Matrix",
-        "SubModel_Description": "To use the Light Matrix module add the following import statement to your project:",
+        "SubModule_Name": "Light Matrix",
+        "SubModule_Description": "To use the Light Matrix module add the following import statement to your project:",
         "Functions": [
           {
             "Function_Name": "clear",
@@ -763,36 +833,20 @@
             "Parameters": []
           }
         ],
-        "Code_Snippet": [
+        "SubModule_Snippet": [
           {
-            "Python": "from hub import light_matrix"
+            "Python_Code": "from hub import light_matrix",
+            "Python_Description": "To use the Light Matrix module add the following import statement to your project:"
           },
           {
-            "Python": "light_matrix.write(\"Hello World\")"
-          },
-          {
-            "Python": "from hub import light_matrix\nimport time\n# Update pixels to show an image on Light Matrix, and then turn them off using the clear function \n\n# Show a small heart \nlight_matrix.show_image(2)\n\n# Wait for two seconds \ntime.sleep_ms(2000)\n\n# Switch off the heart \nlight_matrix.clear()"
-          },
-          {
-            "Python": "from hub import light_matrix\n\n# Show a heart \nlight_matrix.show_image(1)\n\n# Print the value of the center pixel's intensity \nprint(light_matrix.get_pixel(2, 2))\n"
-          },
-          {
-            "Python": "from hub import light_matrix\n# Turn on the pixel in the center of the hub \nlight_matrix.set_pixel(2, 2, 100)"
-          },
-          {
-            "Python": "from hub import light_matrix\n# Update all pixels on Light Matrix using the show function \n\n# Create a list with 25 identical intensity values \npixels = [100] * 25 \n\n# Update all pixels to show same intensity \nlight_matrix.show(pixels)"
-          },
-          {
-            "Python": "from hub import light_matrix\n# Update pixels to show an image on Light Matrix using the show_image function \n\n# Show a smiling face \nlight_matrix.show_image(light_matrix.IMAGE_HAPPY)"
-          },
-          {
-            "Python": "from hub import light_matrix\n# White a message to the hub \nlight_matrix.write(\"Hello, world!\")"
+            "Python_Code": "light_matrix.write(\"Hello World\")",
+            "Python_Description": "All functions in the module should be called inside the light_matrix module as a prefix\n                    like so:"
           }
         ]
       },
       {
-        "SubModel_Name": "Motion Sensor",
-        "SubModel_Description": "To use the Motion Sensor module add the following import statement to your project:",
+        "SubModule_Name": "Motion Sensor",
+        "SubModule_Description": "To use the Motion Sensor module add the following import statement to your project:",
         "Functions": [
           {
             "Function_Name": "acceleration",
@@ -875,18 +929,20 @@
             "Parameters": []
           }
         ],
-        "Code_Snippet": [
+        "SubModule_Snippet": [
           {
-            "Python": "from hub import motion_sensor"
+            "Python_Code": "from hub import motion_sensor",
+            "Python_Description": "To use the Motion Sensor module add the following import statement to your project:"
           },
           {
-            "Python": "motion_sensor.up_face()"
+            "Python_Code": "motion_sensor.up_face()",
+            "Python_Description": "All functions in the module should be called inside the motion_sensor module as a prefix\n                    like so:"
           }
         ]
       },
       {
-        "SubModel_Name": "Sound",
-        "SubModel_Description": "To use the Sound module add the following import statement to your project:",
+        "SubModule_Name": "Sound",
+        "SubModule_Description": "To use the Sound module add the following import statement to your project:",
         "Functions": [
           {
             "Function_Name": "beep",
@@ -955,12 +1011,14 @@
             "Parameters": []
           }
         ],
-        "Code_Snippet": [
+        "SubModule_Snippet": [
           {
-            "Python": "from hub import sound"
+            "Python_Code": "from hub import sound",
+            "Python_Description": "To use the Sound module add the following import statement to your project:"
           },
           {
-            "Python": "sound.stop()"
+            "Python_Code": "sound.stop()",
+            "Python_Description": "All functions in the module should be called inside the sound module as a prefix like\n                    so:"
           }
         ]
       }
@@ -970,10 +1028,18 @@
         "Function_Name": "Port",
         "Function_Signature": "This module contains constants that enables easy access to the ports on the SPIKE Prime hub. Use the\n                    constants in all functions that takes a port parameter.",
         "Function_Description": "To use the Port module add the following import statement to your project:",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "hub.port Constants",
             "Parameter_Description": "A = 0\nThe Port that is labelled \u2018A\u2019 on the Hub.\nB =\n                        1\nThe Port that is labelled \u2018B\u2019 on the Hub.\nC = 2\nThe Port that is\n                        labelled \u2018C\u2019 on the Hub.\nD = 3\nThe Port that is labelled \u2018D\u2019 on the\n                        Hub.\nE = 4\nThe Port that is labelled \u2018E\u2019 on the\n                        Hub.\nF = 5\nThe Port that is labelled \u2018F\u2019 on the Hub."
+          }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port"
+          },
+          {
+            "Python_Code": "port.A"
           }
         ]
       },
@@ -981,28 +1047,32 @@
         "Function_Name": "device_uuid",
         "Function_Signature": "device_uuid() -> str",
         "Function_Description": "Retrieve the device id.",
-        "Parameters": []
+        "Function_Parameters": [],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "hardware_id",
         "Function_Signature": "hardware_id() -> str",
         "Function_Description": "Retrieve the hardware id.",
-        "Parameters": []
+        "Function_Parameters": [],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "power_off",
         "Function_Signature": "power_off() -> int",
         "Function_Description": "Turns off the hub.",
-        "Parameters": []
+        "Function_Parameters": [],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "temperature",
         "Function_Signature": "temperature() -> int",
         "Function_Description": "Retrieve the hub temperature. Measured in decidegrees celsius (d\u00b0C) which is 1 / 10 of a degree\n                    celsius (\u00b0C)",
-        "Parameters": []
+        "Function_Parameters": [],
+        "Function_Snippet": []
       }
     ],
-    "Code_Import": []
+    "Module_Import": []
   },
   {
     "Module_Name": "Motor",
@@ -1013,40 +1083,43 @@
         "Function_Name": "absolute_position",
         "Function_Signature": "absolute_position(port: int) -> int",
         "Function_Description": "Get the absolute position of a Motor",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "get_duty_cycle",
         "Function_Signature": "get_duty_cycle(port: int) -> int",
         "Function_Description": "Get the pwm of a Motor",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "relative_position",
         "Function_Signature": "relative_position(port: int) -> int",
         "Function_Description": "Get the relative position of a Motor",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "reset_relative_position",
         "Function_Signature": "reset_relative_position(port: int, position: int) -> None",
         "Function_Description": "Change the position used as the offset when using the run_to_relative_position function.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -1055,13 +1128,14 @@
             "Parameter_Name": "position: int",
             "Parameter_Description": "The degree of the motor"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "run",
         "Function_Signature": "run(port: int, velocity: int, *, acceleration: int = 1000) -> None",
         "Function_Description": "Start a Motor at a constant speed",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -1074,13 +1148,18 @@
             "Parameter_Name": "acceleration: int",
             "Parameter_Description": "The acceleration (deg/sec\u00b2) (1 - 10000)"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport motor, time\n\n# Start motor \nmotor.run(port.A, 1000)\n"
+          }
         ]
       },
       {
         "Function_Name": "run_for_degrees",
         "Function_Signature": "run_for_degrees(port: int, degrees: int, velocity: int, *, stop: int = BRAKE, acceleration: int =\n                    1000, deceleration: int = 1000) -> Awaitable",
         "Function_Description": "Turn a motor for a specific number of degrees\nWhen awaited returns a status of the movement that\n                    corresponds to one of the following constants:\nmotor.READY\nmotor.RUNNING\nmotor.STALLED\nmotor.CANCELED\nmotor.ERROR\nmotor.DISCONNECTED",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -1105,13 +1184,14 @@
             "Parameter_Name": "deceleration: int",
             "Parameter_Description": "The deceleration (deg/sec\u00b2) (1 - 10000)"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "run_for_time",
         "Function_Signature": "run_for_time(port: int, duration: int, velocity: int, *, stop: int = BRAKE, acceleration: int = 1000,\n                    deceleration: int = 1000) -> Awaitable",
         "Function_Description": "Run a Motor for a limited amount of time\nWhen awaited returns a status of the movement that\n                    corresponds to one of the following constants:\nmotor.READY\nmotor.RUNNING\nmotor.STALLED\nmotor.ERROR\nmotor.DISCONNECTED",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -1136,13 +1216,18 @@
             "Parameter_Name": "deceleration: int",
             "Parameter_Description": "The deceleration (deg/sec\u00b2) (1 - 10000)"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport runloop\nimport motor\n\nasync def main():\n    # Run at 1000 velocity for 1 second \n    await motor.run_for_time(port.A, 1000, 1000)\n\n    # Run at 280 velocity for 1 second \n    await motor_pair.run_for_time(port.A, 1000, 280)\n\n    # Run at 280 velocity for 10 seconds with a slow deceleration \n    await motor_pair.run_for_time(port.A, 10000, 280, deceleration=10)\n\nrunloop.run(main())"
+          }
         ]
       },
       {
         "Function_Name": "run_to_absolute_position",
         "Function_Signature": "run_to_absolute_position(port: int, position: int, velocity: int, *, direction: int =\n                    motor.SHORTEST_PATH, stop: int = BRAKE, acceleration: int = 1000, deceleration: int = 1000) ->\n                    Awaitable",
         "Function_Description": "Turn a motor to an absolute position.\nWhen awaited returns a status of the movement that\n                    corresponds to one of the following constants:\nmotor.READY\nmotor.RUNNING\nmotor.STALLED\nmotor.CANCELED\nmotor.ERROR\nmotor.DISCONNECTED",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -1171,13 +1256,14 @@
             "Parameter_Name": "deceleration: int",
             "Parameter_Description": "The deceleration (deg/sec\u00b2) (1 - 10000)"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "run_to_relative_position",
         "Function_Signature": "run_to_relative_position(port: int, position: int, velocity: int, *, stop: int = BRAKE, acceleration:\n                    int = 1000, deceleration: int = 1000) -> Awaitable",
         "Function_Description": "Turn a motor to a position relative to the current position.\nWhen awaited returns a status of the\n                    movement that corresponds to one of the following constants:\nmotor.READY\nmotor.RUNNING\nmotor.STALLED\nmotor.CANCELED\nmotor.ERROR\nmotor.DISCONNECTED",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -1202,13 +1288,14 @@
             "Parameter_Name": "deceleration: int",
             "Parameter_Description": "The deceleration (deg/sec\u00b2) (1 - 10000)"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "set_duty_cycle",
         "Function_Signature": "set_duty_cycle(port: int, pwm: int) -> None",
         "Function_Description": "Start a Motor with a specific pwm",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -1217,13 +1304,14 @@
             "Parameter_Name": "pwm: int",
             "Parameter_Description": "The PWM value (-10000-10000)"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "stop",
         "Function_Signature": "stop(port: int, *, stop: int = BRAKE) -> None",
         "Function_Description": "Stops a motor",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
@@ -1232,31 +1320,40 @@
             "Parameter_Name": "stop: int",
             "Parameter_Description": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport motor, time\n\n# Start motor \nmotor.run(port.A, 1000)\n\n# Wait for 2 seconds \ntime.sleep_ms(2000)\n\n# Stop motor \nmotor.stop(port.A)"
+          }
         ]
       },
       {
         "Function_Name": "velocity",
         "Function_Signature": "velocity(port: int) -> int",
         "Function_Description": "Get the velocity (deg/sec) of a Motor",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "port: int",
             "Parameter_Description": "A port from the port submodule in the hub module"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "motor Constants",
         "Function_Signature": "READY = 0\nRUNNING = 1\nSTALLED = 2\nCANCELLED = 3\nERROR = 4\nDISCONNECTED = 5\nCOAST = 0\nBRAKE = 1\nHOLD = 2\nCONTINUE = 3\nSMART_COAST = 4\nSMART_BRAKE = 5\nCLOCKWISE = 0\nCOUNTERCLOCKWISE = 1\nSHORTEST_PATH = 2\nLONGEST_PATH = 3",
-        "Parameters": []
+        "Function_Parameters": [],
+        "Function_Snippet": []
       }
     ],
-    "Code_Import": [
+    "Module_Import": [
       {
-        "Python": "import motor"
+        "Python_Code": "import motor",
+        "Python_Description": "To use a Motor add the following import statement to your project:"
       },
       {
-        "Python": "motor.run(port.A, 1000)"
+        "Python_Code": "motor.run(port.A, 1000)",
+        "Python_Description": "All functions in the module should be called inside the motor module as a prefix like so:"
       }
     ]
   },
@@ -1269,7 +1366,7 @@
         "Function_Name": "move",
         "Function_Signature": "move(pair: int, steering: int, *, velocity: int = 360, acceleration: int = 1000) -> None",
         "Function_Description": "Move a Motor Pair at a constant speed until a new command is given.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "pair: int",
             "Parameter_Description": "The pair slot of the Motor Pair."
@@ -1285,6 +1382,11 @@
           {
             "Parameter_Name": "acceleration: int",
             "Parameter_Description": "The acceleration (deg/sec\u00b2) (1 - 10000)"
+          }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at default velocity \n    motor_pair.move(motor_pair.PAIR_1, 0)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at a specific velocity \n    motor_pair.move(motor_pair.PAIR_1, 0, velocity=280)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at a specific velocity and acceleration \n    motor_pair.move(motor_pair.PAIR_1, 0, velocity=280, acceleration=100)\n\nrunloop.run(main())"
           }
         ]
       },
@@ -1292,7 +1394,7 @@
         "Function_Name": "move_for_degrees",
         "Function_Signature": "move_for_degrees(pair: int, degrees: int, steering: int, *, velocity: int = 360, stop: int =\n                    motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000) -> Awaitable",
         "Function_Description": "Move a Motor Pair at a constant speed for a specific number of degrees.\nWhen awaited returns a\n                    status of the movement that corresponds to one of the following constants from the motor module:\nmotor.READY\nmotor.RUNNING\nmotor.STALLED\nmotor.CANCELED\nmotor.ERROR\nmotor.DISCONNECTED",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "pair: int",
             "Parameter_Description": "The pair slot of the Motor Pair."
@@ -1320,6 +1422,11 @@
           {
             "Parameter_Name": "deceleration: int",
             "Parameter_Description": "The deceleration (deg/sec\u00b2) (1 - 10000)"
+          }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 90 degrees \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 90, 0)\n\n    # Move straight at a specific velocity \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 360, 0, velocity=280)\n\n    # Move straight at a specific velocity with a slow deceleration \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 360, 0, velocity=280, deceleration=10)\n\nrunloop.run(main())"
           }
         ]
       },
@@ -1327,7 +1434,7 @@
         "Function_Name": "move_for_time",
         "Function_Signature": "move_for_time(pair: int, duration: int, steering: int, *, velocity: int = 360, stop: int =\n                    motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000) -> Awaitable",
         "Function_Description": "Move a Motor Pair at a constant speed for a specific duration.\nWhen awaited returns a status of\n                    the movement that corresponds to one of the following constants from the motor module:\nmotor.READY\nmotor.RUNNING\nmotor.STALLED\nmotor.CANCELED\nmotor.ERROR\nmotor.DISCONNECTED",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "pair: int",
             "Parameter_Description": "The pair slot of the Motor Pair."
@@ -1356,13 +1463,18 @@
             "Parameter_Name": "deceleration: int",
             "Parameter_Description": "The deceleration (deg/sec\u00b2) (1 - 10000)"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 1 second \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 1000, 0)\n\n    # Move straight at a specific velocity for 1 second \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 1000, 0, velocity=280)\n\n    # Move straight at a specific velocity for 10 seconds with a slow deceleration \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 10000, 0, velocity=280, deceleration=10)\n\nrunloop.run(main())"
+          }
         ]
       },
       {
         "Function_Name": "move_tank",
         "Function_Signature": "move_tank(pair: int, left_velocity: int, right_velocity: int, *, acceleration: int = 1000) -> None",
         "Function_Description": "Perform a tank move on a Motor Pair at a constant speed until a new command is given.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "pair: int",
             "Parameter_Description": "The pair slot of the Motor Pair."
@@ -1379,13 +1491,18 @@
             "Parameter_Name": "acceleration: int",
             "Parameter_Description": "The acceleration (deg/sec\u00b2) (1 - 10000)"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity \n    motor_pair.move_tank(motor_pair.PAIR_1, 1000, 1000)\n\n    await runloop.sleep_ms(2000)\n\n    # Turn right \n    motor_pair.move_tank(motor_pair.PAIR_1, 0, 1000)\n\n    await runloop.sleep_ms(2000)\n\n    # Perform tank turn \n    motor_pair.move_tank(motor_pair.PAIR_1, 1000, -1000)\n\nrunloop.run(main())"
+          }
         ]
       },
       {
         "Function_Name": "move_tank_for_degrees",
         "Function_Signature": "move_tank_for_degrees(pair: int, degrees: int, left_velocity: int, right_velocity: int, *, stop: int\n                    = motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000) -> Awaitable",
         "Function_Description": "Perform a tank move on a Motor Pair at a constant speed until a new command is given.\nWhen awaited\n                    returns a status of the movement that corresponds to one of the following constants from the motor\n                    module:\nmotor.READY\nmotor.RUNNING\nmotor.STALLED\nmotor.CANCELED\nmotor.ERROR\nmotor.DISCONNECTED",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "pair: int",
             "Parameter_Description": "The pair slot of the Motor Pair."
@@ -1414,13 +1531,18 @@
             "Parameter_Name": "deceleration: int",
             "Parameter_Description": "The deceleration (deg/sec\u00b2) (1 - 10000)"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 360 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, 1000, 1000)\n\n    # Turn right for 180 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 180, 0, 1000)\n\n    # Perform tank turn for 720 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 720, 1000, -1000)\n\nrunloop.run(main())"
+          }
         ]
       },
       {
         "Function_Name": "move_tank_for_time",
         "Function_Signature": "move_tank_for_time(pair: int, left_velocity: int, right_velocity: int, duration: int, *, stop: int =\n                    motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000) -> Awaitable",
         "Function_Description": "Perform a tank move on a Motor Pair at a constant speed for a specific amount of time.\nWhen\n                    awaited returns a status of the movement that corresponds to one of the following constants from the\n                    motor module:\nmotor.READY\nmotor.RUNNING\nmotor.STALLED\nmotor.CANCELED\nmotor.ERROR\nmotor.DISCONNECTED",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "pair: int",
             "Parameter_Description": "The pair slot of the Motor Pair."
@@ -1449,13 +1571,18 @@
             "Parameter_Name": "deceleration: int",
             "Parameter_Description": "The deceleration (deg/sec\u00b2) (1 - 10000)"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 1 second \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 1000, 1000, 1000)\n\n    # Turn right for 3 seconds \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 0, 1000, 3000)\n\n    # Perform tank turn for 2 seconds \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 1000, -1000, 2000)\n\nrunloop.run(main())"
+          }
         ]
       },
       {
         "Function_Name": "pair",
         "Function_Signature": "pair(pair: int, left_motor: int, right_motor: int) -> None",
         "Function_Description": "pair two motors (left_motor & right_motor) and store the paired motors\n                    in pair.\nUse pair in all subsequent motor_pair related\n                    function calls.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "pair: int",
             "Parameter_Description": "The pair slot of the Motor Pair."
@@ -1468,13 +1595,18 @@
             "Parameter_Name": "right_motor: int",
             "Parameter_Description": "The port of the right motor. Use the port submodule in the hub module."
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "import motor_pair\nfrom hub import port\n\nmotor_pair.pair(motor_pair.PAIR_1, port.A, port.B)"
+          }
         ]
       },
       {
         "Function_Name": "stop",
         "Function_Signature": "stop(pair: int, *, stop: int = motor.BRAKE) -> None",
         "Function_Description": "Stops a Motor Pair.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "pair: int",
             "Parameter_Description": "The pair slot of the Motor Pair."
@@ -1483,31 +1615,44 @@
             "Parameter_Name": "stop: int",
             "Parameter_Description": "The behavior of the Motor after it has stopped. Use the constants in the motor\n                        module.\nPossible values are\nmotor.COAST to make the motor coast until a\n                        stop\nmotor.BREAK to brake and continue to brake after\n                        stop\nmotor.HOLD to tell the motor to hold it's\n                        position\nmotor.CONTINUE to tell the motor to keep running at whatever velocity\n                        it's running at until it gets another command\nmotor.SMART_COAST to make the\n                        motor brake until stop and then coast and compensate for inaccuracies in the next\n                        command\nmotor.SMART_BRAKE to make the motor brake and continue to brake after\n                        stop and compensate for inaccuracies in the next command"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "import motor_pair\n\nmotor_pair.stop(motor_pair.PAIR_1)"
+          }
         ]
       },
       {
         "Function_Name": "unpair",
         "Function_Signature": "unpair(pair: int) -> None",
         "Function_Description": "Unpair a Motor Pair.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "pair: int",
             "Parameter_Description": "The pair slot of the Motor Pair."
+          }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "import motor_pair\n\nmotor_pair.unpair(motor_pair.PAIR_1)"
           }
         ]
       },
       {
         "Function_Name": "motor_pair Constants",
         "Function_Signature": "PAIR_1 = 0\nFirst Motor Pair\nPAIR_2 = 1\nSecond Motor\n                    Pair\nPAIR_3 = 2\nThird Motor Pair",
-        "Parameters": []
+        "Function_Parameters": [],
+        "Function_Snippet": []
       }
     ],
-    "Code_Import": [
+    "Module_Import": [
       {
-        "Python": "import motor_pair"
+        "Python_Code": "import motor_pair",
+        "Python_Description": "To use the motor_pair module simply import the module like so:"
       },
       {
-        "Python": "motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)"
+        "Python_Code": "motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)",
+        "Python_Description": "All functions in the module should be called inside the motor_pair module as a prefix like\n                so:"
       }
     ]
   },
@@ -1519,12 +1664,14 @@
       {
         "Function_Name": "orientation Constants",
         "Function_Signature": "UP = 0\nRIGHT = 1\nDOWN = 2\nLEFT = 3",
-        "Parameters": []
+        "Function_Parameters": [],
+        "Function_Snippet": []
       }
     ],
-    "Code_Import": [
+    "Module_Import": [
       {
-        "Python": "import orientation"
+        "Python_Code": "import orientation",
+        "Python_Description": "To use the orientation module add the following import statement to your project:"
       }
     ]
   },
@@ -1537,21 +1684,27 @@
         "Function_Name": "run",
         "Function_Signature": "run(*functions: Awaitable) -> None",
         "Function_Description": "Start any number of parallel async functions. This is the function you should use to\n                    create programs with a similar structure to Word Blocks.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "*functions: awaitable",
             "Parameter_Description": "The functions to run"
           }
-        ]
+        ],
+        "Function_Snippet": []
       },
       {
         "Function_Name": "sleep_ms",
         "Function_Signature": "sleep_ms(duration: int) -> Awaitable",
         "Function_Description": "Pause the execution of the application for any amount of milliseconds.",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "duration: int",
             "Parameter_Description": "The duration in milliseconds"
+          }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "from hub import light_matrix\nimport runloop\n\nasync def main():\n    light_matrix.write(\"Hi!\")\n    # Wait for ten seconds \n    await runloop.sleep_ms(10000)\n    light_matrix.write(\"Are you still here?\")\n\nrunloop.run(main())\n"
           }
         ]
       },
@@ -1559,7 +1712,7 @@
         "Function_Name": "until",
         "Function_Signature": "until(function: Callable[[], bool], timeout: int = 0) -> Awaitable",
         "Function_Description": "Returns an awaitable that will return when the condition in the function or lambda passed is\n                    True or when it times out",
-        "Parameters": [
+        "Function_Parameters": [
           {
             "Parameter_Name": "function: Callable[[], bool]",
             "Parameter_Description": "A callable with no parameters that returns either True or\n                        False.\nCallable is anything that can be called, so a def or a\n                        lambda"
@@ -1568,15 +1721,22 @@
             "Parameter_Name": "timeout: int",
             "Parameter_Description": "A timeout for the function in milliseconds.\nIf the callable does not return True\n                        within the timeout, the until still resolves after the timeout.\n0 means no\n                        timeout, in that case it will not resolve until the callable returns True"
           }
+        ],
+        "Function_Snippet": [
+          {
+            "Python_Code": "import color_sensor\nimport color\nfrom hub import port\nimport runloop\n\ndef is_color_red():\n    return color_sensor.color(port.A) is color.RED\n\nasync def main():\n    # Wait until Color Sensor sees red \n    await runloop.until(is_color_red)\n    print(\"Red!\")\n\nrunloop.run(main())\n"
+          }
         ]
       }
     ],
-    "Code_Import": [
+    "Module_Import": [
       {
-        "Python": "import runloop"
+        "Python_Code": "import runloop",
+        "Python_Description": "To use the Runloop module add the following import statement to your project:"
       },
       {
-        "Python": "runloop.run(some_async_function())"
+        "Python_Code": "runloop.run(some_async_function())",
+        "Python_Description": "All functions in the module should be called inside the runloop module as a prefix like so:"
       }
     ]
   }

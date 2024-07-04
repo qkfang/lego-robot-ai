@@ -34,7 +34,8 @@ def FormatH5Block(module, subModelNode_a):
     function['Function_Signature'] = specSubNode_h4.find_next_sibling('div').text.strip()
     if(specSubNode_h4.find_next_sibling('div').find_next_sibling('div') != None):
         function['Function_Description'] = specSubNode_h4.find_next_sibling('div').find_next_sibling('div').text.strip()
-    function['Parameters'] = []
+    function['Function_Parameters'] = []
+    function['Function_Snippet'] = []
 
     for paramNode_h5 in (specSubNode_h4.parent).findAll(
                 lambda tag:tag.name == "h5"
@@ -50,11 +51,24 @@ def FormatH5Block(module, subModelNode_a):
             continue
 
         funcParam = {}
+        function['Function_Parameters'].append(funcParam)
+
         funcParam['Parameter_Name'] = paramNode_h5.text.strip()
         funcParam['Parameter_Description'] = paramNode_h5.find_next_sibling('div').text.strip()
-        function['Parameters'].append(funcParam)
 
-
+    for moduleNode_h4_pre in (specSubNode_h4.parent).findChildren(
+                            lambda tag:tag.name == "pre" ,
+                            recursive=False
+                        ):
+        codeBlock = {}
+        function['Function_Snippet'].append(codeBlock)
+        moduleNode_h4_code = moduleNode_h4_pre.code
+        FormatCode(moduleNode_h4_code)
+        codeBlock['Python_Code'] = moduleNode_h4_code.text
+        
+        # if(moduleNode_h4_code.parent.find_previous_sibling('div') != None):
+        #         codeBlock['Python_Description'] = moduleNode_h4_code.parent.find_previous_sibling('div').text.strip()
+        
 
 
 
@@ -66,11 +80,10 @@ def FormatH6Block(module, subModelNode_a):
     module['SubModules'].append(subModule)
 
     specSubNode_h4 = subModelNode_a.find_next_sibling('h4')
-    subModule['SubModel_Name'] = specSubNode_h4.text.strip()
-    subModule['SubModel_Description'] = specSubNode_h4.find_next_sibling('div').text.strip()
-    subModule['SubModel_Description']
+    subModule['SubModule_Name'] = specSubNode_h4.text.strip()
+    subModule['SubModule_Description'] = specSubNode_h4.find_next_sibling('div').text.strip()
     subModule['Functions'] = []
-    subModule['Code_Snippet'] = []
+    subModule['SubModule_Snippet'] = []
 
     for funcNode_h5 in (specSubNode_h4.parent).findAll(
                 lambda tag:tag.name == "h5"
@@ -110,15 +123,25 @@ def FormatH6Block(module, subModelNode_a):
             funcParam['Parameter_Description'] = paramNode_h6.find_next_sibling('div').text.strip()
             function['Parameters'].append(funcParam)
 
+
             
-    for moduleNode_h3_code in (specSubNode_h4.parent).findAll(
-                            lambda tag:tag.name == "code"and
-                            "data-testid" in tag.attrs
+    for moduleNode_h4_pre in (specSubNode_h4.parent).findChildren(
+                            lambda tag:tag.name == "pre" ,
+                            recursive=False
                         ):
         codeBlock = {}
-        subModule['Code_Snippet'].append(codeBlock)
-        FormatCode(moduleNode_h3_code)
-        codeBlock['Python'] = moduleNode_h3_code.text
+        subModule['SubModule_Snippet'].append(codeBlock)
+        moduleNode_h4_code = moduleNode_h4_pre.code
+        FormatCode(moduleNode_h4_code)
+        codeBlock['Python_Code'] = moduleNode_h4_code.text
+        
+        if(moduleNode_h4_code.parent.find_previous_sibling('div') != None):
+                codeBlock['Python_Description'] = moduleNode_h4_code.parent.find_previous_sibling('div').text.strip()
+        
+
+
+
+
 
 
 with open("lego-doc-api.html",  encoding='utf-8') as fp:
@@ -138,7 +161,7 @@ for moduleNode_h3 in soup.findAll("h3"):
     module['Module_Description'] = moduleNode_h3.find_next_sibling('div').text.strip()
     module['SubModules'] = []
     module['Functions'] = []
-    module['Code_Import'] = []
+    module['Module_Import'] = []
 
     for moduleNode_h3_pre in (moduleNode_h3.parent).findChildren(
                             lambda tag:tag.name == "pre" ,
@@ -146,9 +169,12 @@ for moduleNode_h3 in soup.findAll("h3"):
                         ):
         for moduleNode_h3_code in moduleNode_h3_pre.findAll('code'):
             codeBlock = {}
-            module['Code_Import'].append(codeBlock)
+            module['Module_Import'].append(codeBlock)
             FormatCode(moduleNode_h3_code)
-            codeBlock['Python'] = moduleNode_h3_code.text
+            codeBlock['Python_Code'] = moduleNode_h3_code.text.strip()
+            
+            if(moduleNode_h3_code.parent.find_previous_sibling('div') != None):
+                codeBlock['Python_Description'] = moduleNode_h3_code.parent.find_previous_sibling('div').text.strip()
         
         
     for subModelNode_a in (moduleNode_h3.parent).findAll(
