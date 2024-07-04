@@ -1,6 +1,126 @@
 import json
 from bs4 import BeautifulSoup
 
+
+def FormatCode(codeNode):
+    for code in codeNode.findAll("span", {"class": "hljs-keyword"}):    
+        code.unwrap()
+
+    for code in codeNode.findAll("span", {"class": "hljs-built_in"}):    
+        code.unwrap()
+        
+    for code in codeNode.findAll("span", {"class": "hljs-title"}):    
+        code.unwrap()
+
+    for code in codeNode.findAll("span", {"class": "hljs-comment"}):    
+        code.unwrap()
+
+    for code in codeNode.findAll("span", {"class": "hljs-number"}):    
+        code.unwrap()
+
+
+
+def FormatH5Block(module, subModelNode_a):
+
+    if(subModelNode_a.find_next_sibling('h4') is None):
+        return
+    
+    specSubNode_h4 = subModelNode_a.find_next_sibling('h4')
+        
+    function = {}
+    module['Functions'].append(function)
+
+    function['Function_Name'] = specSubNode_h4.text.strip() # h5
+    function['Function_Signature'] = specSubNode_h4.find_next_sibling('div').text.strip()
+    if(specSubNode_h4.find_next_sibling('div').find_next_sibling('div') != None):
+        function['Function_Description'] = specSubNode_h4.find_next_sibling('div').find_next_sibling('div').text.strip()
+    function['Parameters'] = []
+
+    for paramNode_h5 in (specSubNode_h4.parent).findAll(
+                lambda tag:tag.name == "h5"
+            ):
+
+        if(paramNode_h5.find_next_sibling('div') is None):
+            continue
+        
+        if(paramNode_h5.text.strip() == 'Parameters'):
+            continue
+
+        if(paramNode_h5.text.strip() == 'Constants'):
+            continue
+
+        funcParam = {}
+        funcParam['Parameter_Name'] = paramNode_h5.text.strip()
+        funcParam['Parameter_Description'] = paramNode_h5.find_next_sibling('div').text.strip()
+        function['Parameters'].append(funcParam)
+
+
+
+
+
+def FormatH6Block(module, subModelNode_a):
+    if(subModelNode_a.find_next_sibling('h4') is None):
+        return
+
+    subModule = {}
+    module['SubModules'].append(subModule)
+
+    specSubNode_h4 = subModelNode_a.find_next_sibling('h4')
+    subModule['SubModel_Name'] = specSubNode_h4.text.strip()
+    subModule['SubModel_Description'] = specSubNode_h4.find_next_sibling('div').text.strip()
+    subModule['SubModel_Description']
+    subModule['Functions'] = []
+    subModule['Code_Snippet'] = []
+
+    for funcNode_h5 in (specSubNode_h4.parent).findAll(
+                lambda tag:tag.name == "h5"
+            ):
+        
+        if(funcNode_h5.find_next_sibling('div') is None):
+            continue
+        
+        if(funcNode_h5.text.strip() == 'Parameters'):
+            continue
+        if(funcNode_h5.text.strip() == 'Constants'):
+            continue
+        
+        function = {}
+        subModule['Functions'].append(function)
+
+        function['Function_Name'] = funcNode_h5.text.strip() # h5
+        function['Function_Signature'] = funcNode_h5.find_next_sibling('div').text.strip()
+        function['Parameters'] = []
+
+        for paramNode_h6 in (funcNode_h5.parent).findAll(
+                    lambda tag:tag.name == "h6"
+                ):
+
+            print(paramNode_h6)
+            if(paramNode_h6.find_next_sibling('div') is None):
+                continue
+            
+            if(paramNode_h6.text.strip() == 'Parameters'):
+                continue
+
+            if(paramNode_h6.text.strip() == 'Constants'):
+                continue
+
+            funcParam = {}
+            funcParam['Parameter_Name'] = paramNode_h6.text.strip()
+            funcParam['Parameter_Description'] = paramNode_h6.find_next_sibling('div').text.strip()
+            function['Parameters'].append(funcParam)
+
+            
+    for moduleNode_h3_code in (specSubNode_h4.parent).findAll(
+                            lambda tag:tag.name == "code"and
+                            "data-testid" in tag.attrs
+                        ):
+        codeBlock = {}
+        subModule['Code_Snippet'].append(codeBlock)
+        FormatCode(moduleNode_h3_code)
+        codeBlock['Python'] = moduleNode_h3_code.text
+
+
 with open("lego-doc-api.html",  encoding='utf-8') as fp:
     soup = BeautifulSoup(fp, 'html.parser')
 
@@ -17,6 +137,7 @@ for moduleNode_h3 in soup.findAll("h3"):
     module['Module_Name'] = moduleNode_h3.text.strip() # h3
     module['Module_Description'] = moduleNode_h3.find_next_sibling('div').text.strip()
     module['SubModules'] = []
+    module['Functions'] = []
     module['Code_Import'] = []
 
     for moduleNode_h3_pre in (moduleNode_h3.parent).findChildren(
@@ -26,22 +147,7 @@ for moduleNode_h3 in soup.findAll("h3"):
         for moduleNode_h3_code in moduleNode_h3_pre.findAll('code'):
             codeBlock = {}
             module['Code_Import'].append(codeBlock)
-
-            for code in moduleNode_h3_code.findAll("span", {"class": "hljs-keyword"}):    
-                code.unwrap()
-
-            for code in moduleNode_h3_code.findAll("span", {"class": "hljs-built_in"}):    
-                code.unwrap()
-                
-            for code in moduleNode_h3_code.findAll("span", {"class": "hljs-title"}):    
-                code.unwrap()
-
-            for code in moduleNode_h3_code.findAll("span", {"class": "hljs-comment"}):    
-                code.unwrap()
-
-            for code in moduleNode_h3_code.findAll("span", {"class": "hljs-number"}):    
-                code.unwrap()
-
+            FormatCode(moduleNode_h3_code)
             codeBlock['Python'] = moduleNode_h3_code.text
         
         
@@ -51,81 +157,14 @@ for moduleNode_h3 in soup.findAll("h3"):
                         tag.attrs['id'].startswith("lls-help-python-spm") and
                         "section-header" not in tag.attrs['id']
                     ):
-        
+        check = subModelNode_a.parent.findAll('h6')
+        if(len(check)>0):
+            FormatH6Block(module, subModelNode_a)
+        else:
+            FormatH5Block(module, subModelNode_a)
 
-        if(subModelNode_a.find_next_sibling('h4') is None):
-            continue
 
-        subModule = {}
-        module['SubModules'].append(subModule)
 
-        specSubNode_h4 = subModelNode_a.find_next_sibling('h4')
-        subModule['SubModel_Name'] = specSubNode_h4.text.strip()
-        subModule['SubModel_Description'] = specSubNode_h4.find_next_sibling('div').text.strip()
-        subModule['SubModel_Description']
-        subModule['Functions'] = []
-        subModule['Code_Snippet'] = []
-
-        for funcNode_h5 in (specSubNode_h4.parent).findAll(
-                    lambda tag:tag.name == "h5"
-                ):
-            
-            if(funcNode_h5.find_next_sibling('div') is None):
-                continue
-            
-            if(funcNode_h5.text.strip() == 'Parameters'):
-                continue
-            
-            function = {}
-            subModule['Functions'].append(function)
-
-            function['Function_Name'] = funcNode_h5.text.strip() # h5
-            function['Function_Signature'] = funcNode_h5.find_next_sibling('div').text.strip()
-            function['Parameters'] = []
-
-            for paramNode_h6 in (funcNode_h5.parent).findAll(
-                        lambda tag:tag.name == "h6"
-                    ):
-
-                print(paramNode_h6)
-                if(paramNode_h6.find_next_sibling('div') is None):
-                    continue
-                
-                if(paramNode_h6.text.strip() == 'Parameters'):
-                    continue
-
-                if(paramNode_h6.text.strip() == 'Constants'):
-                    continue
-
-                funcParam = {}
-                funcParam['Parameter_Name'] = paramNode_h6.text.strip()
-                funcParam['Parameter_Description'] = paramNode_h6.find_next_sibling('div').text.strip()
-                function['Parameters'].append(funcParam)
-
-                
-        for moduleNode_h3_code in (specSubNode_h4.parent).findAll(
-                                lambda tag:tag.name == "code"and
-                                "data-testid" in tag.attrs
-                            ):
-            codeBlock = {}
-            subModule['Code_Snippet'].append(codeBlock)
-
-            for code in moduleNode_h3_code.findAll("span", {"class": "hljs-keyword"}):    
-                code.unwrap()
-
-            for code in moduleNode_h3_code.findAll("span", {"class": "hljs-built_in"}):    
-                code.unwrap()
-                
-            for code in moduleNode_h3_code.findAll("span", {"class": "hljs-title"}):    
-                code.unwrap()
-
-            for code in moduleNode_h3_code.findAll("span", {"class": "hljs-comment"}):    
-                code.unwrap()
-
-            for code in moduleNode_h3_code.findAll("span", {"class": "hljs-number"}):    
-                code.unwrap()
-
-            codeBlock['Python'] = moduleNode_h3_code.text
 
 
 with open("lego-api-sp.json", "w") as text_file:
