@@ -1,38 +1,38 @@
 [
-    {
-        "name": "",
-        "python": "from hub import port\nimport runloop\nimport motor\n\nasync def main():\n    # Run at 1000 velocity for 1 second \n    await motor.run_for_time(port.A, 1000, 1000)\n\n    # Run at 280 velocity for 1 second \n    await motor_pair.run_for_time(port.A, 1000, 280)\n\n    # Run at 280 velocity for 10 seconds with a slow deceleration \n    await motor_pair.run_for_time(port.A, 10000, 280, deceleration=10)\n\nrunloop.run(main())"
-    },
-    {
-        "name": "",
-        "python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at default velocity \n    motor_pair.move(motor_pair.PAIR_1, 0)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at a specific velocity \n    motor_pair.move(motor_pair.PAIR_1, 0, velocity=280)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at a specific velocity and acceleration \n    motor_pair.move(motor_pair.PAIR_1, 0, velocity=280, acceleration=100)\n\nrunloop.run(main())"
-    },
-    {
-        "name": "",
-        "python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 90 degrees \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 90, 0)\n\n    # Move straight at a specific velocity \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 360, 0, velocity=280)\n\n    # Move straight at a specific velocity with a slow deceleration \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 360, 0, velocity=280, deceleration=10)\n\nrunloop.run(main())"
-    },
-    {
-        "name": "",
-        "python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 1 second \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 1000, 0)\n\n    # Move straight at a specific velocity for 1 second \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 1000, 0, velocity=280)\n\n    # Move straight at a specific velocity for 10 seconds with a slow deceleration \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 10000, 0, velocity=280, deceleration=10)\n\nrunloop.run(main())"
-    },
-    {
-        "name": "",
-        "python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity \n    motor_pair.move_tank(motor_pair.PAIR_1, 1000, 1000)\n\n    await runloop.sleep_ms(2000)\n\n    # Turn right \n    motor_pair.move_tank(motor_pair.PAIR_1, 0, 1000)\n\n    await runloop.sleep_ms(2000)\n\n    # Perform tank turn \n    motor_pair.move_tank(motor_pair.PAIR_1, 1000, -1000)\n\nrunloop.run(main())"
-    },
-    {
-        "name": "",
-        "python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 360 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, 1000, 1000)\n\n    # Turn right for 180 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 180, 0, 1000)\n\n    # Perform tank turn for 720 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 720, 1000, -1000)\n\nrunloop.run(main())"
-    },
-    {
-        "name": "",
-        "python": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 1 second \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 1000, 1000, 1000)\n\n    # Turn right for 3 seconds \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 0, 1000, 3000)\n\n    # Perform tank turn for 2 seconds \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 1000, -1000, 2000)\n\nrunloop.run(main())"
-    },
-    {
-        "name": "",
-        "python": "from hub import light_matrix\nimport runloop\n\nasync def main():\n    light_matrix.write(\"Hi!\")\n    # Wait for ten seconds \n    await runloop.sleep_ms(10000)\n    light_matrix.write(\"Are you still here?\")\n\nrunloop.run(main())\n"
-    },
-    {
-        "name": "",
-        "python": "import color_sensor\nimport color\nfrom hub import port\nimport runloop\n\ndef is_color_red():\n    return color_sensor.color(port.A) is color.RED\n\nasync def main():\n    # Wait until Color Sensor sees red \n    await runloop.until(is_color_red)\n    print(\"Red!\")\n\nrunloop.run(main())\n"
-    }
+  {
+    "Python_Code": "from hub import port\nimport runloop\nimport motor\n\nasync def main():\n    # Run at 1000 velocity for 1 second \n    await motor.run_for_time(port.A, 1000, 1000)\n\n    # Run at 280 velocity for 1 second \n    await motor_pair.run_for_time(port.A, 1000, 280)\n\n    # Run at 280 velocity for 10 seconds with a slow deceleration \n    await motor_pair.run_for_time(port.A, 10000, 280, deceleration=10)\n\nrunloop.run(main())",
+    "Python_Description": "Run a Motor for a limited amount of timeWhen awaited returns a status of the movement that\n                    corresponds to one of the following constants:\nmotor.READYmotor.RUNNINGmotor.STALLEDmotor.ERRORmotor.DISCONNECTED"
+  },
+  {
+    "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at default velocity \n    motor_pair.move(motor_pair.PAIR_1, 0)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at a specific velocity \n    motor_pair.move(motor_pair.PAIR_1, 0, velocity=280)\n\n    await runloop.sleep_ms(2000)\n\n    # Move straight at a specific velocity and acceleration \n    motor_pair.move(motor_pair.PAIR_1, 0, velocity=280, acceleration=100)\n\nrunloop.run(main())",
+    "Python_Description": "Move a Motor Pair at a constant speed until a new command is given."
+  },
+  {
+    "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 90 degrees \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 90, 0)\n\n    # Move straight at a specific velocity \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 360, 0, velocity=280)\n\n    # Move straight at a specific velocity with a slow deceleration \n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, 360, 0, velocity=280, deceleration=10)\n\nrunloop.run(main())",
+    "Python_Description": "Move a Motor Pair at a constant speed for a specific number of degrees.When awaited returns a\n                    status of the movement that corresponds to one of the following constants from the motor module:\nmotor.READYmotor.RUNNINGmotor.STALLEDmotor.CANCELEDmotor.ERRORmotor.DISCONNECTED"
+  },
+  {
+    "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 1 second \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 1000, 0)\n\n    # Move straight at a specific velocity for 1 second \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 1000, 0, velocity=280)\n\n    # Move straight at a specific velocity for 10 seconds with a slow deceleration \n    await motor_pair.move_for_time(motor_pair.PAIR_1, 10000, 0, velocity=280, deceleration=10)\n\nrunloop.run(main())",
+    "Python_Description": "Move a Motor Pair at a constant speed for a specific duration.When awaited returns a status of\n                    the movement that corresponds to one of the following constants from the motor module:\nmotor.READYmotor.RUNNINGmotor.STALLEDmotor.CANCELEDmotor.ERRORmotor.DISCONNECTED"
+  },
+  {
+    "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity \n    motor_pair.move_tank(motor_pair.PAIR_1, 1000, 1000)\n\n    await runloop.sleep_ms(2000)\n\n    # Turn right \n    motor_pair.move_tank(motor_pair.PAIR_1, 0, 1000)\n\n    await runloop.sleep_ms(2000)\n\n    # Perform tank turn \n    motor_pair.move_tank(motor_pair.PAIR_1, 1000, -1000)\n\nrunloop.run(main())",
+    "Python_Description": "Perform a tank move on a Motor Pair at a constant speed until a new command is given."
+  },
+  {
+    "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 360 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, 1000, 1000)\n\n    # Turn right for 180 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 180, 0, 1000)\n\n    # Perform tank turn for 720 degrees \n    await motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 720, 1000, -1000)\n\nrunloop.run(main())",
+    "Python_Description": "Perform a tank move on a Motor Pair at a constant speed until a new command is given.When awaited\n                    returns a status of the movement that corresponds to one of the following constants from the motor\n                    module:\nmotor.READYmotor.RUNNINGmotor.STALLEDmotor.CANCELEDmotor.ERRORmotor.DISCONNECTED"
+  },
+  {
+    "Python_Code": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B \n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # Move straight at default velocity for 1 second \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 1000, 1000, 1000)\n\n    # Turn right for 3 seconds \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 0, 1000, 3000)\n\n    # Perform tank turn for 2 seconds \n    await motor_pair.move_tank_for_time(motor_pair.PAIR_1, 1000, -1000, 2000)\n\nrunloop.run(main())",
+    "Python_Description": "Perform a tank move on a Motor Pair at a constant speed for a specific amount of time.When\n                    awaited returns a status of the movement that corresponds to one of the following constants from the\n                    motor module:\nmotor.READYmotor.RUNNINGmotor.STALLEDmotor.CANCELEDmotor.ERRORmotor.DISCONNECTED"
+  },
+  {
+    "Python_Code": "from hub import light_matrix\nimport runloop\n\nasync def main():\n    light_matrix.write(\"Hi!\")\n    # Wait for ten seconds \n    await runloop.sleep_ms(10000)\n    light_matrix.write(\"Are you still here?\")\n\nrunloop.run(main())\n",
+    "Python_Description": "Pause the execution of the application for any amount of milliseconds."
+  },
+  {
+    "Python_Code": "import color_sensor\nimport color\nfrom hub import port\nimport runloop\n\ndef is_color_red():\n    return color_sensor.color(port.A) is color.RED\n\nasync def main():\n    # Wait until Color Sensor sees red \n    await runloop.until(is_color_red)\n    print(\"Red!\")\n\nrunloop.run(main())\n",
+    "Python_Description": "Returns an awaitable that will return when the condition in the function or lambda passed is\n                    True or when it times out"
+  }
 ]

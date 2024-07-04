@@ -10,6 +10,7 @@
           {
             "Function_Name": "change",
             "Function_Signature": "change(color: int, value: float) -> None",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "color: int",
@@ -19,31 +20,39 @@
                 "Parameter_Name": "value: float",
                 "Parameter_Description": "The value"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "clear_all",
             "Function_Signature": "clear_all() -> None",
-            "Parameters": []
+            "Function_Description": "Parameters",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "get_value",
             "Function_Signature": "get_value(color: int) -> Awaitable",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "color: int",
                 "Parameter_Description": "A color from the color module"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "hide",
             "Function_Signature": "hide() -> None",
-            "Parameters": []
+            "Function_Description": "Parameters",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "set_value",
             "Function_Signature": "set_value(color: int, value: float) -> None",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "color: int",
@@ -53,17 +62,20 @@
                 "Parameter_Name": "value: float",
                 "Parameter_Description": "The value"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "show",
             "Function_Signature": "show(fullscreen: bool) -> None",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "fullscreen: bool",
                 "Parameter_Description": "Show in full screen"
               }
-            ]
+            ],
+            "Python_Code": []
           }
         ],
         "SubModule_Snippet": [
@@ -80,42 +92,51 @@
           {
             "Function_Name": "hide",
             "Function_Signature": "hide() -> None",
-            "Parameters": []
+            "Function_Description": "Parameters",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "image",
             "Function_Signature": "image(image: int) -> None",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "image: int",
                 "Parameter_Description": "The id of the image to show. The range of available images is 1 to 21. There are consts on\n                            the display module for these"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "show",
             "Function_Signature": "show(fullscreen: bool) -> None",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "fullscreen: bool",
                 "Parameter_Description": "Show in full screen"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "text",
             "Function_Signature": "text(text: str) -> None",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "text: str",
                 "Parameter_Description": "The text to display"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "app.display Constants",
             "Function_Signature": "IMAGE_ROBOT_1 = 1\nIMAGE_ROBOT_2 = 2\nIMAGE_ROBOT_3 = 3\nIMAGE_ROBOT_4 = 4\nIMAGE_ROBOT_5 = 5\nIMAGE_HUB_1 = 6\nIMAGE_HUB_2 = 7\nIMAGE_HUB_3 = 8\nIMAGE_HUB_4 = 9\nIMAGE_AMUSEMENT_PARK = 10\nIMAGE_BEACH = 11\nIMAGE_HAUNTED_HOUSE = 12\nIMAGE_CARNIVAL = 13\nIMAGE_BOOKSHELF = 14\nIMAGE_PLAYGROUND = 15\nIMAGE_MOON = 16\nIMAGE_CAVE = 17\nIMAGE_OCEAN = 18\nIMAGE_POLAR_BEAR = 19\nIMAGE_PARK = 20\nIMAGE_RANDOM = 21",
-            "Parameters": []
+            "Parameters": [],
+            "Python_Code": []
           }
         ],
         "SubModule_Snippet": [
@@ -132,16 +153,19 @@
           {
             "Function_Name": "play_drum",
             "Function_Signature": "play_drum(drum: int) -> None",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "drum: int",
                 "Parameter_Description": "The drum name. See all available values in the app.sound module."
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "play_instrument",
             "Function_Signature": "play_instrument(instrument: int, note: int, duration: int) -> None",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "instrument: int",
@@ -155,12 +179,14 @@
                 "Parameter_Name": "duration: int",
                 "Parameter_Description": "The duration in milliseconds"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "app.music Constants",
             "Function_Signature": "DRUM_BASS = 2\nDRUM_BONGO = 13\nDRUM_CABASA = 15\nDRUM_CLAVES = 9\nDRUM_CLOSED_HI_HAT = 6\nDRUM_CONGA = 14\nDRUM_COWBELL = 11\nDRUM_CRASH_CYMBAL = 4\nDRUM_CUICA = 18\nDRUM_GUIRO = 16\nDRUM_HAND_CLAP = 8\nDRUM_OPEN_HI_HAT = 5\nDRUM_SIDE_STICK = 3\nDRUM_SNARE = 1\nDRUM_TAMBOURINE = 7\nDRUM_TRIANGLE = 12\nDRUM_VIBRASLAP = 17\nDRUM_WOOD_BLOCK = 10\nINSTRUMENT_BASS = 6\nINSTRUMENT_BASSOON = 14\nINSTRUMENT_CELLO = 8\nINSTRUMENT_CHOIR = 15\nINSTRUMENT_CLARINET = 10\nINSTRUMENT_ELECTRIC_GUITAR = 5\nINSTRUMENT_ELECTRIC_PIANO = 2\nINSTRUMENT_FLUTE = 12\nINSTRUMENT_GUITAR = 4\nINSTRUMENT_MARIMBA = 19\nINSTRUMENT_MUSIC_BOX = 17\nINSTRUMENT_ORGAN = 3\nINSTRUMENT_PIANO = 1\nINSTRUMENT_PIZZICATO = 7\nINSTRUMENT_SAXOPHONE = 11\nINSTRUMENT_STEEL_DRUM = 18\nINSTRUMENT_SYNTH_LEAD = 20\nINSTRUMENT_SYNTH_PAD = 21\nINSTRUMENT_TROMBONE = 9\nINSTRUMENT_VIBRAPHONE = 16\nINSTRUMENT_WOODEN_FLUTE = 13",
-            "Parameters": []
+            "Parameters": [],
+            "Python_Code": []
           }
         ],
         "SubModule_Snippet": [
@@ -177,6 +203,7 @@
           {
             "Function_Name": "play",
             "Function_Signature": "play(sound_name: str, volume: int = 100, pitch: int = 0, pan: int = 0) -> Awaitable",
+            "Function_Description": "Play a sound in the SPIKE App",
             "Parameters": [
               {
                 "Parameter_Name": "sound_name: str",
@@ -194,11 +221,13 @@
                 "Parameter_Name": "pan: int",
                 "Parameter_Description": "The pan effect determines which speaker is emitting the sound, with \"-100\" being only the\n                            left speaker, \"0\" being normal, and \"100\" being only the right speaker."
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "set_attributes",
             "Function_Signature": "set_attributes(volume: int, pitch: int, pan: int) -> None",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "volume: int",
@@ -212,12 +241,15 @@
                 "Parameter_Name": "pan: int",
                 "Parameter_Description": "The pan effect determines which speaker is emitting the sound, with \"-100\" being only the\n                            left speaker, \"0\" being normal, and \"100\" being only the right speaker."
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "stop",
             "Function_Signature": "stop() -> None",
-            "Parameters": []
+            "Function_Description": "Parameters",
+            "Parameters": [],
+            "Python_Code": []
           }
         ],
         "SubModule_Snippet": [
@@ -674,17 +706,25 @@
           {
             "Function_Name": "pressed",
             "Function_Signature": "int pressed(button: int) -> int",
+            "Function_Description": "This module allows you to react to buttons being pressed on the hub. You must first import the\n                        button module to use the buttons.",
             "Parameters": [
               {
                 "Parameter_Name": "button: int",
                 "Parameter_Description": "A button from the button submodule in the hub module"
+              }
+            ],
+            "Python_Code": [
+              {
+                "Python_Code": "from hub import button\n\nleft_button_press_duration = 0\n\n# Wait for the left button to be pressed \nwhile not button.pressed(button.LEFT):\n    pass\n\n# As long as the left button is being pressed, update the `left_button_press_duration` variable \nwhile button.pressed(button.LEFT):\n    left_button_press_duration = button.pressed(button.LEFT)\n\nprint(\"Left button was pressed for \" + str(left_button_press_duration) + \" milliseconds\")\n",
+                "Python_Description": "This module allows you to react to buttons being pressed on the hub. You must first import the\n                        button module to use the buttons."
               }
             ]
           },
           {
             "Function_Name": "hub.button Constants",
             "Function_Signature": "LEFT\u00a0= 1\nLeft button next to the power button on the SPIKE Prime\n                        hub\nRIGHT\u00a0= 2\nRight button next to the power button on the SPIKE\n                        Prime hub",
-            "Parameters": []
+            "Parameters": [],
+            "Python_Code": []
           }
         ],
         "SubModule_Snippet": [
@@ -705,6 +745,7 @@
           {
             "Function_Name": "color",
             "Function_Signature": "color(light: int, color: int) -> None",
+            "Function_Description": "Change the color of a light on the hub.",
             "Parameters": [
               {
                 "Parameter_Name": "light: int",
@@ -714,12 +755,19 @@
                 "Parameter_Name": "color: int",
                 "Parameter_Description": "A color from the color module"
               }
+            ],
+            "Python_Code": [
+              {
+                "Python_Code": "from hub import light\nimport color\n\n# Change the light to red \nlight.color(light.POWER, color.RED)",
+                "Python_Description": "Change the color of a light on the hub."
+              }
             ]
           },
           {
             "Function_Name": "hub.light Constants",
             "Function_Signature": "POWER = 0\nThe power button. On SPIKE Prime it's the button between the left\n                        and right buttons.\nCONNECT = 1\nThe light around the Bluetooth connect\n                        button on SPIKE Prime.",
-            "Parameters": []
+            "Parameters": [],
+            "Python_Code": []
           }
         ],
         "SubModule_Snippet": [
@@ -740,16 +788,26 @@
           {
             "Function_Name": "clear",
             "Function_Signature": "clear() -> None",
-            "Parameters": []
+            "Function_Description": "Switches off all of the pixels on the Light Matrix.",
+            "Parameters": [],
+            "Python_Code": [
+              {
+                "Python_Code": "from hub import light_matrix\nimport time\n# Update pixels to show an image on Light Matrix, and then turn them off using the clear function \n\n# Show a small heart \nlight_matrix.show_image(2)\n\n# Wait for two seconds \ntime.sleep_ms(2000)\n\n# Switch off the heart \nlight_matrix.clear()",
+                "Python_Description": "Switches off all of the pixels on the Light Matrix."
+              }
+            ]
           },
           {
             "Function_Name": "get_orientation",
             "Function_Signature": "get_orientation() -> int",
-            "Parameters": []
+            "Function_Description": "Retrieve the current orientation of the Light Matrix.\n Can be used with the following\n                        constants: orientation.UP, orientation.LEFT,\n                        orientation.RIGHT, orientation.DOWN",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "get_pixel",
             "Function_Signature": "get_pixel(x: int, y: int) -> int",
+            "Function_Description": "Retrieve the intensity of a specific pixel on the Light Matrix.",
             "Parameters": [
               {
                 "Parameter_Name": "x: int",
@@ -759,21 +817,30 @@
                 "Parameter_Name": "y: int",
                 "Parameter_Description": "The Y value, range (0 - 4)"
               }
+            ],
+            "Python_Code": [
+              {
+                "Python_Code": "from hub import light_matrix\n\n# Show a heart \nlight_matrix.show_image(1)\n\n# Print the value of the center pixel's intensity \nprint(light_matrix.get_pixel(2, 2))\n",
+                "Python_Description": "Retrieve the intensity of a specific pixel on the Light Matrix."
+              }
             ]
           },
           {
             "Function_Name": "set_orientation",
             "Function_Signature": "set_orientation(top: int) -> int",
+            "Function_Description": "Change the orientation of the Light Matrix. All subsequent calls will use the new\n                        orientation.\n Can be used with the following constants: orientation.UP,\n                        orientation.LEFT, orientation.RIGHT, orientation.DOWN",
             "Parameters": [
               {
                 "Parameter_Name": "top: int",
                 "Parameter_Description": "The side of the hub to be the top"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "set_pixel",
             "Function_Signature": "set_pixel(x: int, y: int, intensity: int) -> None",
+            "Function_Description": "Sets the brightness of one pixel (one of the 25 LEDs) on the Light Matrix.",
             "Parameters": [
               {
                 "Parameter_Name": "x: int",
@@ -787,31 +854,52 @@
                 "Parameter_Name": "intensity: int",
                 "Parameter_Description": "How bright to light up the pixel"
               }
+            ],
+            "Python_Code": [
+              {
+                "Python_Code": "from hub import light_matrix\n# Turn on the pixel in the center of the hub \nlight_matrix.set_pixel(2, 2, 100)",
+                "Python_Description": "Sets the brightness of one pixel (one of the 25 LEDs) on the Light Matrix."
+              }
             ]
           },
           {
             "Function_Name": "show",
             "Function_Signature": "show(pixels: list[int]) -> None",
+            "Function_Description": "Change all the lights at the same time.",
             "Parameters": [
               {
                 "Parameter_Name": "pixels: Iterable",
                 "Parameter_Description": "A list containing light intensity values for all 25 pixels."
+              }
+            ],
+            "Python_Code": [
+              {
+                "Python_Code": "from hub import light_matrix\n# Update all pixels on Light Matrix using the show function \n\n# Create a list with 25 identical intensity values \npixels = [100] * 25 \n\n# Update all pixels to show same intensity \nlight_matrix.show(pixels)",
+                "Python_Description": "Change all the lights at the same time."
               }
             ]
           },
           {
             "Function_Name": "show_image",
             "Function_Signature": "show_image(image: int) -> None",
+            "Function_Description": "Display one of the built in images on the display.",
             "Parameters": [
               {
                 "Parameter_Name": "image: int",
                 "Parameter_Description": "The id of the image to show. The range of available images is 1 to 67. There are consts on\n                            the light_matrix module for these."
+              }
+            ],
+            "Python_Code": [
+              {
+                "Python_Code": "from hub import light_matrix\n# Update pixels to show an image on Light Matrix using the show_image function \n\n# Show a smiling face \nlight_matrix.show_image(light_matrix.IMAGE_HAPPY)",
+                "Python_Description": "Display one of the built in images on the display."
               }
             ]
           },
           {
             "Function_Name": "write",
             "Function_Signature": "write(text: str, intensity: int = 100, time_per_character: int = 500) -> Awaitable",
+            "Function_Description": "Displays text on the Light Matrix, one letter at a time, scrolling from right to left except if\n                        there is a single character to show which will not scroll",
             "Parameters": [
               {
                 "Parameter_Name": "text: str",
@@ -825,12 +913,19 @@
                 "Parameter_Name": "time_per_character: int",
                 "Parameter_Description": "How long to show each character on the display"
               }
+            ],
+            "Python_Code": [
+              {
+                "Python_Code": "from hub import light_matrix\n# White a message to the hub \nlight_matrix.write(\"Hello, world!\")",
+                "Python_Description": "Displays text on the Light Matrix, one letter at a time, scrolling from right to left except if\n                        there is a single character to show which will not scroll"
+              }
             ]
           },
           {
             "Function_Name": "hub.light_matrix Constants",
             "Function_Signature": "IMAGE_HEART = 1\nIMAGE_HEART_SMALL = 2\nIMAGE_HAPPY = 3\nIMAGE_SMILE = 4\nIMAGE_SAD = 5\nIMAGE_CONFUSED = 6\nIMAGE_ANGRY = 7\nIMAGE_ASLEEP = 8\nIMAGE_SURPRISED = 9\nIMAGE_SILLY = 10\nIMAGE_FABULOUS = 11\nIMAGE_MEH = 12\nIMAGE_YES = 13\nIMAGE_NO = 14\nIMAGE_CLOCK12 = 15\nIMAGE_CLOCK1 = 16\nIMAGE_CLOCK2 = 17\nIMAGE_CLOCK3 = 18\nIMAGE_CLOCK4 = 19\nIMAGE_CLOCK5 = 20\nIMAGE_CLOCK6 = 21\nIMAGE_CLOCK7 = 22\nIMAGE_CLOCK8 = 23\nIMAGE_CLOCK9 = 24\nIMAGE_CLOCK10 = 25\nIMAGE_CLOCK11 = 26\nIMAGE_ARROW_N = 27\nIMAGE_ARROW_NE = 28\nIMAGE_ARROW_E = 29\nIMAGE_ARROW_SE = 30\nIMAGE_ARROW_S = 31\nIMAGE_ARROW_SW = 32\nIMAGE_ARROW_W = 33\nIMAGE_ARROW_NW = 34\nIMAGE_GO_RIGHT = 35\nIMAGE_GO_LEFT = 36\nIMAGE_GO_UP = 37\nIMAGE_GO_DOWN = 38\nIMAGE_TRIANGLE = 39\nIMAGE_TRIANGLE_LEFT = 40\nIMAGE_CHESSBOARD = 41\nIMAGE_DIAMOND = 42\nIMAGE_DIAMOND_SMALL = 43\nIMAGE_SQUARE = 44\nIMAGE_SQUARE_SMALL = 45\nIMAGE_RABBIT = 46\nIMAGE_COW = 47\nIMAGE_MUSIC_CROTCHET = 48\nIMAGE_MUSIC_QUAVER = 49\nIMAGE_MUSIC_QUAVERS = 50\nIMAGE_PITCHFORK = 51\nIMAGE_XMAS = 52\nIMAGE_PACMAN = 53\nIMAGE_TARGET = 54\nIMAGE_TSHIRT = 55\nIMAGE_ROLLERSKATE = 56\nIMAGE_DUCK = 57\nIMAGE_HOUSE = 58\nIMAGE_TORTOISE = 59\nIMAGE_BUTTERFLY = 60\nIMAGE_STICKFIGURE = 61\nIMAGE_GHOST = 62\nIMAGE_SWORD = 63\nIMAGE_GIRAFFE = 64\nIMAGE_SKULL = 65\nIMAGE_UMBRELLA = 66\nIMAGE_SNAKE = 67",
-            "Parameters": []
+            "Parameters": [],
+            "Python_Code": []
           }
         ],
         "SubModule_Snippet": [
@@ -851,82 +946,107 @@
           {
             "Function_Name": "acceleration",
             "Function_Signature": "acceleration(raw_unfiltered: bool) -> tuple[int, int, int]",
+            "Function_Description": "Returns a tuple containing x, y & z acceleration values as integers. The values are mili G,\n                        so 1 / 1000 G",
             "Parameters": [
               {
                 "Parameter_Name": "raw_unfiltered: bool",
                 "Parameter_Description": "If we want the data back raw and unfiltered"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "angular_velocity",
             "Function_Signature": "angular_velocity(raw_unfiltered: bool) -> tuple[int, int, int]",
+            "Function_Description": "Returns a tuple containing x, y & z angular velocity values as integers. The values are\n                        decidegrees per second",
             "Parameters": [
               {
                 "Parameter_Name": "raw_unfiltered: bool",
                 "Parameter_Description": "If we want the data back raw and unfiltered"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "gesture",
             "Function_Signature": "gesture() -> int",
-            "Parameters": []
+            "Function_Description": "Returns the gesture recognized.\nPossible values are:\nmotion_sensor.TAPPED\nmotion_sensor.DOUBLE_TAPPED\nmotion_sensor.SHAKEN\nmotion_sensor.FALLING\nmotion_sensor.UNKNOWN",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "get_yaw_face",
             "Function_Signature": "get_yaw_face() -> int",
-            "Parameters": []
+            "Function_Description": "Retrieve the face of the hub that yaw is relative to.\nIf you put the hub on a flat surface\n                        with the face returned pointing up, when you rotate the hub only the yaw will\n                        update\nmotion_sensor.TOP The SPIKE Prime hub face with the USB charging\n                        port.\nmotion_sensor.FRONT The SPIKE Prime hub face with the Light\n                        Matrix.\nmotion_sensor.RIGHT The right side of the SPIKE Prime hub when facing\n                        the front hub face.\nmotion_sensor.BOTTOM The side of the SPIKE Prime hub where\n                        the battery is.\nmotion_sensor.BACK The SPIKE Prime hub face where the speaker\n                        is.\nmotion_sensor.LEFT The left side of the SPIKE Prime hub when facing the\n                        front hub face.",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "quaternion",
             "Function_Signature": "quaternion() -> tuple[float, float, float, float]",
-            "Parameters": []
+            "Function_Description": "Returns the hub orientation quaternion as a tuple[w: float, x: float, y: float, z: float].",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "reset_tap_count",
             "Function_Signature": "reset_tap_count() -> None",
-            "Parameters": []
+            "Function_Description": "Reset the tap count returned by the tap_count function",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "reset_yaw",
             "Function_Signature": "reset_yaw(angle: int) -> None",
-            "Parameters": []
+            "Function_Description": "Change the yaw angle offset.\nThe angle set will be the new yaw value.",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "set_yaw_face",
             "Function_Signature": "set_yaw_face(up: int) -> bool",
+            "Function_Description": "Change what hub face is used as the yaw face.If you put the hub on a flat surface with this face\n                        pointing up, when you rotate the hub only the yaw will update",
             "Parameters": [
               {
                 "Parameter_Name": "up: int",
                 "Parameter_Description": "The hub face that should be set as the upwards facing hub face.\nAvailable values are:\nmotion_sensor.TOP The SPIKE Prime hub face with the USB charging\n                            port.\nmotion_sensor.FRONT The SPIKE Prime hub face with the Light\n                            Matrix.\nmotion_sensor.RIGHT The right side of the SPIKE Prime hub when\n                            facing the front hub face.\nmotion_sensor.BOTTOM The side of the SPIKE Prime\n                            hub where the battery is.\nmotion_sensor.BACK The SPIKE Prime hub face where\n                            the speaker is.\nmotion_sensor.LEFT The left side of the SPIKE Prime hub when\n                            facing the front hub face."
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "stable",
             "Function_Signature": "stable() -> bool",
-            "Parameters": []
+            "Function_Description": "Whether or not the hub is resting flat.",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "tap_count",
             "Function_Signature": "tap_count() -> int",
-            "Parameters": []
+            "Function_Description": "Returns the number of taps recognized since the program started or last time\n                        motion_sensor.reset_tap_count() was called.",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "tilt_angles",
             "Function_Signature": "tilt_angles() -> tuple[int, int, int]",
-            "Parameters": []
+            "Function_Description": "Returns a tuple containing yaw pitch and roll values as integers. Values are decidegrees",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "up_face",
             "Function_Signature": "up_face() -> int",
-            "Parameters": []
+            "Function_Description": "Returns the Hub face that is currently facing up\nmotion_sensor.TOP The SPIKE\n                        Prime hub face with the USB charging port.\nmotion_sensor.FRONT The SPIKE Prime\n                        hub face with the Light Matrix.\nmotion_sensor.RIGHT The right side of the SPIKE\n                        Prime hub when facing the front hub face.\nmotion_sensor.BOTTOM The side of the\n                        SPIKE Prime hub where the battery is.\nmotion_sensor.BACK The SPIKE Prime hub\n                        face where the speaker is.\nmotion_sensor.LEFT The left side of the SPIKE Prime\n                        hub when facing the front hub face.",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "hub.motion_sensor Constants",
             "Function_Signature": "TAPPED = 0\nDOUBLE_TAPPED = 1\nSHAKEN = 2\nFALLING = 3\nUNKNOWN = -1\nTOP = 0\nThe SPIKE Prime hub face with the Light\n                        Matrix.\nFRONT = 1\nThe SPIKE Prime hub face where the speaker\n                        is.\nRIGHT = 2\nThe right side of the SPIKE Prime hub when facing the front\n                        hub face.\nBOTTOM = 3\nThe side of the SPIKE Prime hub where the battery\n                        is.\nBACK = 4\nThe SPIKE Prime hub face with the USB charging\n                        port.\nLEFT = 5\nThe left side of the SPIKE Prime hub when facing the front\n                        hub face.",
-            "Parameters": []
+            "Parameters": [],
+            "Python_Code": []
           }
         ],
         "SubModule_Snippet": [
@@ -947,6 +1067,7 @@
           {
             "Function_Name": "beep",
             "Function_Signature": "beep(freq: int = 440, duration: int = 500, volume: int = 100, *, attack: int = 0, decay: int = 0,\n                        sustain: int = 100, release: int = 0, transition: int = 10, waveform: int = WAVEFORM_SINE,\n                        channel: int = DEFAULT) -> Awaitable",
+            "Function_Description": "Plays a beep sound from the hub",
             "Parameters": [
               {
                 "Parameter_Name": "freq: int",
@@ -988,27 +1109,33 @@
                 "Parameter_Name": "channel: int",
                 "Parameter_Description": "The desired channel to play on, options are sound.DEFAULT and\n                            sound.ANY"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "stop",
             "Function_Signature": "stop() -> None",
-            "Parameters": []
+            "Function_Description": "Stops all noise from the hub",
+            "Parameters": [],
+            "Python_Code": []
           },
           {
             "Function_Name": "volume",
             "Function_Signature": "volume(volume: int) -> None",
+            "Function_Description": "Parameters",
             "Parameters": [
               {
                 "Parameter_Name": "volume: int",
                 "Parameter_Description": "The volume (0-100)"
               }
-            ]
+            ],
+            "Python_Code": []
           },
           {
             "Function_Name": "hub.sound Constants",
             "Function_Signature": "ANY = -2\nDEFAULT = -1\nWAVEFORM_SINE = 1\nWAVEFORM_SAWTOOTH = 3\nWAVEFORM_SQUARE = 2\nWAVEFORM_TRIANGLE = 1",
-            "Parameters": []
+            "Parameters": [],
+            "Python_Code": []
           }
         ],
         "SubModule_Snippet": [

@@ -102,7 +102,11 @@ def FormatH6Block(module, subModelNode_a):
 
         function['Function_Name'] = funcNode_h5.text.strip() # h5
         function['Function_Signature'] = funcNode_h5.find_next_sibling('div').text.strip()
+        if(funcNode_h5.find_next_sibling('div').find_next_sibling('div') != None):
+            function['Function_Description'] = funcNode_h5.find_next_sibling('div').find_next_sibling('div').text.strip()
+    
         function['Parameters'] = []
+        function['Python_Code'] = []
 
         for paramNode_h6 in (funcNode_h5.parent).findAll(
                     lambda tag:tag.name == "h6"
@@ -122,6 +126,21 @@ def FormatH6Block(module, subModelNode_a):
             funcParam['Parameter_Name'] = paramNode_h6.text.strip()
             funcParam['Parameter_Description'] = paramNode_h6.find_next_sibling('div').text.strip()
             function['Parameters'].append(funcParam)
+
+        for funcNode_h5_pre in (funcNode_h5.parent).findChildren(
+                    lambda tag:tag.name == "pre" ,
+                    recursive=False
+                ):
+            codeBlock = {}
+            function['Python_Code'].append(codeBlock)
+            funcNode_h5_code = funcNode_h5_pre.code
+            FormatCode(funcNode_h5_code)
+            codeBlock['Python_Code'] = funcNode_h5_code.text
+            
+            if(funcNode_h5_code.parent.find_previous_sibling('div') != None):
+                    codeBlock['Python_Description'] = funcNode_h5_code.parent.find_previous_sibling('div').text.strip()
+        
+
 
 
             

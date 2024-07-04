@@ -1,4 +1,51 @@
 
+ctrl c + ctrl ve
+
+
+write python for spike prime to show hi in the light matrix
+
+please spin motor for 360 degrees, motor is connected to port D
+
+please move robot forward 10cm
+
+
+
+
+Basic:
+Write python for spike prime to show hi in the light matrix
+show text i love lego
+
+please spin motor for 360 degrees, motor is connected to port D
+make it very slow
+
+
+T1: sounds/light & chat context
+make a beep sound
+make beep five times
+Also change light color on hub to red
+for 10 seconds
+
+
+T2: color sensor & logical expressions
+Can you read the color from port D?
+spin motor in port D if color is green
+stop motor is color is red
+the code does not detect color all the time?
+
+
+T3: movement & explanation of code
+move robot forward 360 degrees
 move robot forward 10 cm
+error: motor_pair.move_for_degrees(motor_pair.PAIR_1, degrees_to_move, 0)
+can you please explain the calculation above?
 
 
+T4: turning
+turn robot to left 90 degrees
+what are the parameters of motor.run_for_degrees
+
+can you think of another way to turn?
+possible to use gyro sensor to help with turning
+
+
+T4: turning

@@ -34,21 +34,22 @@ for code in soup.findAll("span", {"class": "hljs-number"}):
 
 
 snippets = []
-for code in soup.findAll(
-                lambda tag:tag.name == "code" and
-                "data-testid" in tag.attrs
+for pre in soup.findAll(
+                lambda tag:tag.name == "pre"
                 ):
     
-    if('main' in code):
+    if('main' in pre.code):
         print('---------------')
-        print(code.text)
+        print(pre.text)
         snippet = {}
-        snippet['name'] = ''
-        snippet['python'] = code.text
+        snippet['Python_Code'] = pre.code.text
+        if(pre.find_previous_sibling('div') != None):
+            snippet['Python_Description'] = pre.find_previous_sibling('div').text.strip()
+
         snippets.append(snippet)
 
 
 with open("lego-snippets-sp.json", "w") as text_file:
-    text_file.write(json.dumps(snippets))
+    text_file.write(json.dumps(snippets, indent=2))
 
 # print(soup)
