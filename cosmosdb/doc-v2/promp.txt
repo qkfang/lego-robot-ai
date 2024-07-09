@@ -1,20 +1,11 @@
 
-ctrl c + ctrl ve
+which file contains move_tank_for_degrees in the knowledge base
 
-
-write python for spike prime to show hi in the light matrix
-
-please spin motor for 360 degrees, motor is connected to port D
-
-please move robot forward 10cm
-
-
-
+https://spike.legoeducation.com/essential/help/lls-help-python
 
 Basic:
 Write python for spike prime to show hi in the light matrix
 show text i love lego
-
 please spin motor for 360 degrees, motor is connected to port D
 make it very slow
 
@@ -23,11 +14,12 @@ T1: sounds/light & chat context
 make a beep sound
 make beep five times
 Also change light color on hub to red
-for 10 seconds
+use light.color instead
+the light did not work, need to show color for 3 seconds
 
 
 T2: color sensor & logical expressions
-Can you read the color from port D?
+Can you read the color from port E?
 spin motor in port D if color is green
 stop motor is color is red
 the code does not detect color all the time?
@@ -36,7 +28,6 @@ the code does not detect color all the time?
 T3: movement & explanation of code
 move robot forward 360 degrees
 move robot forward 10 cm
-error: motor_pair.move_for_degrees(motor_pair.PAIR_1, degrees_to_move, 0)
 can you please explain the calculation above?
 
 

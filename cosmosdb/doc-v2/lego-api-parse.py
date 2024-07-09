@@ -34,7 +34,7 @@ def FormatH5Block(module, subModelNode_a):
     function['Function_Signature'] = specSubNode_h4.find_next_sibling('div').text.strip()
     if(specSubNode_h4.find_next_sibling('div').find_next_sibling('div') != None):
         function['Function_Description'] = specSubNode_h4.find_next_sibling('div').find_next_sibling('div').text.strip()
-    function['Function_Parameters'] = []
+    function['Function_Arguments'] = []
     function['Function_Snippet'] = []
 
     for paramNode_h5 in (specSubNode_h4.parent).findAll(
@@ -51,10 +51,10 @@ def FormatH5Block(module, subModelNode_a):
             continue
 
         funcParam = {}
-        function['Function_Parameters'].append(funcParam)
+        function['Function_Arguments'].append(funcParam)
 
-        funcParam['Parameter_Name'] = paramNode_h5.text.strip()
-        funcParam['Parameter_Description'] = paramNode_h5.find_next_sibling('div').text.strip()
+        funcParam['Argument_Name'] = paramNode_h5.text.strip()
+        funcParam['Argument_Description'] = paramNode_h5.find_next_sibling('div').text.strip()
 
     for moduleNode_h4_pre in (specSubNode_h4.parent).findChildren(
                             lambda tag:tag.name == "pre" ,
@@ -123,8 +123,8 @@ def FormatH6Block(module, subModelNode_a):
                 continue
 
             funcParam = {}
-            funcParam['Parameter_Name'] = paramNode_h6.text.strip()
-            funcParam['Parameter_Description'] = paramNode_h6.find_next_sibling('div').text.strip()
+            funcParam['Argument_Name'] = paramNode_h6.text.strip()
+            funcParam['Argument_Description'] = paramNode_h6.find_next_sibling('div').text.strip()
             function['Parameters'].append(funcParam)
 
         for funcNode_h5_pre in (funcNode_h5.parent).findChildren(

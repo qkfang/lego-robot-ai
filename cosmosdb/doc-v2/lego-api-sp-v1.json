@@ -722,7 +722,7 @@
           },
           {
             "Function_Name": "hub.button Constants",
-            "Function_Signature": "LEFT = 1\nLeft button next to the power button on the SPIKE Prime  hub\nRIGHT = 2\nRight button next to the power button on the SPIKE  Prime hub",
+            "Function_Signature": "LEFT\u00a0= 1\nLeft button next to the power button on the SPIKE Prime  hub\nRIGHT\u00a0= 2\nRight button next to the power button on the SPIKE  Prime hub",
             "Parameters": [],
             "Python_Code": []
           }
@@ -1633,7 +1633,7 @@
         "Function_Arguments": [
           {
             "Argument_Name": "pair: int",
-            "Argument_Description": "The pair slot of the Motor Pair. must use motor_pair.PAIR_1 OR motor_pair.PAIR_2 OR motor_pair.PAIR_3.",
+            "Argument_Description": "The pair slot of the Motor Pair.",
             "Required": true
           },
           {
