@@ -10,28 +10,19 @@ def Generate(fileIn, fileOut):
     f.close()
 
     blocks = re.split('###', data)
-    systemMsg = {"role":"system","content": blocks[0].split('\n')[1]}
-
 
     exports = []
     for block in blocks[1:]:
-        userMsg = block.split('\n')[1]
-        assistMsg=""
-        for blockUser in block.split('\n')[2:]:
-            assistMsg += blockUser + '\n'
+        desc = block.split('---')[0].strip('\n')
+        code = block.split('---')[1].strip('\n')
 
         export = {}
-        export["messages"] = []
-        export["messages"].append(systemMsg)
-        export["messages"].append({"role": "user", "content": userMsg}) 
-        export["messages"].append({"role": "assistant", "content": assistMsg})
+        export["Python_Code"] = desc
+        export["Python_Description"] = code
         exports.append(export)
 
     f = open(fileOut, "w")
-    for m in exports:
-        f.write(json.dumps(m))
-        f.write('\n')
+    f.write(json.dumps(exports, indent=2))
     f.close()
 
-Generate('training-set.dt', 'training-set.jsonl')
-Generate('validation-set.dt', 'validation-set.jsonl')
+Generate('lego-user-snippet.dt', 'chatgpt\lego-user-snippet.json')

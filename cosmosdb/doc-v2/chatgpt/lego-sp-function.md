@@ -1,4 +1,6 @@
-# from app import bargraph
+# bargraph module
+from app import bargraph
+
 ## bargraph.change(color: int, value: float) -> None
 
 ## bargraph.clear_all() -> None
@@ -12,7 +14,10 @@
 ## bargraph.show(fullscreen: bool) -> None
 
 
-# from app import display
+
+
+# display module
+from app import display
 
 ## display.hide() -> None
 
@@ -26,7 +31,10 @@
 IMAGE_ROBOT_1 = 1 IMAGE_ROBOT_2 = 2 IMAGE_ROBOT_3 = 3 IMAGE_ROBOT_4 = 4 IMAGE_ROBOT_5 = 5 IMAGE_HUB_1 = 6 IMAGE_HUB_2 = 7 IMAGE_HUB_3 = 8 IMAGE_HUB_4 = 9 IMAGE_AMUSEMENT_PARK = 10 IMAGE_BEACH = 11 IMAGE_HAUNTED_HOUSE = 12 IMAGE_CARNIVAL = 13 IMAGE_BOOKSHELF = 14 IMAGE_PLAYGROUND = 15 IMAGE_MOON = 16 IMAGE_CAVE = 17 IMAGE_OCEAN = 18 IMAGE_POLAR_BEAR = 19 IMAGE_PARK = 20 IMAGE_RANDOM = 21
 
 
-# from app import music
+
+# music module
+from app import music
+
 ## music.play_drum(drum: int) -> None
 
 ## music.play_instrument(instrument: int, note: int, duration: int) -> None
@@ -35,7 +43,10 @@ IMAGE_ROBOT_1 = 1 IMAGE_ROBOT_2 = 2 IMAGE_ROBOT_3 = 3 IMAGE_ROBOT_4 = 4 IMAGE_RO
 DRUM_BASS = 2 DRUM_BONGO = 13 DRUM_CABASA = 15 DRUM_CLAVES = 9 DRUM_CLOSED_HI_HAT = 6 DRUM_CONGA = 14 DRUM_COWBELL = 11 DRUM_CRASH_CYMBAL = 4 DRUM_CUICA = 18 DRUM_GUIRO = 16 DRUM_HAND_CLAP = 8 DRUM_OPEN_HI_HAT = 5 DRUM_SIDE_STICK = 3 DRUM_SNARE = 1 DRUM_TAMBOURINE = 7 DRUM_TRIANGLE = 12 DRUM_VIBRASLAP = 17 DRUM_WOOD_BLOCK = 10 INSTRUMENT_BASS = 6 INSTRUMENT_BASSOON = 14 INSTRUMENT_CELLO = 8 INSTRUMENT_CHOIR = 15 INSTRUMENT_CLARINET = 10 INSTRUMENT_ELECTRIC_GUITAR = 5 INSTRUMENT_ELECTRIC_PIANO = 2 INSTRUMENT_FLUTE = 12 INSTRUMENT_GUITAR = 4 INSTRUMENT_MARIMBA = 19 INSTRUMENT_MUSIC_BOX = 17 INSTRUMENT_ORGAN = 3 INSTRUMENT_PIANO = 1 INSTRUMENT_PIZZICATO = 7 INSTRUMENT_SAXOPHONE = 11 INSTRUMENT_STEEL_DRUM = 18 INSTRUMENT_SYNTH_LEAD = 20 INSTRUMENT_SYNTH_PAD = 21 INSTRUMENT_TROMBONE = 9 INSTRUMENT_VIBRAPHONE = 16 INSTRUMENT_WOODEN_FLUTE = 13
 
 
-# from app import sound
+
+# sound module
+from app import sound
+
 ## sound.play(sound_name: str, volume: int = 100, pitch: int = 0, pan: int = 0) -> Awaitable
 Play a sound in the SPIKE App
 ## sound.set_attributes(volume: int, pitch: int, pan: int) -> None
@@ -43,7 +54,10 @@ Play a sound in the SPIKE App
 ## sound.stop() -> None
 
 
-# import color
+
+# color module
+import color
+
 ## color Constants
 ### color.BLACK = 0
 ### color.MAGENTA = 1
@@ -59,7 +73,10 @@ Play a sound in the SPIKE App
 ### color.UNKNOWN = -1
 
 
-# import color_matrix
+
+# color_matrix module
+import color_matrix
+
 ## color_matrix.clear(port: int) -> None
 Turn off all pixels on a Color Matrix
 ## color_matrix.get_pixel(port: int, x: int, y: int) -> tuple[int, int]
@@ -70,7 +87,10 @@ Change a single pixel on a Color Matrix
 Change all pixels at once on a Color Matrix
 
 
-# import color_sensor
+
+# color_sensor module
+import color_sensor
+
 ## color_sensor.color(port: int) -> int
 Returns the color value of the detected color. Use the color module to map the color value to a specific color.
 ## color_sensor.reflection(port: int) -> int
@@ -79,7 +99,10 @@ Retrieves the intensity of the reflected light (0-100%).
 Retrieve the raw LPF-2 data from a device.
 
 
-# import device
+
+# device module
+import device
+
 ## device.data(port: int) -> tuple[int]
 Retrieve the raw LPF-2 data from a device.
 ## device.id(port: int) -> int
@@ -92,7 +115,10 @@ When a device is attached to the hub it might take a short amount of time before
 Set the duty cycle on a device. Range 0 to 10000
 
 
-# import distance_sensor
+
+# distance_sensor module
+import distance_sensor
+
 ## distance_sensor.clear(port: int) -> None
 Turns off all the lights in the Distance Sensor connected to port.
 ## distance_sensor.distance(port: int) -> int
@@ -103,7 +129,10 @@ Retrieve the intensity of a specific light on the Distance Sensor connected to p
 Changes the intensity of a specific light on the Distance Sensor connected to port.
 
 
-# import force_sensor
+
+# force_sensor module
+import force_sensor
+
 ## force_sensor.show(port: int, pixels: list[int]) -> None
 Change all the lights at the same time.
 ## force_sensor.force(port: int) -> int
@@ -114,7 +143,10 @@ Tests whether the button on the sensor is pressed. Returns true if the force sen
 Returns the raw, uncalibrated force value of the force sensor connected on port port
 
 
-# from hub import button
+
+# button module
+from hub import button
+
 ## int button.pressed(button: int) -> int
 This module allows you to react to buttons being pressed on the hub. You must first import the  button module to use the buttons.
 ## hub.button Constants
@@ -124,7 +156,10 @@ Left button next to the power button on the SPIKE Prime hub
 Right button next to the power button on the SPIKE Prime hub
 
 
-# from hub import light
+
+# light module
+from hub import light
+
 ## light.color(light: int, color: int) -> None
 Change the color of a light on the hub.
 ## hub.light Constants
@@ -134,7 +169,10 @@ The power button. On SPIKE Prime it's the button between the left and right butt
 The light around the Bluetooth connect  button on SPIKE Prime.
 
 
-# from hub import light_matrix
+
+# light_matrix module
+from hub import light_matrix
+
 ## light_matrix.clear() -> None
 Switches off all of the pixels on the Light Matrix.
 ## light_matrix.get_orientation() -> int
@@ -155,7 +193,10 @@ Displays text on the Light Matrix, one letter at a time, scrolling from right to
 IMAGE_HEART = 1 IMAGE_HEART_SMALL = 2 IMAGE_HAPPY = 3 IMAGE_SMILE = 4 IMAGE_SAD = 5 IMAGE_CONFUSED = 6 IMAGE_ANGRY = 7 IMAGE_ASLEEP = 8 IMAGE_SURPRISED = 9 IMAGE_SILLY = 10 IMAGE_FABULOUS = 11 IMAGE_MEH = 12 IMAGE_YES = 13 IMAGE_NO = 14 IMAGE_CLOCK12 = 15 IMAGE_CLOCK1 = 16 IMAGE_CLOCK2 = 17 IMAGE_CLOCK3 = 18 IMAGE_CLOCK4 = 19 IMAGE_CLOCK5 = 20 IMAGE_CLOCK6 = 21 IMAGE_CLOCK7 = 22 IMAGE_CLOCK8 = 23 IMAGE_CLOCK9 = 24 IMAGE_CLOCK10 = 25 IMAGE_CLOCK11 = 26 IMAGE_ARROW_N = 27 IMAGE_ARROW_NE = 28 IMAGE_ARROW_E = 29 IMAGE_ARROW_SE = 30 IMAGE_ARROW_S = 31 IMAGE_ARROW_SW = 32 IMAGE_ARROW_W = 33 IMAGE_ARROW_NW = 34 IMAGE_GO_RIGHT = 35 IMAGE_GO_LEFT = 36 IMAGE_GO_UP = 37 IMAGE_GO_DOWN = 38 IMAGE_TRIANGLE = 39 IMAGE_TRIANGLE_LEFT = 40 IMAGE_CHESSBOARD = 41 IMAGE_DIAMOND = 42 IMAGE_DIAMOND_SMALL = 43 IMAGE_SQUARE = 44 IMAGE_SQUARE_SMALL = 45 IMAGE_RABBIT = 46 IMAGE_COW = 47 IMAGE_MUSIC_CROTCHET = 48 IMAGE_MUSIC_QUAVER = 49 IMAGE_
 
 
-# from hub import motion_sensor
+
+# motion_sensor module
+from hub import motion_sensor
+
 ## motion_sensor.acceleration(raw_unfiltered: bool) -> tuple[int, int, int]
 Returns a tuple containing x, y & z acceleration values as integers. The values are mili G,  so 1 / 1000 G
 ## motion_sensor.angular_velocity(raw_unfiltered: bool) -> tuple[int, int, int]
@@ -200,8 +241,10 @@ The SPIKE Prime hub face with the USB charging  port.
 The left side of the SPIKE Prime hub when facing the front  hub face.
 
 
-# from hub import sound
-## sound.beep(freq: int = 440, duration: int = 500, volume: int = 100, *, attack: int = 0, decay: int = 0,  sustain: int = 100, release: int = 0, transition: int = 10, waveform: int = WAVEFORM_SINE,  channel: int = DEFAULT) -> Awaitable
+# sound module
+from hub import sound
+
+## await sound.beep(freq: int = 440, duration: int = 500, volume: int = 100, *, attack: int = 0, decay: int = 0,  sustain: int = 100, release: int = 0, transition: int = 10, waveform: int = WAVEFORM_SINE,  channel: int = DEFAULT) -> Awaitable
 Plays a beep sound from the hub
 ## sound.stop() -> None
 Stops all noise from the hub
@@ -216,7 +259,9 @@ volume(volume: int) -> None
 ### WAVEFORM_TRIANGLE = 1
 
 
-# from hub import port
+# port module
+from hub import port
+
 ## hub.port Constants
 ### port.A = 0
 The Port that is labelled \u2018A\u2019 on the Hub.
@@ -240,7 +285,10 @@ Turns off the hub.
 Retrieve the hub temperature. Measured in decidegrees celsius (d\u00b0C) which is 1 / 10 of a degree celsius (\u00b0C)
 
 
-# import motor
+
+# motor module
+import motor
+
 ## motor.absolute_position(port: int) -> int
 Get the absolute position of a Motor
 ## motor.get_duty_cycle(port: int) -> int
@@ -284,7 +332,9 @@ Get the velocity (deg/sec) of a Motor
 ### motor.LONGEST_PATH = 3
 
 
-# import motor_pair
+# motor_pair module
+import motor_pair
+
 ## await motor_pair.move(pair: int, steering: int, *, velocity: int = 360, acceleration: int = 1000) -> None
 Move a Motor Pair at a constant speed until a new command is given.
 ## await motor_pair.move_for_degrees(pair: int, degrees: int, steering: int, *, velocity: int = 360, stop: int = motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000) -> Awaitable
@@ -314,7 +364,10 @@ Second Motor Pair
 Third Motor Pair
 
 
-# import orientation
+
+# orientation module
+import orientation
+
 ## orientation Constants
 ### orientation.UP = 0 
 ### orientation.RIGHT = 1 
@@ -322,7 +375,10 @@ Third Motor Pair
 ### orientation.LEFT = 3
 
 
-# import runloop
+
+# runloop module
+import runloop
+
 ## runloop.run(*functions: Awaitable) -> None 
 Start any number of parallel async functions. This is the function you should use to create programs with a similar structure to Word Blocks.
  
