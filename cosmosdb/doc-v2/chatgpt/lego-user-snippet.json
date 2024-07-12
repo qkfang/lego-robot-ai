@@ -1,14 +1,42 @@
 [
   {
     "Python_Code": "spin motor for 360 degrees to turn right",
-    "Python_Description": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # spin motor for 360 degrees to turn right\n    motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, 100, -100)\n\nrunloop.run(main())"
+    "Python_Description": "from hub import port\nimport runloop\nimport motor_pair\n\n\nasync def main():\n    # Pair motors on port A and B\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # spin motor for 360 degrees to turn right\n    motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, 100, -100)\n\n\nrunloop.run(main())"
   },
   {
     "Python_Code": "spin motor for 360 degrees to turn left",
-    "Python_Description": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    # Pair motors on port A and B\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # spin motor for 360 degrees to turn left\n    motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, -100, 100)\n\nrunloop.run(main())"
+    "Python_Description": "from hub import port\nimport runloop\nimport motor_pair\n\n\nasync def main():\n    # Pair motors on port A and B\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n\n    # spin motor for 360 degrees to turn left\n    motor_pair.move_tank_for_degrees(motor_pair.PAIR_1, 360, -100, 100)\n\n\nrunloop.run(main())"
   },
   {
     "Python_Code": "read gyro sensor's yaw degree",
-    "Python_Description": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    yaw_degree = round(motion_sensor.tilt_angles()[0] / 10, 3) * -1\n    print('Yaw Degree:', yaw_degree)\n\nrunloop.run(main())"
+    "Python_Description": "from hub import port\nimport runloop\nimport motor_pair\n\nasync def main():\n    yaw_degree = round(motion_sensor.tilt_angles()[0] / 10, 3) * -1\n    print(\"Yaw Degree:\", yaw_degree)\n\n\nrunloop.run(main())"
+  },
+  {
+    "Python_Code": "Move the robot 10 centimeters forward",
+    "Python_Description": "from hub import port\nimport runloop, motor_pair, sys\n\n# cm, this is a constant for your robot\nWHEEL_CIRCUMFERENCE = 17.5\n\n# input must be in the same unit as WHEEL_CIRCUMFERENCE\ndef degreesForDistance(distance_cm):\n    # Add multiplier for gear ratio if needed\n    return int((distance_cm / WHEEL_CIRCUMFERENCE) * 360)\n\nasync def main():\n    # Drive Base 1\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, degreesForDistance(40), 0)\n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, degreesForDistance(-40), 0)\n    sys.exit(\"Finished\")\n\n\nrunloop.run(main())"
+  },
+  {
+    "Python_Code": "Move the robot 10 centimeters forward",
+    "Python_Description": "from hub import port\nimport runloop, motor_pair, sys\n\n# cm, this is a constant for your robot\nWHEEL_CIRCUMFERENCE = 17.5\n\n# input must be in the same unit as WHEEL_CIRCUMFERENCE\ndef degreesForDistance(distance_cm):\n    # Add multiplier for gear ratio if needed\n    return int((distance_cm / WHEEL_CIRCUMFERENCE) * 360)\n\nasync def main():\n    # Drive Base 1\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n    await motor_pair.move_for_degrees(motor_pair.PAIR_1, degreesForDistance(10), 0)\n    sys.exit(\"Finished\")\n\nrunloop.run(main())"
+  },
+  {
+    "Python_Code": "LINE FOLLOWER",
+    "Python_Description": "from hub import port\nimport motor, motor_pair, color_sensor, runloop, sys\n# Constants for Drive Base 1\nmotor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n# Follow the right side of black line (Black-White edge).\n# To follow a White-Black edge, change the error condition to (reflection - 50). \nasync def pid_line_follow_forever():\n    integral = 0\n    lastError = 0\n    while (True):\n        # Compute the error. \n        error = 50 - color_sensor.reflection(port.E)\n        P_fix = error * 0.5\n        integral = integral + error\n        I_fix = integral * 0.001\n        derivative = error - lastError\n        lastError = error\n        D_fix = derivative * 1\n        # clamp the correction from -100 to 100 because SP3 doesn\u9225\u6a9b seem to do it internally.\n        correction = min(100, max(-100, int(P_fix + I_fix + D_fix)))\n        # use the correction as the steering\n        motor_pair.move(motor_pair.PAIR_1, correction, velocity = 300)\nasync def main():\n    await pid_line_follow_forever()\nrunloop.run(main())"
+  },
+  {
+    "Python_Code": "GYRO MOVE STRAIGHT",
+    "Python_Description": "from hub import port, motion_sensor\nimport runloop, motor_pair\nasync def main():\n    motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n    # Reset the yaw angle and wait for it to stabilize\n    motion_sensor.reset_yaw(0)\n    await runloop.until(motion_sensor.stable)\n    while True:\n        # compute the error in degrees. See Turning with Gyro for explanation.\n        error = motion_sensor.tilt_angles()[0] * -0.1\n        # correction is an integer which is the negative of the error\n        correction = int(error * -2)\n        # apply steering to correct the error\n        motor_pair.move(motor_pair.PAIR_1, correction, velocity=200)\n\nrunloop.run(main())"
+  },
+  {
+    "Python_Code": "PROPORTIONAL LINE FOLLOWER",
+    "Python_Description": "from hub import port\nimport motor, motor_pair, color_sensor, runloop, sys\n# Constants for Drive Base 1\nmotor_pair.pair(motor_pair.PAIR_1, port.A, port.B)\n# Follow the right side of black line (Black-White edge).\n# To follow a White-Black edge, change the error condition to (reflection - 50)\nasync def line_follow_forever():\n    while (True):\n        # Compute the error\n        error = 50 - color_sensor.reflection(port.E)\n        # Compute the correction by multiplying the error \n        # by a Constant of Proportionality\n        correction = int(error * 0.5)\n        motor_pair.move(motor_pair.PAIR_1, correction, velocity = 300)\nasync def main():\n    await line_follow_forever()\nrunloop.run(main())"
+  },
+  {
+    "Python_Code": "USING CONCURRENT FUNCTIONS",
+    "Python_Description": "from hub import port\nimport motor, color_sensor, runloop, sys\n\nasync def all_done():\n    return (motor.velocity(port.C) is 0 and motor.velocity(port.D) is 0)\n# Function to move motor until the sensor in front of it senses black\n# Parameters:\n# motor_port: The port of the motor\n# sensor_port: port of the color sensor in front of the motor\n# direction: 1 for clockwise, -1 for counterclockwise\nasync def move_until_black(motor_port, color_port, direction):\n    motor.run(motor_port, 200 * direction)\n    while color_sensor.reflection(color_port) > 50:\n        await runloop.sleep_ms(50)\n    motor.stop(motor_port)\nasync def main():\n    # create two async functions to send to the runloop\n    a = move_until_black(port.C, port.A, -1)\n    b = move_until_black(port.D, port.B, 1)\n    # run both the functions together\n    runloop.run(*[a,b])\n    # wait until both motors have stopped\n    await runloop.until(all_done)\n    sys.exit(\"Stopping\")\nrunloop.run(main())"
+  },
+  {
+    "Python_Code": "MOVE UNTIL LINE",
+    "Python_Description": "from hub import port\nimport motor, color_sensor, runloop, sys\n\nasync def main():\n    # Start the motors\n    motor.run(port.C, -200)\n    motor.run(port.D, 200)\n    foundC = False\n    foundD = False\n    # wait for color sensors to detect black and stop motors\n    while (not foundC or not foundD):\n        if(color_sensor.reflection(port.A) < 50):\n            motor.stop(port.C)\n            foundC = True\n        if(color_sensor.reflection(port.B) < 50):\n            motor.stop(port.D)\n            foundD = True\n    sys.exit(\"Stopping\")\n    \nrunloop.run(main()) "
   }
 ]

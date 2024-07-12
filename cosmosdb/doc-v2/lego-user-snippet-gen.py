@@ -9,12 +9,12 @@ def Generate(fileIn, fileOut):
     data= f.read()
     f.close()
 
-    blocks = re.split('###', data)
+    blocks = re.split('####', data)
 
     exports = []
     for block in blocks[1:]:
-        desc = block.split('---')[0].strip('\n')
-        code = block.split('---')[1].strip('\n')
+        desc = block.split('##--')[0].strip('\n').strip('# ')
+        code = block.split('##--')[1].strip('\n')
 
         export = {}
         export["Python_Code"] = desc
@@ -25,4 +25,4 @@ def Generate(fileIn, fileOut):
     f.write(json.dumps(exports, indent=2))
     f.close()
 
-Generate('lego-user-snippet.dt', 'chatgpt\lego-user-snippet.json')
+Generate('lego-user-snippet.py', 'chatgpt\lego-user-snippet.json')
