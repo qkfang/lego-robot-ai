@@ -33,9 +33,10 @@ can you please explain the calculation above?
 
 T4: turning
 turn robot to left 90 degrees
-what are the parameters of motor.run_for_degrees
-
 can you think of another way to turn?
+what are the parameters of motor.move_tank_for_degrees
+
+
 possible to use gyro sensor to help with turning
 
 
