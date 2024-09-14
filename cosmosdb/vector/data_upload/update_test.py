@@ -22,9 +22,9 @@ parent_dir = os.path.dirname(current_dir)
 load_dotenv(os.path.join(parent_dir, ".env"), override=True)
 
 # MongoDB credentials
-mongo_host = "mongodb+srv://legorobotadmin:legorobotPassword!&@legorobot-mongo.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000&tlsInsecure=true" #os.getenv("MONGO_HOST")
-mongo_user = "legorobotadmin" #os.getenv("MONGO_USER")
-mongo_password = "legorobotPassword!&" #os.getenv("MONGO_PASSWORD")
+mongo_host = "mongodb+srv://<mongoDbUserName>:<mongoDbPassword>@legorobot-mongo.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000&tlsInsecure=true" #os.getenv("MONGO_HOST")
+mongo_user = "<mongoDbUserName>" #os.getenv("MONGO_USER")
+mongo_password = "<mongoDbPassword>" #os.getenv("MONGO_PASSWORD")
 mongo_database_name = "legorobot" #os.getenv("MONGO_DB_NAME")
 collection_name = "legoimage" #os.getenv("MONGO_COLLECTION_NAME")
 

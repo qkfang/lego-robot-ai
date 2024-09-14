@@ -11,7 +11,7 @@
         <set-backend-service base-url="https://legorobot-openai.openai.azure.com" />
         <rewrite-uri template="/openai/deployments/completions/chat/completions?api-version=2024-03-01-preview" />
         <set-header name="api-key" exists-action="override">
-            <value>53f4ec2340964083a427811bd8417f8e</value>
+            <value><AOAI_KEY></value>
         </set-header>
     </inbound>
     <!-- Control if and how the requests are forwarded to services  -->

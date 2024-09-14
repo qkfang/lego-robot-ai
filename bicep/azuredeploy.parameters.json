@@ -9,11 +9,11 @@
             "value": "S0"
         },        
         "mongoDbUserName": {
-            "value": "legorobotadmin"
+            "value": "<mongoDbUserName>"
         },
         
         "mongoDbPassword": {
-            "value": "legorobotPassword!&"
+            "value": "<mongoDbPassword>"
         }        
     }
 }

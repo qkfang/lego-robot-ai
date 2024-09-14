@@ -14,7 +14,7 @@
             <value>eastus</value>
         </set-header>
         <set-header name="Ocp-Apim-Subscription-Key" exists-action="override">
-            <value>eb3318b45d9d45e5815d51eaa8eb1c52</value>
+            <value><cognitivekey></value>
         </set-header>
     </inbound>
     <!-- Control if and how the requests are forwarded to services  -->

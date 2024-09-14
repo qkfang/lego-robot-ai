@@ -248,7 +248,7 @@ class CosmicWorksAIAgent {
         await fetch("https://eastus.api.cognitive.microsoft.com/computervision/retrieval:vectorizeImage?api-version=2023-02-01-preview&modelVersion=latest", {
             method: 'POST',
             body: content,
-            headers: { 'Content-Type': 'application/octet-stream', "Ocp-Apim-Subscription-Key": "8cef4d9630194f16a6d95ca27ce23a9a" }
+            headers: { 'Content-Type': 'application/octet-stream', "Ocp-Apim-Subscription-Key": "<visionkey>" }
         })
             .then((result) => result.text())
             .then((data) => {

@@ -23,8 +23,8 @@ data_url = local_image_to_data_url(image_path)
 # print("Data URL:", data_url)
 
 
-api_base = "https://legorobot-openai.openai.azure.com/"
-api_key= '53f4ec2340964083a427811bd8417f8e'
+api_base = "<AOAI_ENDPOINT>"
+api_key= '<AOAI_KEY>'
 deployment_name = 'completions'
 api_version = '2023-12-01-preview' # this might change in the future
 

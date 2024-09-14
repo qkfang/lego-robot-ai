@@ -31,7 +31,7 @@ parent_dir = os.path.dirname(current_dir)
 load_dotenv(os.path.join(parent_dir, ".env"))
 # Azure AI Vision credentials
 vision_endpoint = os.getenv("VISION_ENDPOINT") + "computervision/"
-vision_key = "8cef4d9630194f16a6d95ca27ce23a9a" # os.getenv("VISION_KEY")
+vision_key = "<visionkey>" # os.getenv("VISION_KEY")
 vision_api_version = "?api-version=2023-02-01-preview&modelVersion=latest" # os.getenv("VISION_VERSION")
 vectorize_img_url = vision_endpoint + "retrieval:vectorizeImage" + vision_api_version
 
@@ -97,7 +97,7 @@ def get_image_embedding(image: str) -> list[float] | None:
 
     headers = {
         "Content-type": "application/octet-stream",
-        "Ocp-Apim-Subscription-Key": "8cef4d9630194f16a6d95ca27ce23a9a",
+        "Ocp-Apim-Subscription-Key": "<visionkey>",
     }
 
     try:
