@@ -82,8 +82,3 @@ This project is licensed under the MIT License – see the [LICENSE](LICENSE) fi
 We'd love to hear from you! Please raise an issue on the repository if you encounter bugs or have feature requests. Teachers, parents, and students are also encouraged to share their experiences using Lego Robot AI to help us improve the platform.
 
 ---
-
-By combining **play, creativity, and STEM education**, Lego Robot AI aims to inspire the next generation of coders and problem-solvers through interactive learning. Let's build the future—one brick at a time! 🧱 🤖
-
----
-
