@@ -40,3 +40,50 @@ To overcome these limitations, we **transformed the prototype into a fully web-b
 - **Azure DevOps** for CI/CD pipeline management
 
 ---
+
+## 🎉 **Accomplishments We're Proud Of**
+- **Knowledgeable Chatbot:** Integrated a chatbot that understands both **general Lego Spike Prime knowledge** and **Spike Prime 3 Python API** functions.
+- **Interactive Coding:** Enabled students to write and execute **Python code directly from the browser** via a web serial port.
+- **Bilingual Support:** Added functionality to **translate responses into French** for multilingual learning.
+- **Image-Based Search and Generation:**  
+  - Search similar Lego bricks through **image uploads**.  
+  - Generate new Lego brick images based on **text descriptions**.  
+  - Provide **text-based descriptions** for uploaded brick images.
+- **Speech and Voice Integration:**  
+  - Accept user prompts via **speech input**.  
+  - Use **text-to-speech** to read responses aloud to students.
+- **Live Chat Support:** Fostered collaboration between students and teachers through **browser-based live chat**.
+
+---
+
+## 🔮 **What's Next for Lego Robot AI**
+- **User Feedback:** Gather insights from the students and teachers to further refine the platform.
+- **Expand Code Snippet Libraries:** Build a broader library of **robot action snippets** to improve the chatbot's coding recommendations.
+- **Enhance Image Search:** Expand the **Lego brick image library** with additional images and 3D models.
+- **AI-Driven Competition Strategies:** Utilize LLM to **generate optimal robot competition strategies**, such as efficient navigation routes.
+- **Bluetooth Support:** Replace the **USB cable** with **Bluetooth connectivity** for more seamless robot control.
+
+---
+
+## 👩‍💻 **Contributing**
+
+We welcome contributions! If you'd like to improve Lego Robot AI or add new features, feel free to fork the repository and submit a pull request.
+
+---
+
+## 📜 **License**
+
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 💬 **Feedback and Support**
+
+We'd love to hear from you! Please raise an issue on the repository if you encounter bugs or have feature requests. Teachers, parents, and students are also encouraged to share their experiences using Lego Robot AI to help us improve the platform.
+
+---
+
+By combining **play, creativity, and STEM education**, Lego Robot AI aims to inspire the next generation of coders and problem-solvers through interactive learning. Let's build the future—one brick at a time! 🧱 🤖
+
+---
+
