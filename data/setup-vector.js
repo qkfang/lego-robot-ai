@@ -10,6 +10,7 @@ async function main() {
         await dbClient.connect();
         console.log('Connected to MongoDB');
         const db = dbClient.db('legorobot');
+        
         await addCollectionContentVectorField(db, 'legoapi');
         await addCollectionContentVectorField(db, 'legosnippet');
         await addCollectionContentVectorField(db, 'legoinfo');
@@ -26,7 +27,7 @@ async function main() {
 
 // set up the Azure OpenAI client 
 const embeddingsDeploymentName = "embeddings";
-const completionsDeploymentName = "completions";
+const completionsDeploymentName = "gpt-4o";
 const aoaiClient = new OpenAIClient(process.env.AOAI_ENDPOINT, 
                     new AzureKeyCredential(process.env.AOAI_KEY));
 

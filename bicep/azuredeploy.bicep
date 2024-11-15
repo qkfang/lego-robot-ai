@@ -18,6 +18,7 @@ This Azure resource deployment template uses some of the following practices:
   'southcentralus'
   'uksouth'
   'westeurope'
+  'australiaeast'
 ])
 param location string = 'eastus'
 
@@ -70,9 +71,9 @@ var openAiSettings = {
   maxCompletionTokens: '1000'
   completionsModel: {
     name: 'gpt-4o'
-    version: '2024-05-13'
+    version: '2024-08-06'
     deployment: {
-      name: 'completions'
+      name: 'gpt-4o'
     }
     sku: {
       name: 'Standard'
