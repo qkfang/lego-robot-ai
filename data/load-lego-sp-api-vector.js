@@ -11,9 +11,9 @@ async function main() {
         console.log('Connected to MongoDB');
         const db = dbClient.db('legoaichat');
         
-        await addCollectionContentVectorField(db, 'lego_sp_api');
-        // await addCollectionContentVectorField(db, 'customers');
-        // await addCollectionContentVectorField(db, 'sales');
+        // await addCollectionContentVectorField(db, 'lego_sp_api');
+        // await addCollectionContentVectorField(db, 'lego_sp_snippet');
+        await addCollectionContentVectorField(db, 'lego_sp_doc')
 
         //RAG with vector search for the top 3 most relevant products
 

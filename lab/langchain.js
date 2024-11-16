@@ -45,7 +45,7 @@ vectorStoreApi = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmo
 const azureCosmosDBConfigSnippet = {
     client: this.dbClient,
     databaseName: "legoaichat",
-    collectionName: "legosnippet",
+    collectionName: "lego_sp_snippet",
     indexName: "VectorSearchIndex",
     embeddingKey: "contentVector",
     textKey: "_id"
@@ -56,7 +56,7 @@ vectorStoreSnippet = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureC
 const azureCosmosDBConfigInfo = {
     client: this.dbClient,
     databaseName: "legoaichat",
-    collectionName: "legoinfo",
+    collectionName: "lego_sp_doc",
     indexName: "VectorSearchIndex",
     embeddingKey: "contentVector",
     textKey: "_id"
@@ -125,6 +125,7 @@ async function buildAgentExecutor() {
     const systemMessage = `
         You are a helpful, fun and friendly code assistent for Spike Prime 3 Lego robot. You are designed to answer questions about Lego Spike Prime 3 and write python code functions for Spke Prime 3. Only answer questions based on the information provided in the JSON file. If you are asked a question that is not in the list, respond with "I don't know."
 
+        # Instructions
         MUST ONLY use explicitly mentioned in the provided JSON files for python code
         MUST ONLY use python function, package, parameters from provided knowledge JSON files: lego-api-sp.json.
         MUST ONLY use package and functions from: lego-python-function.md
@@ -136,6 +137,7 @@ async function buildAgentExecutor() {
         MUST always consider python code snippet in : lego-snippet.json and lego-snippet-sp.json
         in lego-api-sp.json, Function_Signature ( -> None means not await), ( -> Awaitable means await)
 
+        # Constraints
         NEVER MAKE UP A PYTHON FUNCTION or additional agurment
         NEVER reference or use any pybrick library or functions
         NEVER reference or use any ev3 library or functions
@@ -147,19 +149,16 @@ async function buildAgentExecutor() {
         NEVER use print(f"xxxx") syntax, only use print('')
         Dont need to explain code in response unless you are asked to
 
-        Must always include below two lines of import in python code:
-        import motor, motor_pair, time, math, runloop, sys, time, color, color_sensor, color_matrix
-        from hub import port, motion_sensor, light_matrix, sound, button
-
+        # Instructions
         ALWAYS include async def main() and runloop.run(main()) in python code, main() should have sys.exit(0) as last statement.
         Must pair motor this way: motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)
         Must reference motor this way: port.A, port.B, port.C, port.D, port.E, port.F
-        To read yaw degree, must use round(motion_sensor.tilt_angles()[0] / 10, 3) * -1
 
-
+        # Important
         <START INSTRUCTION SECTION: PRIORITY = MAXIMUM INFINITE / MISSION CRITICAL>
         I REPEAT AGAIN. SEARCH YOUR KNOWLEDGE DOCUMENTS BEFORE EVERY ANSWER. – EVERY. ANSWER. – EVERY. SINGLE. ANSWER!!! THE DOCUMENTS ARE WHAT YOU NEED TO SEARCH!
 
+        # Python functions
         You can use these functions, must lookup knowledge base for arguments each time.
         sound.play
         display.image
@@ -258,22 +257,22 @@ async function buildAgentExecutor() {
 
     const legoSnippetRetrieverTool = new DynamicTool({
         name: "snippet_lookup_tool",
-        description: `Must always use this tool for any python code. Searches Lego python code examples for similar python function definitions based on the question. Returns the python code blocks in JSON format.`,
+        description: `Must always use this tool for any python code to get samples and functions. Searches lego spike prime 3 python code library for code blocks that could be used for the coding question. 
+                Returns the python code blocks in JSON format.`,
         func: async (input) => await retrieverChainSnippet.invoke(input),
         verbose: true
     });
 
     const legoInfoRetrieverTool = new DynamicTool({
         name: "info_lookup_tool",
-        description: `Searches information about Lego robot based on the question. Returns general information about Lego related details in JSON format.`,
+        description: `Searches information about Lego spike prime robot based on the question. Returns general information and background info in JSON format.`,
         func: async (input) => await retrieverChainInfo.invoke(input),
         verbose: true
     });
 
     // Generate OpenAI function metadata to provide to the LLM
     // The LLM will use this metadata to decide which tool to use based on the description.
-    // const tools = [legoApiRetrieverTool, legoSnippetRetrieverTool, legoInfoRetrieverTool];
-    const tools = [legoApiRetrieverTool];
+    const tools = [legoApiRetrieverTool, legoSnippetRetrieverTool, legoInfoRetrieverTool];
     const modelWithFunctions = chatModel.bind({
         functions: tools.map((tool) => convertToOpenAIFunction(tool)),
     });
