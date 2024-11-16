@@ -1,8 +1,8 @@
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
-const { AzureCosmosDBVectorStore,
-    AzureCosmosDBSimilarityType
-} = require("@langchain/community/vectorstores/azure_cosmosdb")
+const { AzureCosmosDBMongoDBVectorStore,
+    AzureCosmosDBMongoDBSimilarityType
+} = require("@langchain/azure-cosmosdb")
 const { OpenAIEmbeddings, ChatOpenAI } = require("@langchain/openai")
 // To support the LangChain LCEL RAG chain
 const { PromptTemplate } = require("@langchain/core/prompts")
@@ -27,8 +27,7 @@ const {
 } = require("langchain/agents/format_scratchpad");
 
 // set up the MongoDB client
-console.log(process.env.AZURE_COSMOSDB_CONNECTION_STRING);
-const dbClient = new MongoClient(process.env.AZURE_COSMOSDB_CONNECTION_STRING);
+const dbClient = new MongoClient(process.env.AZURE_COSMOSDB_MONGODB_CONNECTION_STRING);
 
 
 // set up the Azure Cosmos DB vector store using the initialized MongoDB client
@@ -38,9 +37,10 @@ const azureCosmosDBConfigApi = {
     collectionName: "lego_sp_api",
     indexName: "VectorSearchIndex",
     embeddingKey: "contentVector",
-    textKey: "_id"
+    textKey: "_id",
+    indexOptions: { dimensions : 1536, numLists:1}
 }
-vectorStoreApi = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigApi);
+vectorStoreApi = new AzureCosmosDBMongoDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigApi);
 
 const azureCosmosDBConfigSnippet = {
     client: this.dbClient,
@@ -48,9 +48,10 @@ const azureCosmosDBConfigSnippet = {
     collectionName: "lego_sp_snippet",
     indexName: "VectorSearchIndex",
     embeddingKey: "contentVector",
-    textKey: "_id"
+    textKey: "_id",
+    indexOptions: { dimensions : 1536, numLists:1}
 }
-vectorStoreSnippet = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigSnippet);
+vectorStoreSnippet = new AzureCosmosDBMongoDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigSnippet);
 
 
 const azureCosmosDBConfigInfo = {
@@ -59,10 +60,17 @@ const azureCosmosDBConfigInfo = {
     collectionName: "lego_sp_doc",
     indexName: "VectorSearchIndex",
     embeddingKey: "contentVector",
-    textKey: "_id"
+    textKey: "_id",
+    indexOptions: { dimensions : 1536, numLists:1}
 }
-vectorStoreInfo = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigInfo);
+vectorStoreInfo = new AzureCosmosDBMongoDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigInfo);
 
+const { SearchClient, AzureKeyCredential } = require("@azure/search-documents");
+const serviceName = process.env.AZURE_AISEARCH_INSTANCE_NAME;
+const apiKey = process.env.AZURE_AISEARCH_API_KEY;
+const indexName = "fll-submerged-index-v1";
+const endpoint = `https://${serviceName}.search.windows.net`;
+const searchClient = new SearchClient(endpoint, indexName, new AzureKeyCredential(apiKey));
 
 
 
@@ -88,6 +96,16 @@ async function main() {
     }
 }
 
+async function queryAzureSearch(query) {
+    console.log(query);
+    const searchResults = await searchClient.search(query);
+    const results = [];
+    for await (const result of searchResults.results) {
+      delete result.document.contentVector;
+      results.push(result);
+    }
+    return JSON.stringify(results);
+  }
 
 function formatDocuments(docs) {
     // Prepares the product list for the system prompt.  
@@ -270,9 +288,19 @@ async function buildAgentExecutor() {
         verbose: true
     });
 
+    const azureSearchTool = new DynamicTool({
+        name: "fll_lookup_tool",
+        description: "Must always use this tool for any python code",
+        func: async (query) => {
+          return await queryAzureSearch(query);
+        },
+        verbose: true
+      });
+
     // Generate OpenAI function metadata to provide to the LLM
     // The LLM will use this metadata to decide which tool to use based on the description.
-    const tools = [legoApiRetrieverTool, legoSnippetRetrieverTool, legoInfoRetrieverTool];
+    // const tools = [legoApiRetrieverTool, legoSnippetRetrieverTool, legoInfoRetrieverTool, azureSearchTool];
+    const tools = [azureSearchTool];
     const modelWithFunctions = chatModel.bind({
         functions: tools.map((tool) => convertToOpenAIFunction(tool)),
     });
