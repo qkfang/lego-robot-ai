@@ -25,11 +25,23 @@ async function main() {
                         Module_Description: module.Module_Description,
                         SubModule_Name: submodule.SubModule_Name,
                         SubModule_Description: submodule.SubModule_Description,
-                        Function_Name: func.name,
+                        Function_Name: func.Function_Name,
                         Function: func,
                     };
                     newJsonList.push(newJsonObject);
                 });
+            });
+
+            module.Functions.forEach(func => {
+                const newJsonObject = {
+                    Module_Name: module.Module_Name,
+                    Module_Description: module.Module_Description,
+                    SubModule_Name: module.Module_Name,
+                    SubModule_Description: module.Module_Description,
+                    Function_Name: func.Function_Name,
+                    Function: func,
+                };
+                newJsonList.push(newJsonObject);
             });
         });
         

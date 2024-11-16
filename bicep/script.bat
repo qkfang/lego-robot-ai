@@ -1,6 +1,6 @@
 
 Connect-AzAccount
-Set-AzContext -SubscriptionId 3b426915-fcea-4235-bbea-7ff7ffcd1e2b
-@REM New-AzResourceGroup -Name rg-lego-robot -Location 'eastus'
-New-AzResourceGroupDeployment -ResourceGroupName rg-lego-robot -TemplateFile .\azuredeploy.bicep -TemplateParameterFile .\azuredeploy.parameters.json -c
+Set-AzContext -SubscriptionId 13ed8a1c-5393-411b-9928-8a8cbe4c6ff2
+New-AzResourceGroup -Name rg-legoaichat -Location 'australiaeast'
+New-AzResourceGroupDeployment -ResourceGroupName rg-legoaichat -TemplateFile .\azuredeploy.bicep -TemplateParameterFile .\azuredeploy.parameters.json -c
 
