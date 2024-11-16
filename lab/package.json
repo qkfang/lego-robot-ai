@@ -7,11 +7,12 @@
         "start": "node index.js"
     },
     "dependencies": {
-        "@azure/openai": "1.0.0-beta.11",
-        "@langchain/community": "^0.0.32",
-        "dotenv": "16.4.4",
-        "langchain": "^0.1.21",
-        "mongodb": "6.3.0"
+        "@azure/openai": "^2.0.0-beta.3",
+        "@azure/search-documents": "^12.1.0",
+        "@langchain/azure-cosmosdb": "^0.2.1",
+        "dotenv": "^16.4.5",
+        "langchain": "^0.3.5",
+        "mongodb": "^6.10.0"
     },
     "author": "Microsoft",
     "license": "MIT"
