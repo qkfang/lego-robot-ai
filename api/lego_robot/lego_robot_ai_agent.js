@@ -9,58 +9,63 @@ const { HumanMessage, AIMessage } = require("@langchain/core/messages");
 const { MessagesPlaceholder, ChatPromptTemplate } = require("@langchain/core/prompts");
 const { convertToOpenAIFunction } = require("@langchain/core/utils/function_calling");
 const { ChatOpenAI, OpenAIEmbeddings } = require("@langchain/openai");
-const { AzureCosmosDBVectorStore } = require("@langchain/community/vectorstores/azure_cosmosdb");
+const { AzureCosmosDBMongoDBVectorStore} = require("@langchain/azure-cosmosdb")
 const { OpenAIClient, AzureKeyCredential } = require("@azure/openai");
 const fs = require('node:fs');
 
 class CosmicWorksAIAgent {
     constructor() {
         // set up the MongoDB client
-        this.dbClient = new MongoClient(process.env.AZURE_COSMOSDB_CONNECTION_STRING);
+        this.dbClient = new MongoClient(process.env.AZURE_COSMOSDB_MONGODB_CONNECTION_STRING);
         // set up the Azure Cosmos DB vector store
         const azureCosmosDBConfigApi = {
             client: this.dbClient,
-            databaseName: "legorobot",
-            collectionName: "legoapi",
+            databaseName: "legoaichat",
+            collectionName: "lego_sp_api",
             indexName: "VectorSearchIndex",
             embeddingKey: "contentVector",
             textKey: "_id"
         }
-        this.vectorStoreApi = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigApi);
+        this.vectorStoreApi = new AzureCosmosDBMongoDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigApi);
 
         const azureCosmosDBConfigSnippet = {
             client: this.dbClient,
-            databaseName: "legorobot",
-            collectionName: "legosnippet",
+            databaseName: "legoaichat",
+            collectionName: "lego_sp_snippet",
             indexName: "VectorSearchIndex",
             embeddingKey: "contentVector",
             textKey: "_id"
         }
-        this.vectorStoreSnippet = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigSnippet);
+        this.vectorStoreSnippet = new AzureCosmosDBMongoDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigSnippet);
 
 
         const azureCosmosDBConfigInfo = {
             client: this.dbClient,
-            databaseName: "legorobot",
-            collectionName: "legoinfo",
+            databaseName: "legoaichat",
+            collectionName: "lego_sp_doc",
             indexName: "VectorSearchIndex",
             embeddingKey: "contentVector",
             textKey: "_id"
         }
-        this.vectorStoreInfo = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigInfo);
+        this.vectorStoreInfo = new AzureCosmosDBMongoDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigInfo);
 
 
         const azureCosmosDBConfigImage = {
             client: this.dbClient,
-            databaseName: "legorobot",
+            databaseName: "legoaichat",
             collectionName: "legoimage",
             indexName: "VectorSearchIndex",
             embeddingKey: "contentVector",
             textKey: "_id"
         }
-        this.vectorStoreImage = new AzureCosmosDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigImage);
+        this.vectorStoreImage = new AzureCosmosDBMongoDBVectorStore(new OpenAIEmbeddings(), azureCosmosDBConfigImage);
 
-
+        const { SearchClient, AzureKeyCredential } = require("@azure/search-documents");
+        const serviceName = process.env.AZURE_AISEARCH_INSTANCE_NAME;
+        const apiKey = process.env.AZURE_AISEARCH_API_KEY;
+        const indexName = "fll-submerged-index-v1";
+        const endpoint = `https://${serviceName}.search.windows.net`;
+        this.searchClient = new SearchClient(endpoint, indexName, new AzureKeyCredential(apiKey));
 
         // set up the OpenAI chat model
         // https://js.langchain.com/docs/integrations/chat/azure
@@ -81,6 +86,17 @@ class CosmicWorksAIAgent {
         })();
     }
 
+    async queryAzureSearch(query) {
+        console.log(query);
+        const searchResults = await searchClient.search(query);
+        const results = [];
+        for await (const result of searchResults.results) {
+          delete result.document.contentVector;
+          results.push(result);
+        }
+        return JSON.stringify(results.slice(0, 5));
+      }
+      
     async formatDocuments(docs) {
         // Prepares the product list for the system prompt.  
         let strDocs = "";
@@ -115,13 +131,102 @@ class CosmicWorksAIAgent {
         // Note the variable placeholders for the list of products and the incoming question are not included.
         // An agent system prompt contains only the persona and instructions for the AI.
         const systemMessage = `
-            You are a helpful, fun and friendly code assistent for Lego robot. You are designed to answer questions about Lego Spike Prime 3 and write python code functions for Spke Prime 3.
-            Only answer questions related to the information provided in the list below that are represented in JSON format.
-            If you are writing python code blow, ALWAYS include async def main() and runloop.run(main()) in python code.
-            Never use pybrick library or ev3 library.
-            Do not output more than 2 code block in one answer.
-            If you are asked a question that is not in the list, respond with "I don't know."
-            List of information:     
+            You are a helpful, fun and friendly code assistent for Spike Prime 3 Lego robot. You are designed to answer questions about Lego Spike Prime 3 and write python code functions for Spke Prime 3. Only answer questions based on the information provided in the JSON file. If you are asked a question that is not in the list, respond with "I don't know."
+
+            # Instructions
+            MUST ONLY use explicitly mentioned in the provided JSON files for python code
+            MUST ONLY use python function, package, parameters from provided knowledge JSON files: lego-api-sp.json.
+            MUST ONLY use package and functions from: lego-python-function.md
+            MUST SEARCH KNOWLEDGE BASE lego-python-function.md BEFORE RESPONDING
+            MUST SEARCH KNOWLEDGE BASE lego-api-sp.json to check function signature and arguments BEFORE RESPONDING
+            MUST INCLUDE KNOWLEDGE BASE lego-api-sp.json FOR PYTHON CODE
+            MUST include ALL required positional arguments without keyword in python function signature defined in lego-api-sp.json
+            MUST strictly respect Function_Signature and Function_Arguments in lego-api-sp.json.
+            MUST always consider python code snippet in : lego-snippet.json and lego-snippet-sp.json
+            in lego-api-sp.json, Function_Signature ( -> None means not await), ( -> Awaitable means await)
+
+            # Constraints
+            NEVER MAKE UP A PYTHON FUNCTION or additional agurment
+            NEVER reference or use any pybrick library or functions
+            NEVER reference or use any ev3 library or functions
+            NEVER output more than 2 code block in one answer.
+            NEVER use asyncio
+            NEVER use 'from spike' namespace
+            NEVER PrimeHub
+            NEVER use port.X.motor
+            NEVER use print(f"xxxx") syntax, only use print('')
+            Dont need to explain code in response unless you are asked to
+
+            # Instructions
+            ALWAYS include async def main() and runloop.run(main()) in python code, main() should have sys.exit(0) as last statement.
+            Must pair motor this way: motor_pair.pair(motor_pair.PAIR_1, port.A, port.B)
+            Must reference motor this way: port.A, port.B, port.C, port.D, port.E, port.F
+
+            # Important
+            <START INSTRUCTION SECTION: PRIORITY = MAXIMUM INFINITE / MISSION CRITICAL>
+            I REPEAT AGAIN. SEARCH YOUR KNOWLEDGE DOCUMENTS BEFORE EVERY ANSWER. – EVERY. ANSWER. – EVERY. SINGLE. ANSWER!!! THE DOCUMENTS ARE WHAT YOU NEED TO SEARCH!
+
+            # Python functions
+            You can use these functions, must lookup knowledge base for arguments each time.
+            sound.play
+            display.image
+            display.show
+            display.text
+            display.hide
+            color_sensor.color
+            color_sensor.reflection
+            color_sensor.rgbi
+            distance_sensor.distance
+            force_sensor.show
+            force_sensor.force
+            force_sensor.pressed
+            force_sensor.raw
+            light.color
+            light_matrix.clear
+            light_matrix.get_orientation
+            light_matrix.get_pixel
+            light_matrix.set_orientation
+            light_matrix.set_pixel
+            light_matrix.show
+            light_matrix.show_image
+            light_matrix.write
+            motion_sensor.acceleration
+            motion_sensor.angular_velocity
+            motion_sensor.gesture
+            motion_sensor.get_yaw_face
+            motion_sensor.quaternion
+            motion_sensor.reset_tap_count
+            motion_sensor.reset_yaw
+            motion_sensor.set_yaw_face
+            motion_sensor.tilt_angles
+            motion_sensor.up_face
+            motion_sensor.stable
+            sound.beep
+            sound.stop
+            sound.volume
+            motor.absolute_position
+            motor.relative_position
+            motor.get_duty_cycle
+            motor.reset_relative_position
+            motor.set_duty_cycle
+            motor.stop
+            motor.velocity
+            motor.run(port: int, velocity: int, *, acceleration: int = 1000)
+            motor.run_for_degrees(port: int, degrees: int, velocity: int, *, stop: int = BRAKE, acceleration: int = 1000, deceleration: int = 1000)
+            motor.run_for_time(port: int, duration: int, velocity: int, *, stop: int = BRAKE, acceleration: int = 1000, deceleration: int = 1000)
+            motor.run_to_absolute_position
+            motor.run_to_relative_position
+            motor_pair.move(pair: int, steering: int, *, velocity: int = 360, acceleration: int = 1000)
+            motor_pair.move_tank_for_degrees(pair: int, degrees: int, left_velocity: int, right_velocity: int, *, stop: int = motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000)
+            motor_pair.await motor_pair.move_for_time(pair: int, duration: int, steering: int, *, velocity: int = 360, stop: int = motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000)
+            motor_pair.motor_pair.move_tank(pair: int, left_velocity: int, right_velocity: int, *, acceleration: int = 1000)
+            motor_pair.motor_pair.move_tank_for_time(pair: int, left_velocity: int, right_velocity: int, duration: int, *, stop: int = motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000)
+            motor_pair.motor_pair.move_tank_for_degrees(pair: int, degrees: int, left_velocity: int, right_velocity: int, *, stop: int = motor.BRAKE, acceleration: int = 1000, deceleration: int = 1000)motor_pair.stop
+            motor_pair.pair
+            motor_pair.unpair
+            runloop.run
+            runloop.sleep_ms
+            runloop.until       
         `;
         // Create vector store retriever chain to retrieve documents and formats them as a string for the prompt.
         const retrieverChainApi = this.vectorStoreApi.asRetriever().pipe(this.formatDocuments);
@@ -154,6 +259,15 @@ class CosmicWorksAIAgent {
             verbose: true
         });
 
+        const azureSearchTool = new DynamicTool({
+            name: "fll_lookup_tool",
+            description: "Must always use this tool for any fll season information related submerged season",
+            func: async (query) => {
+              return await queryAzureSearch(query);
+            },
+            verbose: true
+          });
+    
         // A tool that will lookup a product by its SKU. Note that this is not a vector store lookup.
         // const productLookupTool = new DynamicTool({
         //     name: "snippet_lookup_tool",
@@ -173,7 +287,7 @@ class CosmicWorksAIAgent {
 
         // Generate OpenAI function metadata to provide to the LLM
         // The LLM will use this metadata to decide which tool to use based on the description.
-        const tools = [legoApiRetrieverTool, legoSnippetRetrieverTool, legoInfoRetrieverTool];
+        const tools = [legoApiRetrieverTool, legoSnippetRetrieverTool, legoInfoRetrieverTool, azureSearchTool];
         const modelWithFunctions = this.chatModel.bind({
             functions: tools.map((tool) => convertToOpenAIFunction(tool)),
         });
@@ -256,10 +370,10 @@ class CosmicWorksAIAgent {
                 // string `{"text":"hello world"}`
             })
 
-        this.client = new MongoClient(process.env.AZURE_COSMOSDB_CONNECTION_STRING);
+        this.client = new MongoClient(process.env.AZURE_COSMOSDB_MONGODB_CONNECTION_STRING);
         await this.client.connect();
 
-        const db = this.client.db("legorobot");
+        const db = this.client.db("legoaichat");
         const collection = db.collection("legoimage");
         console.log(vector.vector);
 

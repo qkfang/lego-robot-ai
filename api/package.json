@@ -4,17 +4,18 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@azure/openai": "^1.0.0-beta.11",
-    "@langchain/community": "0.0.32",
+    "@azure/openai": "^2.0.0-beta.3",
+    "@azure/search-documents": "^12.1.0",
+    "@langchain/azure-cosmosdb": "^0.2.1",
     "cors": "^2.8.5",
-    "dotenv": "16.4.4",
-    "langchain": "0.1.21",
-    "mongodb": "6.3.0",
+    "dotenv": "^16.4.5",
+    "langchain": "^0.3.5",
+    "mongodb": "^6.10.0",
     "mongoose": "^8.4.3",
     "multer": "^1.4.5-lts.1",
     "pusher": "^5.2.0",
